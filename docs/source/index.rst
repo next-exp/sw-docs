@@ -18,8 +18,6 @@ Content
 .. toctree::
 
    NEXT Repositories <repositories>
-   NEXUS
-   IC
    prodflow
    workflow
 
