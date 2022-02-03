@@ -12,20 +12,18 @@ Software
 --------
 General information about the code.
 
-Repositories
+Content
 --------
 
 .. toctree::
 
+   NEXT Repositories <repositories>
    NEXUS
    IC
+   prodflow
+   workflow
+
 
 Workflow
 --------
 General information about the repositories workflow. More information in :doc:`workflow`.
-
---------
-.. toctree::
-
-   flow
-   howto
