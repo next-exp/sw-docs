@@ -16,8 +16,8 @@ It is recommended to use ssh key to clone repositories. A complete guide about h
 `here <https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent>`_.
 Based on this, you can define:
 
- * ``upstream`` as the remote of the original **next-exp/repository**,
- * ``origin`` your forked version **user/repository**,
+ * ``upstream`` as the remote of the original **next-exp/repository**.
+ * ``origin`` your forked version **user/repository**.
  * and ``local`` your local version, from cloning your fork.
 
 These three should be always at the same level. Keep your code updated!
@@ -37,10 +37,10 @@ In case you want to become a NEXT developers, you would need to follow the next 
 
  * Any code change should be made in a development branch (``dev_branch``). First created locally, then :guilabel:`Push` to ``origin/dev_branch``, and then requested its merge to ``upstream`` via a :guilabel:`Pull Request` (**PR**, GitHub feature).
  * Your **PR** will be reviewed by other software developers.
- * When/before **PR** approved, the ``dev_branch`` should be rebased onto ``upstream/master``
+ * When/before **PR** approved, the ``dev_branch`` should be rebased onto ``upstream/master``.
  * Once it is approved, it will be merged with ``upstream/master`` -> merging is only done by designated persons:
 
-    * **IC**: Carmen R, Miryam M-V, Helena A
+    * **IC**: Carmen R, Miryam M-V, Helena A.
     * **NEXUS**: Paola F.
 
- * You can delete your ``dev_branch`` locally and remotely
+ * You can delete your ``dev_branch`` locally and remotely.

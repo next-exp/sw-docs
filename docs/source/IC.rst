@@ -17,7 +17,7 @@ Each of the *cities* is focused on different reconstruction tools of the code (e
 
 Important information about IC code:
  * A complete review about the IC repository can be found on this previous IC-crash-course under `IC-structure <https://github.com/mmkekic/IC-crash-course/blob/master/presentations/IC_structure.pdf>`_.
- * Each of the cities in the repository (`IC/invisible_cities/cities <https://github.com/next-exp/IC/tree/master/invisible_cities/cities>`_) includes a small description the city
+ * Each of the cities in the repository (`IC/invisible_cities/cities <https://github.com/next-exp/IC/tree/master/invisible_cities/cities>`_) includes a small description the city.
 
  .. image:: images/cityfunctionality.png
    :width: 800
@@ -40,4 +40,4 @@ contact any of our **Software Manager**: `Gonzalo Martínez-Lema <gonzaponte@gma
 
 If you have any question, or you would like to discuss something related to NEXUS with other users or developers,
 you can also write on the **Slack Channels**:
- * *#IC_support*: Support channel for users to raise issues and questions
+ * *#IC_support*: Support channel for users to raise issues and questions.

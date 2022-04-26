@@ -5,8 +5,8 @@ This page reviews the production flow for both data and simulations. Even if the
 Additionally, a different chain will be follow depending on the type of simulation, and detector geometry. The cities mentioned along this list are summarised in :doc:`ICcities`.
 It is also important to remark that during data acquisition, two different trigger configurations are considered:
 
- * *Trigger 1*: to select low energy events, i.e. Kr events
- * *Trigger 2*: to select high energy events, e.g. Tl events, bb events, etc
+ * *Trigger 1*: to select low energy events, i.e. Kr events.
+ * *Trigger 2*: to select high energy events, e.g. Tl events, bb events, etc.
 
 Simulations will be separated depending on which type of generator is used, as Trigger 1 or 2 like events.
 
@@ -27,8 +27,11 @@ Data collected in NEXT detectors is in form of *Raw Waveforms* (**RWF**, in ADCs
     :width: 850
 
  * Sensor parameters need for **Irene** need to be updated before any reconstruction. These are obtained from calibration using **Phyllis**, **Trude**, and **Beredice** IC cities.
- * Correction maps are obtained from Krypton events (Trigger 1) using :doc:`ICAROS`. Official production correction maps can be found in :doc:`production`. A complete review about how this maps are produced can be found in "How to :ref:`krmaps`"
- * PSFs are nedeed to run Richardson Lucy deconvolution (**Beersheba**). Krypton events (Trigger 1) are used under a specific configuration of **Penthesilea** and **Eutropia**. Official production PSFs for deconvolution can be found in :doc:`production`. A review about how this PSFs are produced can be found in "How to :ref:`psfdeco`"
+ * Correction maps are obtained from Krypton events (Trigger 1) using :doc:`ICAROS`. Official production correction maps can be found in :doc:`production`. A complete review about how this maps are produced can be found in "How to :ref:`krmaps`".
+ * PSFs are nedeed to run Richardson Lucy deconvolution (**Beersheba**). Krypton events (Trigger 1) are used under a specific configuration of **Penthesilea** and **Eutropia**. Official production PSFs for deconvolution can be found in :doc:`production`. A review about how this PSFs are produced can be found in "How to :ref:`psfdeco`".
+
+ .. note::
+   *dst* stands for *data summary tape*
 
 Simulations
 ------------
