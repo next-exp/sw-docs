@@ -19,23 +19,22 @@ NEXUS code is `structured <https://github.com/next-exp/nexus/wiki>`_  in a set o
 to ensure data consistency to be easily extended to include new geometries
 and configurations. NEXUS is written in C++, and depends on the following third-party libraries:
 
- * **Geant4**: NEXT simulations are based on Geant4;
- * **ROOT**: used for I/O and histogramming;
- * **gsl**: NEXUS depends on the GNU Scientific Library for the simulation of double beta decay events;
- * **hdf5**: output files are writen as hdf5.
+ * **Geant4**: NEXT simulations are based on Geant4.
+ * **ROOT**: used for I/O and histogramming.
+ * **gsl**: NEXUS depends on the GNU Scientific Library for the simulation of double beta decay events.
+ * **hdf5**: output files are written as hdf5.
 
 Important information about NEXUS code:
- * `User-guide <https://github.com/next-exp/nexus/wiki/User-guide>`_ can be found on the NEXUS Wiki
- * A summary of the `output format <https://github.com/next-exp/nexus/wiki/Output-format>`_ can also be found there
- * Examples of output format are uploaded on doc-db in `NEXT-doc-1313-v1 <https://next.ific.uv.es/cgi-bin/DocDB/private/ShowDocument?docid=1313>`_
+ * `User-guide <https://github.com/next-exp/nexus/wiki/User-guide>`_ can be found on the NEXUS Wiki.
+ * A summary of the `output format <https://github.com/next-exp/nexus/wiki/Output-format>`_ can also be found there.
+ * Examples of output format are uploaded on doc-db in `NEXT-doc-1313-v1 <https://next.ific.uv.es/cgi-bin/DocDB/private/ShowDocument?docid=1313>`_ .
 
 Tags
 ------------
 A list of the different NEXUS `tags <https://github.com/next-exp/nexus/wiki/Tags>`_ can be found on the Wiki.
-Latest NEXUS tag is >= v7_00_00, with the following recommended versions:
-
- * Geant4.11.0
- * ROOT >= 6.0.
+Starting from nexus tag v7_00_00, the following versions are needed:
+ * Geant4 version >= 4.11.0.
+ * ROOT >= 6.26.
 
  .. note::
    Geant4 version 10.7.x cannot be used with any nexus tag or even commit. For previous tags, Geant4.10.6 or Geant4.10.5 were used.
@@ -60,5 +59,5 @@ contact any of our **MC Managers**
 If you have any question, or you would like to discuss something related to NEXUS with other users or developers,
 you can also write on the **Slack Channels**:
 
- * *#nexus_support*: Support channel for users to raise issues and questions
- * *#next100sim*: Channel focused on next-100 simulation details: geometry issues, production, etc
+ * *#nexus_support*: Support channel for users to raise issues and questions.
+ * *#next100sim*: Channel focused on next-100 simulation details: geometry issues, production, etc.

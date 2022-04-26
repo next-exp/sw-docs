@@ -2,7 +2,7 @@ Workflow
 ============
 
 NEXT software is in the Github repository `next-exp <https://github.com/next-exp/>`_. This page englobes the information for users and developers related to the git workflow that can be applied to any of the main NEXT repositories (:doc:`NEXUS` and :doc:`IC`).
-It is based in what it was presented in the `IC-crash-course <https://github.com/mmkekic/IC-crash-course/blob/master/presentations/git.pdf>`_, where more detailed information about git basics can be found.
+It is based on what was presented in the `IC-crash-course <https://github.com/mmkekic/IC-crash-course/blob/master/presentations/git.pdf>`_, where more detailed information about git basics can be found.
 
 Info for users
 ------------------------
@@ -12,7 +12,7 @@ Info for users
 
    git clone git@github.com:user/repository.git
 
-It is recomended to use ssh key to clone repositories. A complete guide about how to generate ssh keys can be found
+It is recommended to use ssh key to clone repositories. A complete guide about how to generate ssh keys can be found
 `here <https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent>`_.
 Based on this, you can define:
 
@@ -31,7 +31,7 @@ These three should be always at the same level. Keep your code updated!
    :width: 850
 
 
-Info for developers:
+Info for developers
 ------------------------------------
 In case you want to become a NEXT developers, you would need to follow the next procedure whenever you want to add a change in the main repository:
 
