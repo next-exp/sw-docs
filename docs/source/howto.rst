@@ -4,14 +4,14 @@ How to ...
 Guide of how to create different components necessary for the production flow.
 
 .. caution::
-  This page is under construction, we are working on it. If you would like to contribute on this documentation, reach `me <helena.almamol@gmail.com>`_!
+  This page is under construction, we are working on it. If you think something is missing, or you would like to contribute, reach `me <helena.almamol@gmail.com>`_!
 
 .. _krmaps:
 
 produce Kr Maps
 ----------------
 
-Work in progress! 
+Work in progress!
 
 .. _lighttables:
 
