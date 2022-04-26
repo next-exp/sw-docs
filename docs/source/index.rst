@@ -4,7 +4,7 @@ NEXT Software Documentation
 
 Welcome to the main documentation site for the `NEXT Experiment <https://next.ific.uv.es/next/>`_ **software**.
 This webpage englobes everything you need to know as a user and developer: a complete review of the NEXT :doc:`repositories`,
-together with the latest official :doc:`production` and workflow guidelines.
+together with the latest official :doc:`production` and :doc:`workflow` guidelines.
 
 .. warning::
   This webpage is still under construction.
@@ -15,7 +15,6 @@ Content
 .. toctree::
 
    NEXT Repositories <repositories>
-   ICcities
    prodflow
    Official Production <production>
    workflow
