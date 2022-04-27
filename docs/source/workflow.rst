@@ -33,12 +33,12 @@ These three should be always at the same level. Keep your code updated!
 
 Info for developers
 ------------------------------------
-In case you want to become a NEXT developers, you would need to follow the next procedure whenever you want to add a change in the main repository:
+In case you want to become a NEXT developer, you would need to follow the next procedure whenever you want to add a change in the main repository:
 
  * Any code change should be made in a development branch (``dev_branch``). First created locally, then :guilabel:`Push` to ``origin/dev_branch``, and then requested its merge to ``upstream`` via a :guilabel:`Pull Request` (**PR**, GitHub feature).
  * Your **PR** will be reviewed by other software developers.
  * When/before **PR** approved, the ``dev_branch`` should be rebased onto ``upstream/master``.
- * Once it is approved, it will be merged with ``upstream/master`` -> merging is only done by designated persons:
+ * Once it is approved, it will be merged with ``upstream/master`` -> merging is only done by designated people:
 
     * **IC**: Carmen R, Miryam M-V, Helena A.
     * **NEXUS**: Paola F.

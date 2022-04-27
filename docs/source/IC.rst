@@ -24,7 +24,7 @@ Installation
 There is a *Quickstart guide* at the next-exp/IC repository with anything related to its installation. When compiling it, `conda <https://docs.conda.io/projects/conda/en/latest/index.html>`_ will be installed and it will be created the appropriate IC environment, as well as it will be set the environment variables which are needed for the correct functioning of IC.
 
 
-City Structure:
+City Structure
 ----------------
 IC cities follow dataflow data processing: they are designed to resemble a pipeline. By reading this pipeline one should be able to understand what operations are made and in which order.
 
@@ -97,4 +97,5 @@ contact any of our **Software Manager**: `Gonzalo Martínez-Lema <gonzaponte@gma
 
 If you have any question, or you would like to discuss something related to NEXUS with other users or developers,
 you can also write on the **Slack Channels**:
+
  * *#IC_support*: Support channel for users to raise issues and questions.

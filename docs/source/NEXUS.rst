@@ -20,7 +20,7 @@ to ensure data consistency to be easily extended to include new geometries
 and configurations. NEXUS is written in C++, and depends on the following third-party libraries:
 
  * **Geant4**: NEXT simulations are based on Geant4.
- * **ROOT**: used for I/O and histogramming.
+ * **ROOT** (only up to v7_00_00): used for I/O and histogramming.
  * **gsl**: NEXUS depends on the GNU Scientific Library for the simulation of double beta decay events.
  * **hdf5**: output files are written as hdf5.
 
@@ -33,7 +33,7 @@ Tags
 ------------
 A list of the different NEXUS `tags <https://github.com/next-exp/nexus/wiki/Tags>`_ can be found on the Wiki.
 Starting from nexus tag v7_00_00, the following versions are needed:
- * Geant4 version >= 4.11.0.
+ * Geant4 version >= 11.0.
  * ROOT >= 6.26.
 
  .. note::

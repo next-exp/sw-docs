@@ -2,7 +2,7 @@ Production Flow
 ====================
 
 This page reviews the production flow for both data and simulations. Even if the reconstruction chain is the same for both samples, there are some discrepancies that need to be taken into account.
-Additionally, a different chain will be follow depending on the type of simulation, and detector geometry. The cities mentioned along this list are summarised in :doc:`ICcities`.
+Additionally, a different chain will be follow depending on the type of simulation, and detector geometry. The cities mentioned along this list are summarised in :doc:`IC`.
 It is also important to remark that during data acquisition, two different trigger configurations are considered:
 
  * *Trigger 1*: to select low energy events, i.e. Kr events.
@@ -50,7 +50,7 @@ It currently happens for NEXT-100 and NEXT-FLEX geometries. In that case, **RWF*
   .. image:: images/prodflow_TWF_pmaps.png
     :width: 850
 
-From this point on, the same production flow than data is used in simulations (see imagen from Data section).
+From this point on, the same production flow than data is used in simulations (see image from Data section).
 
 .. note::
   For simulations, there is not distinction between Trigger 1 or 2 to transform NEXUS files into **pmaps**.
