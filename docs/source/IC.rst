@@ -21,8 +21,30 @@ A complete review about the IC repository can be found on a previous IC-crash-co
 Installation
 ------------
 
-There is a *Quickstart guide* at the next-exp/IC repository with anything related to its installation. When compiling it, `conda <https://docs.conda.io/projects/conda/en/latest/index.html>`_ will be installed and it will be created the appropriate IC environment, as well as it will be set the environment variables which are needed for the correct functioning of IC.
+There is a *Quickstart guide* at the next-exp/IC repository with anything related to its installation.
+The simplest way of installing the software is to download the repository with
 
+.. code-block:: text
+
+  git clone git@github.com:next-exp/IC.git
+
+Note that the cloning process would be different for users and developers. If someone only wants to use the software they can download from next-exp, but it is recommended for both users and potential developers to fork the repository, and then clone their fork.
+Check additional details about it in :doc:`workflow` section. Once the repository is downloaded, run
+
+.. code-block:: text
+
+  source manage.sh install_and_check 3.8
+
+from the top level of the IC folder. This will download and install `miniconda <https://docs.conda.io/projects/conda/en/latest/index.html>`_ if necessary prior to installing IC and
+its dependencies.  Miniconda would be installed in a default location (``$HOME/miniconda``). If you already have an anaconda installation, the first step will be skipped.
+
+Usage
+------------
+After running the installation commands, your shell will be configured to use IC. To set up IC in a new shell run
+
+.. code-block:: text
+
+  source manage.sh work_in_python_version_no_tests 3.8
 
 City Structure
 ----------------
@@ -45,6 +67,9 @@ scripts) are located in `next-exp/CERES <https://github.com/next-exp/CERES>`_ re
 
 .. image:: images/configfile.png
   :width: 850
+
+.. note::
+  Config files located in `IC/invisible_cities/config <https://github.com/next-exp/IC/tree/master/invisible_cities/config>`_ are only for testing purposes and **not** realistic.
 
 Once it is clear the parametrisation needed to run a city (once IC environment is set), you just need to type:
 
