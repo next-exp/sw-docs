@@ -12,8 +12,8 @@ This section is focused on reviewing how the code is structured and where the in
 Code
 ------------
 
-IC is a reconstruction software structured in algorithms/programs named *cities*. The code is written Python, but it uses `Numpy <https://numpy.org/>`_ and `Pandas <https://pandas.pydata.org/>`_ for data analysis and as a manipulation tool.
-Each of the *cities* is focused on different reconstruction tools of the code (e.g. raw waveforms integration, energy correction, deconvolution, etc...), and follow *dataflow* data processing: they resemble a pipeline of data transformations. More details about the dataformat can be found in a previous IC-crash-course in `Dataflow <https://github.com/mmkekic/IC-crash-course/blob/master/presentations/Dataflow.pdf>`_ section.
+IC is a reconstruction software structured in algorithms/programs named *cities*. The code is written in Python, but it uses `Numpy <https://numpy.org/>`_ and `Pandas <https://pandas.pydata.org/>`_ for data analysis and as a manipulation tool.
+Each of the *cities* is focused on a specific reconstruction *stage* (e.g. raw waveforms integration, energy correction, deconvolution, etc...), and follow *dataflow* data processing: they resemble a pipeline of data transformations. More details about the dataformat can be found in a previous IC-crash-course in `Dataflow <https://github.com/mmkekic/IC-crash-course/blob/master/presentations/Dataflow.pdf>`_ section.
 A complete review about the IC repository can be found on a previous IC-crash-course under `IC-structure <https://github.com/mmkekic/IC-crash-course/blob/master/presentations/IC_structure.pdf>`_.
 
 .. _ICinstallation:
@@ -78,7 +78,7 @@ ONLY FOR MC:
  * Diomira
  * Hypathia
 
-DEBUGGIN/CONTROL:
+DEBUGGING/CONTROL:
  * Isidora
 
 Each of this cities include a small description in the IC repository (`IC/invisible_cities/cities <https://github.com/next-exp/IC/tree/master/invisible_cities/cities>`_),
