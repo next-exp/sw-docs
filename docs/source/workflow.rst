@@ -6,14 +6,20 @@ It is based on what was presented in the `IC-crash-course <https://github.com/mm
 
 Info for users
 ------------------------
-:guilabel:`Fork` the NEXT repository you are going to use, and clone it in your local computer,
+To make use of any of the NEXT repositories, you just need to clone the main Github repository like this:
 
- .. code-block:: text
+.. code-block:: text
+
+  git clone git@github.com:next-exp/repository.git
+
+It is *recommended* to use ssh key to clone repositories. A complete guide about how to generate and store ssh keys can be found
+`here <https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent>`_.
+It is also *recommended*, but not necessary, that users clone the forked repository instead of the main one. To fork a repository, go to the main page of this one and click on the :guilabel:`Fork` button on the top right corner. The NEXT repository you are going to use will be now part of your account as ``user/repository``, where ``user`` is its your account name. To clone it in your local computer you will need to:
+
+.. code-block:: text
 
    git clone git@github.com:user/repository.git
 
-It is recommended to use ssh key to clone repositories. A complete guide about how to generate ssh keys can be found
-`here <https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent>`_.
 Based on this, you can define in your account the widely used convention:
 
  * ``upstream`` as the remote of the original **next-exp/repository**.
@@ -24,8 +30,8 @@ The main branch of these three should be always at the same level. Keep your cod
 
  .. note::
    **next-exp/IC** repository use lfs (large file storage) for the files that are not related to the code. Github offers an `open source extension <https://git-lfs.github.com/>`_.
-   We are using our own `lfs server at IFIC <https://next.ific.uv.es:8888/users/sign_in>`_ for storage. Note that you would need your own account
-   even manipulating with our branch. In case of question, contact us.
+   We are using our own `lfs server at IFIC <https://next.ific.uv.es:8888/users/sign_in>`_ for storage. Note that you would need to create an account
+   even when your manipulating your our branch. In case of question, contact us.
 
  .. image:: images/workflow.png
    :width: 850
@@ -33,7 +39,7 @@ The main branch of these three should be always at the same level. Keep your cod
 
 Info for developers
 ------------------------------------
-In case you want to become a NEXT developer, you would need to follow the next procedure whenever you want to add a change in the main repository:
+In case you want to become a NEXT developer, you should always use a forked version of the main repository (see information from previous section). In that way, whenever you want to add or contribute, you would need to follow the next procedure:
 
  * Any code change should be made in a development branch, created locally. The name of the branch should preferably be something meaningful, related to the changes. In this example, it will be ``dev_branch``.
  * Local changes should be :guilabel:`Push` to your forked ``origin/dev_branch``.

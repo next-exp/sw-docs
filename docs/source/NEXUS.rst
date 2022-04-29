@@ -33,6 +33,7 @@ Tags
 ------------
 A list of the different NEXUS `tags <https://github.com/next-exp/nexus/wiki/Tags>`_ can be found on the Wiki.
 Starting from nexus tag v7_00_00, the following versions are needed:
+
  * Geant4 version >= 11.0.
  * ROOT >= 6.26.
 
@@ -59,5 +60,5 @@ contact any of our **MC Managers**
 If you have any question, or you would like to discuss something related to NEXUS with other users or developers,
 you can also write on the **Slack Channels**:
 
- * *#nexus_support*: Support channel for users to raise issues and questions.
- * *#next100sim*: Channel focused on next-100 simulation details: geometry issues, production, etc.
+ * `#nexus_support <https://next-experiment.slack.com/archives/C02UPCMLJ4W>`_ : Support channel for users to raise issues and questions.
+ * `#next100sim <https://next-experiment.slack.com/archives/C0211DWL5LN>`_: Channel focused on next-100 simulation details: geometry issues, production, etc.

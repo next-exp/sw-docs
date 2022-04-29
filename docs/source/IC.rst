@@ -132,4 +132,4 @@ contact any of our **Software Manager**: `Gonzalo Martínez-Lema <gonzaponte@gma
 If you have any question, or you would like to discuss something related to NEXUS with other users or developers,
 you can also write on the **Slack Channels**:
 
- * *#IC_support*: Support channel for users to raise issues and questions.
+ * `#IC_support <https://next-experiment.slack.com/archives/C73ANL24E>`_:  Support channel for users to raise issues and questions.

@@ -26,7 +26,7 @@ Data collected in NEXT detectors is in form of *Raw Waveforms* (**RWF**, in ADCs
   .. image:: images/prodflow_data.png
     :width: 850
 
- * Sensor parameters need for **Irene** need to be updated before any reconstruction. These are obtained from calibration using **Phyllis**, **Trude**, and **Beredice** IC cities.
+ * Sensor parameters for **Irene** need to be updated before any reconstruction. These are obtained from calibration using **Phyllis**, **Trude**, and **Beredice** IC cities. These parameters are updated regularly during detector operation, and are stored in a database. Updates to the database are pushed to the repository, so keeping up to date with the main branch is very much recommended.
  * Correction maps are obtained from Krypton events (Trigger 1) using :doc:`ICAROS`. Official production correction maps can be found in :doc:`production`. A complete review about how this maps are produced can be found in "How to :ref:`krmaps`".
  * PSFs are nedeed to run Richardson Lucy deconvolution (**Beersheba**). Krypton events (Trigger 1) are used under a specific configuration of **Penthesilea** and **Eutropia**. Official production PSFs for deconvolution can be found in :doc:`production`. A review about how this PSFs are produced can be found in "How to :ref:`psfdeco`".
 
@@ -45,7 +45,7 @@ or just with the information from the true hits of deposit energy (*fast simulat
 **Detsim** files require of Lighttables and PSFs. The ones created for official production can be found in :doc:`production`. Otherwise, a review about how they can be created can be found in "How to :ref:`lighttables`".
 
 Once **TWFs** are created, the simulation production flow take a different way depending on **which type of detector** is simulated. This is caused by the fact that some of the geometries do not have electronic parameters included in their database.
-It currently happens for NEXT-100 and NEXT-FLEX geometries. In that case, **RWF** can not be produced, and we can produce **pmaps** using **Hypathia**. For detectors with the electronic parameters included (like DEMOPP or NEXT-White), we can transform **TWF** into **RWF** using **Diomira**.
+It currently happens for NEXT-100 and NEXT-FLEX geometries. In that case, we produce **pmaps** directly using **Hypathia** (pseudo-**RWF** are created on the fly but not stored). These pseudo-rwf contain only gaussian electronic noise and gain fluctuations in the PMTs while SiPMs have the same processing. For detectors with the electronic parameters included (like DEMOPP or NEXT-White), we can transform **TWF** into **RWF** using **Diomira**.
 
   .. image:: images/prodflow_TWF_pmaps.png
     :width: 850
