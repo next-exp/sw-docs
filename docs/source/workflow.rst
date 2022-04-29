@@ -29,9 +29,10 @@ Based on this, you can define in your account the widely used convention:
 The main branch of these three should be always at the same level. Keep your code updated!
 
  .. note::
-   **next-exp/IC** repository use lfs (large file storage) for the files that are not related to the code. Github offers an `open source extension <https://git-lfs.github.com/>`_.
+
+   The **next-exp/IC** repository uses lfs (large file storage) for data files used within the IC package. Github offers an `open source extension <https://git-lfs.github.com/>`_.
    We are using our own `lfs server at IFIC <https://next.ific.uv.es:8888/users/sign_in>`_ for storage. Note that you would need to create an account
-   even when you are manipulating your our branch. In case of question, contact us.
+   in that server even when you are manipulating your own branch. In case of question, contact us.
 
  .. image:: images/workflow.png
    :width: 850
