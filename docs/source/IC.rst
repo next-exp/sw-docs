@@ -84,27 +84,36 @@ List of Cities
 IC cities can be categorised depending on their purpose on the following list:
 
 MAIN PRODUCTION:
- * Irene
- * Penthesilea
- * Dorothea
- * Esmeralda
- * Beersheba
- * Isaura
- * Eutropia
+  .. toctree::
+
+     Irene <irene>
+     Penthesilea <penthesilea>
+     Dorothea <dorothea>
+     Esmeralda <esmeralda>
+     Beersheba <beersheba>
+     Isaura <isaura>
+     Eutropia <eutropia>
 
 CALIBRATION:
- * Phyllis
- * Trude
- * Beredice
+  .. toctree::
+
+     Phyllis <phyllis>
+     Trude <trude>
+     Beredice <beredice>
 
 ONLY FOR MC:
- * Detsim
- * Buffy
- * Diomira
- * Hypathia
+  .. toctree::
+
+     Detsim <detsim>
+     Buffy <buffy>
+     Diomira <diomira>
+     Hypathia <hypathia>
 
 DEBUGGING/CONTROL:
- * Isidora
+  .. toctree::
+
+     Isidora <isidora>
+
 
 Each of this cities include a small description in the IC repository (`IC/invisible_cities/cities <https://github.com/next-exp/IC/tree/master/invisible_cities/cities>`_),
 

@@ -13,6 +13,7 @@ Content
 --------
 
 .. toctree::
+   :maxdepth: 2
 
    NEXT Repositories <repositories>
    prodflow

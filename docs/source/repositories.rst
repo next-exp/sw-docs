@@ -14,7 +14,8 @@ Any NEXT repository can be forked into your own Github account. :doc:`workflow` 
 All the relevant information about these repositories and links to the installation instructions is gathered in the following links:
 
 .. toctree::
-
+   :maxdepth: 2
+   
    NEXUS
    IC
    ICAROS
