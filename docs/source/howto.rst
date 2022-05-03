@@ -1,28 +1,35 @@
 How to ...
-=====
+==========
 
 Guide of how to create different components necessary for the production flow.
 
-
-Reference
+.. caution::
+  This page is under construction, we are working on it. If you think something is missing, or you would like to contribute, reach `me <helena.almamol@gmail.com>`_!
 
 .. _krmaps:
 
-Create Kr Maps
-------------
+produce Kr Maps
+----------------
 
-Inf
+Work in progress!
 
 .. _lighttables:
 
-Create Light Tables and PSFs for detsim
-------------
+create Light Tables and PSFs for detsim
+-----------------------------------------
 
-Info
+Work in progress!
+
+.. _psfdeco:
+
+create PSFs for deconvolution (Beersheba)
+--------------------------------------------
+
+Work in progress!
 
 .. _database:
 
-Sensors Database
-------------
+introduce new Sensors Database
+--------------------------------
 
-Info
+Work in progress!
