@@ -85,6 +85,7 @@ IC cities can be categorised depending on their purpose on the following list:
 
 MAIN PRODUCTION:
   .. toctree::
+     :maxdepth: 1
 
      Irene <irene>
      Penthesilea <penthesilea>
@@ -96,6 +97,7 @@ MAIN PRODUCTION:
 
 CALIBRATION:
   .. toctree::
+     :maxdepth: 1
 
      Phyllis <phyllis>
      Trude <trude>
@@ -103,6 +105,7 @@ CALIBRATION:
 
 ONLY FOR MC:
   .. toctree::
+     :maxdepth: 1
 
      Detsim <detsim>
      Buffy <buffy>
@@ -111,6 +114,7 @@ ONLY FOR MC:
 
 DEBUGGING/CONTROL:
   .. toctree::
+     :maxdepth: 1
 
      Isidora <isidora>
 
