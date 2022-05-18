@@ -24,6 +24,70 @@ Output:
  * /Filters/empty_pmap
  * /Filters/s12_indices
 
+**Config**:
+
+Besides the arguments common to all cities <link>, *Irene* accepts the following arguments:
+
+.. list-table::
+   :widths: 40 60 120
+   :header-rows: 1
+
+   * - Parameter
+     - Type
+     - Description
+
+   * - ``n_baseline``
+     - ``int``
+     - Number of waveform samples to compute the baseline.
+
+   * - ``n_mau``
+     - ``int``
+     - Number of waveform samples to compute the mau.
+
+   * - ``thr_mau``
+     - ``float``
+     - Threshold for mau calculation in pes.
+
+   * - ``thr_sipm``
+     - ``float``
+     - Threshold for individual SiPM samples. Can be absolute (pes) or relative (unitless), depending on ``thr_sipm_type``.
+
+   * - ``thr_sipm_type``
+     - ``ThresholdSiPM``
+     - Thresholding mode for individual SiPM samples. ``common`` applies the same absolute threshold value to all SiPMs. ``individual`` uses a relative value based on the noise spectrum for each SiPM.
+
+   * - ``s1|s2_lmin|lmax``
+     - ``int``
+     - Lower/upper limits to the width of S1/S2 signals expressed in number of samples.
+
+   * - ``s1|s2_tmin|tmax``
+     - ``float``
+     - Lower/upper limits of the search window for S1/S2 signals.
+
+   * - ``s1|s2_rebin_stride``
+     - ``int``
+     - Rebin factor for S1/S2 signals. Rarely changed. 1 for S1 and 40 for S2 signals.
+
+   * - ``s1|s2_stride``
+     - ``int``
+     - Allowed range of signal fluctuations below threshold for peak merging expressed in number of samples.
+
+   * - ``thr_csum_s1|s2``
+     - ``float``
+     - Threshold applied to the PMT-summed waveform in order to find S1/S2 peaks.
+
+   * - ``thr_sipm_s2``
+     - ``float``
+     - Threshold applied to the time-integrated signal of each SiPM to discard SiPMs with only dark counts.
+
+   * - ``pmt_samp_wid``
+     - ``float``
+     - Sampling period of PMTs. Should be removed.
+
+   * - ``sipm_samp_wid``
+     - ``float``
+     - Sampling period of SiPMs. Should be removed.
+
 
 Irene workflow
 **************
