@@ -8,7 +8,7 @@ The majority of a sensor's waveform does not contain any useful information. The
 .. _Irene input:
 
 Input
-:::::
+-----
 
  * ``/Run/events``
  * ``/Run/runInfo``
@@ -18,7 +18,7 @@ Input
 .. _Irene output:
 
 Output
-::::::
+------
 
  * ``/PMAPS/S1``: the sliced PMT-summed waveform for each S1 peak. 4 columns: event number, peak number, time (:math:`\mu`\ s) and amplitude (pes)
  * ``/PMAPS/S1Pmt``: the sliced individual PMT waveforms for each S1 peak. 4 columns: event number, peak number, pmt id and amplitude (pes)
@@ -31,7 +31,7 @@ Output
 .. _Irene config:
 
 Config
-::::::
+------
 
 Besides the arguments common to all cities <link>, *Irene* accepts the following arguments:
 
@@ -99,7 +99,7 @@ Besides the arguments common to all cities <link>, *Irene* accepts the following
 .. _Irene workflow:
 
 Workflow
---------------
+--------
 
 Irene performs a number of data transformations in order to obtain a **PMap**. These operations can be grouped in four main tasks:
 
