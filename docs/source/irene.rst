@@ -9,6 +9,8 @@ Short description
 
 The majority of a sensor's waveform does not contain any useful information. The S1 and S2 signals are localized to relatively short time intervals. Thus, *Irene* processes **RWF**\ s to find these time slices (peaks) and disregard the rest of the waveform. During this procedure, PMT and SiPM waveforms are matched and combined into a single structure. The collection of all peaks in an event is called a Peak-map or **PMap**.
 
+.. _Irene input:
+
 Input
 :::::
 
@@ -16,6 +18,8 @@ Input
  * ``/Run/runInfo``
  * ``/RD/pmtrd``
  * ``/RD/sipmrd``
+
+.. _Irene output:
 
 Output
 ::::::
@@ -27,6 +31,8 @@ Output
  * ``/PMAPS/S2Si``
  * ``/Filters/empty_pmap``
  * ``/Filters/s12_indices``
+
+.. _Irene config:
 
 Config
 ::::::
@@ -93,6 +99,8 @@ Besides the arguments common to all cities <link>, *Irene* accepts the following
      - ``float``
      - Sampling period of SiPMs. Should be removed.
 
+
+.. _Irene workflow:
 
 Irene workflow
 --------------
