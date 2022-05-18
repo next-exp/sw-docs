@@ -7,22 +7,22 @@ Irene
 Short description
 *****************
 
-The majority of a sensor's waveform does not contain any useful information. The S1 and S2 signals are localized to relatively short time intervals. Thus, Irene processes RWFs to find these time slices (peaks) and disregard the rest of the waveform. During this procedure, PMT and SiPM waveforms are matched and combined into a single structure. The collection of all peaks in an event is called a Peak-map or *PMap*.
+The majority of a sensor's waveform does not contain any useful information. The S1 and S2 signals are localized to relatively short time intervals. Thus, Irene processes **RWF**s to find these time slices (peaks) and disregard the rest of the waveform. During this procedure, PMT and SiPM waveforms are matched and combined into a single structure. The collection of all peaks in an event is called a Peak-map or **PMap**.
 
 Input:
- * /Run/events
- * /Run/runInfo
- * /RD/pmtrd
- * /RD/sipmrd
+ * ``/Run/events``
+ * ``/Run/runInfo``
+ * ``/RD/pmtrd``
+ * ``/RD/sipmrd``
 
 Output:
- * /PMAPS/S1
- * /PMAPS/S1Pmt
- * /PMAPS/S2
- * /PMAPS/S2Pmt
- * /PMAPS/S2Si
- * /Filters/empty_pmap
- * /Filters/s12_indices
+ * ``/PMAPS/S1``
+ * ``/PMAPS/S1Pmt``
+ * ``/PMAPS/S2``
+ * ``/PMAPS/S2Pmt``
+ * ``/PMAPS/S2Si``
+ * ``/Filters/empty_pmap``
+ * ``/Filters/s12_indices``
 
 **Config**:
 
@@ -92,7 +92,7 @@ Besides the arguments common to all cities <link>, *Irene* accepts the following
 Irene workflow
 **************
 
-Irene performs a number of data transformations in order to obtain a *PMap*. These operations can be grouped in four main tasks:
+Irene performs a number of data transformations in order to obtain a **PMap**. These operations can be grouped in four main tasks:
 
  * :ref:`Deconvolution of PMT waveforms <Deconvolution of PMT waveforms>`
  * :ref:`Baseline subtraction of SiPM waveforms <Baseline subtraction of SiPM waveforms>`
@@ -105,7 +105,7 @@ Irene performs a number of data transformations in order to obtain a *PMap*. The
 Deconvolution of PMT waveforms
 ==============================
 
-Due to the bias configuration of the PMTs, the PMT waveform does not represent the actual signal produced by the PMT, but its derivative (for details see <NEW energy plane paper>). The typical PMT RWF for a Kr event looks like this:
+Due to the bias configuration of the PMTs, the PMT waveform does not represent the actual signal produced by the PMT, but its derivative (for details see <NEW energy plane paper>). The typical PMT **RWF** for a Kr event looks like this:
 
  .. image:: images/pmt_rwf.png
    :width: 850
@@ -114,9 +114,9 @@ This waveform needs to be transformed into a unipolar (positive-defined) zero-ba
 
 The resulting waveform is still bipolar. This is addressed by the deconvolution algorithm (BLR). This process is fairly complex, but in simple terms, it consists of a high-pass filter and a signal accumulator, which inverts the effect of the PMT electronics. For greater detail on the PMT electronics and the recovery algorithm see <NEW energy plane paper>. Finally, the polarity of the waveform is inverted to make it positive.
 
-All the aforementioned steps are performed for each PMT separately. The output of this algorithm are the so-called **Corrected waveforms** (CWFs).
+All the aforementioned steps are performed for each PMT separately. The output of this algorithm are the so-called *Corrected waveforms* (**CWF**s).
 
-The city *Isidora* allows the user to run just this stage of the reconstruction and store the CWFs for further study. Irene however, does not store them and they are fed directly into the rest of the PMap-building algorithm. The CWF corresponding to the RWF shown above is:
+The city *Isidora* allows the user to run just this stage of the reconstruction and store the **CWF**s for further study. Irene however, does not store them and they are fed directly into the rest of the PMap-building algorithm. The **CWF** corresponding to the **RWF** shown above is:
 
  .. image:: images/pmt_cwf.png
    :width: 850
@@ -127,7 +127,7 @@ The city *Isidora* allows the user to run just this stage of the reconstruction 
 Baseline subtraction of SiPM waveforms
 ======================================
 
-Unlike PMTs, SiPM waveforms are already unipolar and positive-defined. The baseline computation for SiPMs is slightly different. Instead of averaging a fraction of the waveform, the mode [#]_ of the entire waveform is used. The baseline is estimated and substracted on an event-by-event basis and for each SiPM independently. The following figure shows a comparison between a SiPM RWF and a baseline-subtracted SiPM waveform.
+Unlike PMTs, SiPM waveforms are already unipolar and positive-defined. The baseline computation for SiPMs is slightly different. Instead of averaging a fraction of the waveform, the mode [#]_ of the entire waveform is used. The baseline is estimated and substracted on an event-by-event basis and for each SiPM independently. The following figure shows a comparison between a SiPM **RWF** and a baseline-subtracted SiPM waveform.
 
  .. image:: images/sipm_rwf.png
    :width: 850
@@ -142,7 +142,7 @@ The production and manufacturing of the sensors and other electronic components 
 
 The calibration constants are measured regularly while the detector is in operation. The calibration constants are fetched from the database automatically and indexed by run number.
 
-The calibration step is rather simple. The CWF of each PMT and the baseline-subtracted waveform of each SiPM are scaled up according to their corresponding calibration constants. The resulting set of waveforms are sometimes called CCWFs (calibrated corrected waveforms).
+The calibration step is rather simple. The **CWF** of each PMT and the baseline-subtracted waveform of each SiPM are scaled up according to their corresponding calibration constants. The resulting set of waveforms are sometimes called **CCWF**s (*Calibrated Corrected Waveforms*).
 
 
 .. _Peak finding and matching of PMT and SiPM signals:
@@ -150,9 +150,9 @@ The calibration step is rather simple. The CWF of each PMT and the baseline-subt
 Peak finding and matching of PMT and SiPM signals
 =================================================
 
-The peak finding and waveform slicing is arguably the most complex part of the RWF processing. The algorithm must be able to find two very different types of signals (S1 and S2), while accurately establishing the limits on those peaks to maintain the energy resolution capabilities of the detector.
+The peak finding and waveform slicing is arguably the most complex part of the **RWF** processing. The algorithm must be able to find two very different types of signals (S1 and S2), while accurately establishing the limits on those peaks to maintain the energy resolution capabilities of the detector.
 
-In order to optimize the peak search, PMT CCWFs are used as they have a higher sampling rate and therefore better time resolution. On top of that, these waveforms are PMT-summed to increase the signal-over-noise ratio [#]_. S1 and S2 signals are searched independently.
+In order to optimize the peak search, PMT **CCWF**s are used as they have a higher sampling rate and therefore better time resolution. On top of that, these waveforms are PMT-summed to increase the signal-over-noise ratio [#]_. S1 and S2 signals are searched independently.
 
 The PMT-summed waveform is searched for samples above a certain threshold (``thr_csum_sX``), which may depend on the event type. The samples below the threshold are initially ignored. However, fluctuations in the PMT signal close to the threshold can lead to a split in an otherwise continuous peak. This is particularly relevant for S1 signals due to their small amplitude in low-energy events.
 To minimize this effect, signal regions separated by a short time (configurable via the ``sX_stride`` arguments) are joined back together. This stride may also depend on the event type.
