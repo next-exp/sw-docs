@@ -98,7 +98,7 @@ Besides the arguments common to all cities <link>, *Irene* accepts the following
 
 .. _Irene workflow:
 
-Irene workflow
+Workflow
 --------------
 
 Irene performs a number of data transformations in order to obtain a **PMap**. These operations can be grouped in four main tasks:
