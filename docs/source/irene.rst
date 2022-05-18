@@ -107,7 +107,7 @@ Deconvolution of PMT waveforms
 
 Due to the bias configuration of the PMTs, the PMT waveform does not represent the actual signal produced by the PMT, but its derivative (for details see <NEW energy plane paper>). The typical PMT **RWF** for a Kr event looks like this:
 
- .. image:: images/pmt_rwf.png
+ .. image:: images/irene/pmt_rwf.png
    :width: 850
 
 This waveform needs to be transformed into a unipolar (positive-defined) zero-baseline waveform whose area is proportional to the number of photons detected. The part of the waveform corresponding to when the PMT doesn't receive any light is just a gaussianly-distributed noise around a baseline value. This value is estimated using the first few microseconds of the waveform; the amplitude is averaged over this time frame and subtracted from the entire waveform to produce a baseline-subtracted waveform.
@@ -118,7 +118,7 @@ All the aforementioned steps are performed for each PMT separately. The output o
 
 The city *Isidora* allows the user to run just this stage of the reconstruction and store the **CWF**\ s for further study. Irene however, does not store them and they are fed directly into the rest of the PMap-building algorithm. The **CWF** corresponding to the **RWF** shown above is:
 
- .. image:: images/pmt_cwf.png
+ .. image:: images/irene/pmt_cwf.png
    :width: 850
 
 
@@ -129,7 +129,7 @@ Baseline subtraction of SiPM waveforms
 
 Unlike PMTs, SiPM waveforms are already unipolar and positive-defined. The baseline computation for SiPMs is slightly different. Instead of averaging a fraction of the waveform, the mode [#]_ of the entire waveform is used. The baseline is estimated and substracted on an event-by-event basis and for each SiPM independently. The following figure shows a comparison between a SiPM **RWF** and a baseline-subtracted SiPM waveform.
 
- .. image:: images/sipm_rwf.png
+ .. image:: images/irene/sipm_rwf.png
    :width: 850
 
 
@@ -167,8 +167,12 @@ S1 signals on the other hand, are weak enough to be detected only by PMTs, there
 
 The following figure shows the performance of this algorithm on a typical Kr event.
 
- .. image:: images/peak_finding.png
-   :width: 850
+  .. image:: images/irene/s1_identification.png
+    :width: 32%
+  .. image:: images/irene/s2_identification_pmt.png
+    :width: 32%
+  .. image:: images/irene/s2_identification_sipm.png
+    :width: 32%
 
 Finally all peaks are stored in a single ``PMap`` object. A ``PMap`` contains a list S1 peaks and a list of S2 peaks. Each Peak contains the times of the samples within the peak and a ``SensorResponse`` object for PMTs a ``SensorResponse`` object for SiPMs. Each ``SensorResponse`` object contains the IDs and the sliced waveforms of each sensor that contains signal in an event.
 
