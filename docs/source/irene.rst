@@ -20,13 +20,13 @@ Input
 Output
 ::::::
 
- * ``/PMAPS/S1``
- * ``/PMAPS/S1Pmt``
- * ``/PMAPS/S2``
- * ``/PMAPS/S2Pmt``
- * ``/PMAPS/S2Si``
- * ``/Filters/empty_pmap``
- * ``/Filters/s12_indices``
+ * ``/PMAPS/S1``: the sliced PMT-summed waveform for each S1 peak. 4 columns: event number, peak number, time (:math:`\mu`\ s) and amplitude (pes)
+ * ``/PMAPS/S1Pmt``: the sliced individual PMT waveforms for each S1 peak. 4 columns: event number, peak number, pmt id and amplitude (pes)
+ * ``/PMAPS/S2``: the sliced PMT-summed waveform for each S2 peak. 4 columns: event number, peak number, time (:math:`\mu`\ s) and amplitude (pes)
+ * ``/PMAPS/S2Pmt``: the sliced individual PMT waveforms for each S2 peak. 4 columns: event number, peak number, pmt id and amplitude (pes)
+ * ``/PMAPS/S2Si``: the sliced individual SiPM waveforms for each S2 peak. 4 columns: event number, peak number, sipm id and amplitude (pes)
+ * ``/Filters/empty_pmap``: flag for whether an event passed the empty pmap filter
+ * ``/Filters/s12_indices``: flag for whether an event passed the s12 indices filter
 
 .. _Irene config:
 
@@ -185,13 +185,8 @@ The following figure shows the performance of this algorithm on a typical Kr eve
 
 Finally all peaks are stored in a single ``PMap`` object. A ``PMap`` contains a list S1 peaks and a list of S2 peaks. Each Peak contains the times of the samples within the peak and a ``SensorResponse`` object for PMTs a ``SensorResponse`` object for SiPMs. Each ``SensorResponse`` object contains the IDs and the sliced waveforms of each sensor that contains signal in an event.
 
-These data are stored in a file in 5 separate tables under a common group ``PMAPS``:
+These data are stored in an hdf5 file in 5 separate tables under a common group ``PMAPS``. See the :ref:`output <Irene output>` section for a full description.
 
- * ``S1``: contains the sliced PMT-summed waveform for each S1 peak. 4 columns: event number, peak number, time (:math:`\mu`\ s) and amplitude (pes)
- * ``S2``: contains the sliced PMT-summed waveform for each S2 peak. 4 columns: event number, peak number, time (:math:`\mu`\ s) and amplitude (pes)
- * ``S1Pmt``: contains the sliced individual PMT waveforms for each S1 peak. 4 columns: event number, peak number, pmt id and amplitude (pes)
- * ``S2Pmt``: contains the sliced individual PMT waveforms for each S2 peak. 4 columns: event number, peak number, pmt id and amplitude (pes)
- * ``S2Si``: contains the sliced individual SiPM waveforms for each S2 peak. 4 columns: event number, peak number, sipm id and amplitude (pes)
 
  .. [#] The waveform at this point is in ADC, therefore, they are integer values.
  .. [#] The noise in the PMT waveforms is gaussianly distributed around the baseline with a standard deviation :math:`\sigma_{PMT}`. Assuming similar values of :math:`\sigma_{PMT}`, the addition of the PMT waveforms results in a waveform with a standard deviation :math:`\sqrt{n_{PMT}}\ \sigma_{PMT}`. However, the signal increases linearly with the number of sensors and therefore the signal-to-noise ratio improves as :math:`\sqrt{n_{PMT}}`
