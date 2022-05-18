@@ -160,7 +160,7 @@ In order to reduce the amount of spurious or unphysical peaks, the search can be
 Furthermore, the resulting peaks are filtered based on their width (via ``sX_lmin``, ``sX_lmax``), improving the efficiency of finding peaks corresponding to a true signal.
 The beginning and end of the signal region is kept for each peak. This information is then used to slice each PMT and SiPM waveforms.
 
-To create a S2 peak, the sliced PMT waveforms are resampled according to ``s2_rebin_stride``. By default, this resamples from 40 MHz (25 ns) to 1 MHz (1 :math:`\mu` s) to match the sampling rate of SiPMs. Also, SiPMs are noisier than PMTs, producing spurious photoelectron pulses. In order to minimize this effect, a threshold ``thr_sipm`` is applied to each sample of each SiPM, suppressing values below it. This threshold can be ``common`` to all SiPMs, or applied to each ``individual`` SiPM, based on their measured noise spectrum. This behaviour can be controlled via the ``thr_sipm_type`` argument. Finally, due to the characteristics of the tracking plane, most SiPMs don't contain signal. Hence, another threshold ``the_sipm_s2`` is applied to the time-integrated signal of each SiPM for a given peak [#]_.
+To create a S2 peak, the sliced PMT waveforms are resampled according to ``s2_rebin_stride``. By default, this resamples from 40 MHz (25 ns) to 1 MHz (1 :math:`\mu`\ s) to match the sampling rate of SiPMs. Also, SiPMs are noisier than PMTs, producing spurious photoelectron pulses. In order to minimize this effect, a threshold ``thr_sipm`` is applied to each sample of each SiPM, suppressing values below it. This threshold can be ``common`` to all SiPMs, or applied to each ``individual`` SiPM, based on their measured noise spectrum. This behaviour can be controlled via the ``thr_sipm_type`` argument. Finally, due to the characteristics of the tracking plane, most SiPMs don't contain signal. Hence, another threshold ``the_sipm_s2`` is applied to the time-integrated signal of each SiPM for a given peak [#]_.
 The resulting PMT and SiPM waveforms are then time-matched and stored in a single object (``Peak``).
 
 S1 signals on the other hand, are weak enough to be detected only by PMTs, therefore the SiPMs are ignored during the S1 search. The waveforms can also be resampled using the ``s1_rebin_stride``, however this parameter is usually set to 1 to keep the optimal time resolution of S1 signals.
@@ -173,8 +173,8 @@ The following figure shows the performance of this algorithm on a typical Kr eve
 Finally all peaks are stored in a single ``PMap`` object. A ``PMap`` contains a list S1 peaks and a list of S2 peaks. Each Peak contains the times of the samples within the peak and a ``SensorResponse`` object for PMTs a ``SensorResponse`` object for SiPMs. Each ``SensorResponse`` object contains the IDs and the sliced waveforms of each sensor that contains signal in an event.
 
 These data are stored in a file in 5 separate tables:
- * S1: contains the sliced PMT-summed waveform for each S1 peak. 4 columns: event number, peak number, time (:math:`\mu`s) and amplitude (pes)
- * S2: contains the sliced PMT-summed waveform for each S2 peak. 4 columns: event number, peak number, time (:math:`\mu`s) and amplitude (pes)
+ * S1: contains the sliced PMT-summed waveform for each S1 peak. 4 columns: event number, peak number, time (:math:`\mu`\ s) and amplitude (pes)
+ * S2: contains the sliced PMT-summed waveform for each S2 peak. 4 columns: event number, peak number, time (:math:`\mu`\ s) and amplitude (pes)
  * S1Pmt: contains the sliced individual PMT waveforms for each S1 peak. 4 columns: event number, peak number, pmt id and amplitude (pes)
  * S2Pmt: contains the sliced individual PMT waveforms for each S2 peak. 4 columns: event number, peak number, pmt id and amplitude (pes)
  * S2Si: contains the sliced individual SiPM waveforms for each S2 peak. 4 columns: event number, peak number, sipm id and amplitude (pes)
