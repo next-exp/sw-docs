@@ -91,14 +91,20 @@ Besides the arguments common to all cities <link>, *Irene* accepts the following
 
 Irene workflow
 **************
+
 Irene performs a number of data transformations in order to obtain a *PMap*. These operations can be grouped in four main tasks:
- * Deconvolution of the PMT waveforms
- * Baseline subtraction of SiPM waveforms
- * Waveform calibration
- * Peak finding and matching of PMT and SiPM signals
+
+ * :ref:`Deconvolution of PMT waveforms <Deconvolution of PMT waveforms>`
+ * :ref:`Baseline subtraction of SiPM waveforms <Baseline subtraction of SiPM waveforms>`
+ * :ref:`Waveform calibration <Waveform calibration>`
+ * :ref:`Peak finding and matching of PMT and SiPM signals <Peak finding and matching of PMT and SiPM signals>`
+
+
+.. _Deconvolution of PMT waveforms:
 
 Deconvolution of PMT waveforms
 ==============================
+
 Due to the bias configuration of the PMTs, the PMT waveform does not represent the actual signal produced by the PMT, but its derivative (for details see <NEW energy plane paper>). The typical PMT RWF for a Kr event looks like this:
 
  .. image:: images/pmt_rwf.png
@@ -116,6 +122,8 @@ The city *Isidora* allows the user to run just this stage of the reconstruction 
    :width: 850
 
 
+.. _Baseline subtraction of SiPM waveforms:
+
 Baseline subtraction of SiPM waveforms
 ======================================
 
@@ -125,13 +133,19 @@ Unlike PMTs, SiPM waveforms are already unipolar and positive-defined. The basel
    :width: 850
 
 
+.. _Waveform calibration:
+
 Waveform calibration
 ====================
+
 The production and manufacturing of the sensors and other electronic components does not guarantee a homogeneous response among all sensors. Thus, the waveforms are calibrated to equalize their response. The calibration consists of a constant for each sensor indicating the number of ADC corresponding to a photoelectron (calibration constant), which is a physical quantity common to all of them. The calibration technique is similar for PMTs and SiPMs. For details about the calibration procedure see <reference to calibration procedures>.
 
 The calibration constants are measured regularly while the detector is in operation. The calibration constants are fetched from the database automatically and indexed by run number.
 
 The calibration step is rather simple. The CWF of each PMT and the baseline-subtracted waveform of each SiPM are scaled up according to their corresponding calibration constants. The resulting set of waveforms are sometimes called CCWFs (calibrated corrected waveforms).
+
+
+.. _Peak finding and matching of PMT and SiPM signals:
 
 Peak finding and matching of PMT and SiPM signals
 =================================================
