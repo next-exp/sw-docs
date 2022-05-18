@@ -1,11 +1,11 @@
 Irene
-#####
+=====
 
 .. note::
   The name *Irene* comes from ancient Greek, *Εἰρήνη*, meaning *peace*.
 
 Short description
-*****************
+-----------------
 
 The majority of a sensor's waveform does not contain any useful information. The S1 and S2 signals are localized to relatively short time intervals. Thus, *Irene* processes **RWF**\ s to find these time slices (peaks) and disregard the rest of the waveform. During this procedure, PMT and SiPM waveforms are matched and combined into a single structure. The collection of all peaks in an event is called a Peak-map or **PMap**.
 
@@ -90,7 +90,7 @@ Besides the arguments common to all cities <link>, *Irene* accepts the following
 
 
 Irene workflow
-**************
+--------------
 
 Irene performs a number of data transformations in order to obtain a **PMap**. These operations can be grouped in four main tasks:
 
@@ -103,7 +103,7 @@ Irene performs a number of data transformations in order to obtain a **PMap**. T
 .. _Deconvolution of PMT waveforms:
 
 Deconvolution of PMT waveforms
-==============================
+::::::::::::::::::::::::::::::
 
 Due to the bias configuration of the PMTs, the PMT waveform does not represent the actual signal produced by the PMT, but its derivative (for details see <NEW energy plane paper>). The typical PMT **RWF** for a Kr event looks like this:
 
@@ -125,7 +125,7 @@ The city *Isidora* allows the user to run just this stage of the reconstruction 
 .. _Baseline subtraction of SiPM waveforms:
 
 Baseline subtraction of SiPM waveforms
-======================================
+::::::::::::::::::::::::::::::::::::::
 
 Unlike PMTs, SiPM waveforms are already unipolar and positive-defined. The baseline computation for SiPMs is slightly different. Instead of averaging a fraction of the waveform, the mode [#]_ of the entire waveform is used. The baseline is estimated and substracted on an event-by-event basis and for each SiPM independently. The following figure shows a comparison between a SiPM **RWF** and a baseline-subtracted SiPM waveform.
 
@@ -136,7 +136,7 @@ Unlike PMTs, SiPM waveforms are already unipolar and positive-defined. The basel
 .. _Waveform calibration:
 
 Waveform calibration
-====================
+::::::::::::::::::::
 
 The production and manufacturing of the sensors and other electronic components does not guarantee a homogeneous response among all sensors. Thus, the waveforms are calibrated to equalize their response. The calibration consists of a constant for each sensor indicating the number of ADC corresponding to a photoelectron (calibration constant), which is a physical quantity common to all of them. The calibration technique is similar for PMTs and SiPMs. For details about the calibration procedure see <reference to calibration procedures>.
 
@@ -148,7 +148,7 @@ The calibration step is rather simple. The **CWF** of each PMT and the baseline-
 .. _Peak finding and matching of PMT and SiPM signals:
 
 Peak finding and matching of PMT and SiPM signals
-=================================================
+:::::::::::::::::::::::::::::::::::::::::::::::::
 
 The peak finding and waveform slicing is arguably the most complex part of the **RWF** processing. The algorithm must be able to find two very different types of signals (S1 and S2), while accurately establishing the limits on those peaks to maintain the energy resolution capabilities of the detector.
 
