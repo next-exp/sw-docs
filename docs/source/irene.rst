@@ -33,7 +33,7 @@ Output
 Config
 ------
 
-Besides the :doc:`common_arguments`, *Irene* accepts the following arguments:
+Besides the :ref:`Common arguments to every city`, *Irene* accepts the following arguments:
 
 .. list-table::
    :widths: 40 60 120
