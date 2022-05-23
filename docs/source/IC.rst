@@ -83,9 +83,9 @@ All cities in IC require at least the following arguments
    :widths: 40 120 120
    :header-rows: 1
 
-   * - Parameter
-     - Type(s)
-     - Description
+   * - **Parameter**
+     - **Type(s)**
+     - **Description**
 
    * - ``files_in``
      - ``str`` or ``Sequence[str]``

@@ -39,9 +39,9 @@ Besides the :ref:`Common arguments to every city`, *Irene* accepts the following
    :widths: 60 40 120
    :header-rows: 1
 
-   * - Parameter
-     - Type
-     - Description
+   * - **Parameter**
+     - **Type**
+     - **Description**
 
    * - ``n_baseline``
      - ``int``
