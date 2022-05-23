@@ -36,7 +36,7 @@ Config
 Besides the :ref:`Common arguments to every city`, *Irene* accepts the following arguments:
 
 .. list-table::
-   :widths: 40 60 120
+   :widths: 60 40 120
    :header-rows: 1
 
    * - Parameter
