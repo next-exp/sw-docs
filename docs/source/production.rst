@@ -30,7 +30,7 @@ It can be found in ``neutrinos1.ific.uv.es`` under the following path:
 
   /lustre/neu/data4/NEXT/NEXTNEW/MC/
 
-For the different productions the corresponding latest tags are:
+For the different productions the corresponding latest **tags** are:
 
 .. list-table::
    :widths: 40 60
@@ -48,13 +48,13 @@ For the different productions the corresponding latest tags are:
      - ``NEXT_v1_05_02_NEXUS_v5_07_10_bkg_v9``
 
 
-Output hdf5 files together with the corresponding config files used to run each of the cities can be found there. E.g. the background production of deconvoluted hits (``cdst``) can be found in
+**Output hdf5** files together with the corresponding config files used to run each of the cities can be found there. E.g. the background production of deconvoluted hits (``cdst``) can be found in
 
 .. code-block:: text
 
   /lustre/neu/data4/NEXT/NEXTNEW/MC/Background/NEXT_v1_05_02_NEXUS_v5_07_10_bkg_v9/cdst/output
 
-Where the following config files have been used,
+Where the following **config** files have been used,
 
 .. code-block:: text
 
@@ -79,8 +79,12 @@ This sample is currently being produced. It is generated using
    * - **Background Model**
      - ``to be added``
 
-Detsim light tables (LTs) and pulse shape functions (PSFs) can be found in ``neutrinos1.ific.uv.es`` in
+**Nexus macros** for the current production can be found on GitHub `here <https://github.com/gondiaz/NEXT100-0nubb-analysis/tree/main/nexus_job_templates/ft3>`_.
+
+Detsim *light tables* (**LTs**) and *pulse shape functions* (**PSFs**) can be found in ``neutrinos1.ific.uv.es`` in
 
 .. code-block:: text
 
   /data5/users/gdiaz/NEXT100/kr83m/LightTables
+
+**Config** files for the rest of the production chain can also be found on `here <https://github.com/gondiaz/NEXT100-0nubb-analysis/tree/main/ic_processing/templates>`_ on Github. 
