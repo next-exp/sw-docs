@@ -81,10 +81,10 @@ This sample is currently being produced. It is generated using
 
 **Nexus macros** for the current production can be found on GitHub `here <https://github.com/gondiaz/NEXT100-0nubb-analysis/tree/main/nexus_job_templates/ft3>`_.
 
-Detsim *light tables* (**LTs**) and *pulse shape functions* (**PSFs**) can be found in ``neutrinos1.ific.uv.es`` in
+Detsim *light tables* (**LTs**) and *point spread functions* (**PSFs**) can be found in ``neutrinos1.ific.uv.es`` in
 
 .. code-block:: text
 
   /data5/users/gdiaz/NEXT100/kr83m/LightTables
 
-**Config** files for the rest of the production chain can also be found on `here <https://github.com/gondiaz/NEXT100-0nubb-analysis/tree/main/ic_processing/templates>`_ on Github. 
+**Config** files for the rest of the production chain can also be found on `here <https://github.com/gondiaz/NEXT100-0nubb-analysis/tree/main/ic_processing/templates>`_ on Github.
