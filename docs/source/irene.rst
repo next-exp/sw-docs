@@ -147,7 +147,7 @@ Unlike PMTs, SiPM waveforms are already unipolar and positive-defined. The basel
 Waveform calibration
 ::::::::::::::::::::
 
-The production and manufacturing of the sensors and other electronic components does not guarantee a homogeneous response among all sensors. Thus, the waveforms are calibrated to equalize their response. The calibration consists of a constant for each sensor indicating the number of ADC corresponding to a photoelectron (calibration constant), which is a physical quantity common to all of them. The calibration technique is similar for PMTs and SiPMs. For details about the calibration procedure see <reference to calibration procedures>.
+The production and manufacturing of the sensors and other electronic components does not guarantee a homogeneous response among all sensors. Thus, the waveforms are calibrated to equalize their response. The calibration consists of a constant for each sensor indicating the number of ADC corresponding to a photoelectron (calibration constant), which is a physical quantity common to all of them. The calibration technique is similar for PMTs and SiPMs. For details about the calibration procedure see the calibration cities: :doc:`berenice`, :doc:`phyllis` and :doc:`trude`.
 
 The calibration constants are measured regularly while the detector is in operation. The calibration constants are fetched from the database automatically and indexed by run number.
 
