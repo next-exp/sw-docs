@@ -148,7 +148,7 @@ CALIBRATION:
 
      Phyllis <phyllis>
      Trude <trude>
-     Beredice <beredice>
+     Berenice <berenice>
 
 ONLY FOR MC:
   .. toctree::
