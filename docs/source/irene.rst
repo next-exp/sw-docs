@@ -125,7 +125,7 @@ The resulting waveform is still bipolar. This is addressed by the deconvolution 
 
 All the aforementioned steps are performed for each PMT separately. The output of this algorithm are the so-called *Corrected waveforms* (**CWF**\ s).
 
-The city *Isidora* allows the user to run just this stage of the reconstruction and store the **CWF**\ s for further study. Irene however, does not store them and they are fed directly into the rest of the PMap-building algorithm. The **CWF** corresponding to the **RWF** shown above is:
+The city :doc:`isidora` allows the user to run just this stage of the reconstruction and store the **CWF**\ s for further study. Irene however, does not store them and they are fed directly into the rest of the PMap-building algorithm. The **CWF** corresponding to the **RWF** shown above is:
 
  .. image:: images/irene/pmt_cwf.png
    :width: 850
