@@ -101,7 +101,7 @@ Besides the :ref:`Common arguments to every city`, *Irene* has the following arg
 Workflow
 --------
 
-Irene performs a number of data transformations in order to obtain a **PMap**. These operations can be grouped in four main tasks:
+Irene performs a number of data transformations in order to obtain a **PMap**. These operations can be grouped in four main tasks, performed in the following order:
 
  * :ref:`Deconvolution of PMT waveforms <Deconvolution of PMT waveforms>`
  * :ref:`Baseline subtraction of SiPM waveforms <Baseline subtraction of SiPM waveforms>`
