@@ -1,4 +1,4 @@
-Beredice
+Berenice
 ==========
 
 .. caution::

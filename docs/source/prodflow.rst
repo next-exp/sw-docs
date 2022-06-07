@@ -26,7 +26,7 @@ Data collected in NEXT detectors is in form of *Raw Waveforms* (**RWF**, in ADCs
   .. image:: images/prodflow_data.png
     :width: 850
 
- * Sensor parameters for :doc:`irene` need to be updated before any reconstruction. These are obtained from calibration using :doc:`phyllis`, :doc:`trude`, and :doc:`beredice` IC cities. These parameters are updated regularly during detector operation, and are stored in a database. Updates to the database are pushed to the repository, so keeping up to date with the main branch is very much recommended.
+ * Sensor parameters for :doc:`irene` need to be updated before any reconstruction. These are obtained from calibration using :doc:`phyllis`, :doc:`trude`, and :doc:`berenice` IC cities. These parameters are updated regularly during detector operation, and are stored in a database. Updates to the database are pushed to the repository, so keeping up to date with the main branch is very much recommended.
  * Correction maps are obtained from Krypton events (Trigger 1) using :doc:`ICAROS`. Official production correction maps can be found in :doc:`production`. A complete review about how this maps are produced can be found in "How to :ref:`krmaps`".
  * PSFs are nedeed to run Richardson Lucy deconvolution (:doc:`beersheba`). Krypton events (Trigger 1) are used under a specific configuration of :doc:`penthesilea` and :doc:`eutropia`. Official production PSFs for deconvolution can be found in :doc:`production`. A review about how this PSFs are produced can be found in "How to :ref:`psfdeco`".
 
