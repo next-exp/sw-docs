@@ -224,7 +224,7 @@ Apart from the energy correction, the position of hits along the drift time (``D
 Topology information extraction
 :::::::::::::::::::::::::::::::
 
-As it has been stated, the hits with sufficient charge to pass the high-threshold cut go through the `Paolina` algorithm in order to extract all the topological information. This procedure is also performed inside a posterior city, :doc:`isaura`. Thus, a detailed description of it can be found in the correspondent documentation section. The parameters to run this stage of the reconstruction chain are the ones specified with the ``paolina_params`` dictionary.  Due to the fact that the distribution of the hits obtained at this point is much looser than the ones of deconvoluted hits, the config parameters for the voxel size and blob radius are in general significantly larger than the ones used in :doc:`isaura`. In order to illustrate this comparison, the same event represented in :doc:`isaura` is displayed here, after a typical `Esmeralda` topological reconstruction:
+As it has been stated, the hits with sufficient charge to pass the high-threshold cut go through the `Paolina` algorithm in order to extract all the topological information. This procedure is also performed inside a posterior city, :doc:`isaura`. Thus, a detailed description of it can be found in the correspondent documentation section. The parameters to run this stage of the reconstruction chain are the ones specified with the ``paolina_params`` dictionary.  Due to the fact that the distribution of the hits obtained at this point is much looser than the ones of deconvoluted hits, the config parameters for the voxel size and blob radius are in general significantly larger than the ones used in :doc:`isaura`. In order to illustrate this comparison, this :ref:`same event <Isaura display>` is displayed here, after a typical `Esmeralda` topological reconstruction:
 
 
  .. image:: images/esmeralda/r8250_evt194237_chits_esmeralda.png
@@ -232,7 +232,7 @@ As it has been stated, the hits with sufficient charge to pass the high-threshol
  .. image:: images/esmeralda/r8250_evt194237_voxels_esmeralda.png
    :width: 48%
 
-The left panel shows the 3D display of the ``CHITS/highTh``, while the right one corresponds to its [15, 15, 15] :math:`{\text{mm}}^3` voxelized track, according to the algorithm. It is straightforward to realize that the result of this reconstruction is much more naive that the one obtained after running the full processing chain, represented graphically :doc:`here <isaura>`.
+The left panel shows the 3D display of the ``CHITS/highTh``, while the right one corresponds to its [15, 15, 15] :math:`{\text{mm}}^3` voxelized track, according to the algorithm. It is straightforward to realize that the result of this reconstruction is much more naive that the one obtained after running the full processing chain, represented graphically :ref:`here <Isaura display>`.
 
 The city finishes its job storing all the information commented before in different tables of a unique hdf5 file, as described in the :ref:`Output <Esmeralda output>` subsection.
 
