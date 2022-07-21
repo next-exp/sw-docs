@@ -25,7 +25,7 @@ Output
  * ``/DST/Events``: copy of the point-like information (*kdst*) of events, output of :doc:`penthesilea`.
  * ``/Filters/hits_select``: flag to indicate if an event did not pass due to the lack of hits.
  * ``/Filters/topology_select``: flag that indicates whether events have too many hits according to the value specified in the config file. If so, its ID will not appear in the table and the topology information will not be computed.
- * MC info: copy of the Monte Carlo information for the events that output the city. Only if run number < 0. The tables included are: ``/MC/configuration``, ``/MC/hits``, ``/MC/particles``, ``/MC/sns_positions``, and ``/MC/sns_response``.
+ * MC info: copy of the Monte Carlo information for the events that that the city outputs. Only if run number < 0. The tables included are: ``/MC/configuration``, ``/MC/hits``, ``/MC/particles``, ``/MC/sns_positions``, and ``/MC/sns_response``.
 
 .. _Isaura config:
 
@@ -45,7 +45,7 @@ Apart from the :ref:`Common arguments to every city`, the parameters to run *Isa
 
    * - ``vox_size``
      - ``[float,float,float]``
-     - X, Y, and Z dimensions of the voxels used in the voxalization of the hits.
+     - X, Y, and Z dimensions of the voxels used in the voxelization of the hits.
 
    * - ``strict_vox_size``
      - ``bool``
@@ -86,7 +86,7 @@ The first step within the algorithm consists in checking that the number of hits
  .. image:: images/isaura/nhits_per_evt_r8571.jpg
    :width: 1000
 
-The plot also shows that these events only  appear a few times within a 24h-long low-background run (around 0.05% of the total set of events). Rejecting these type of events is not a particularly worrysome issue: they would be thrown away in the posterior analysis, owing to the fact that none of them are exclusively contained inside the fiducial volume. The spatial distributions for one of these events is presented below (where the grey dashed lines illustrate the boundaries of the chamber):
+The plot also shows that these events only  appear a few times within a 24h-long low-background run (around 0.05% of the total set of events). Rejecting this type of events is not a particularly worrysome issue: they would be thrown away in the posterior analysis, owing to the fact that none of them are exclusively contained inside the fiducial volume. The spatial distributions for one of these events is presented below (where the grey dashed lines illustrate the boundaries of the chamber):
 
 
  .. image:: images/isaura/XY_Z_distributions_evt_many_hits.jpg
