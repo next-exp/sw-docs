@@ -25,7 +25,7 @@ Output
  * ``/DST/Events``: copy of the point-like information (*kdst*) of events, output of :doc:`penthesilea`.
  * ``/Filters/hits_select``: flag to indicate if an event did not pass due to the lack of hits.
  * ``/Filters/topology_select``: flag that indicates whether events have too many hits according to the value specified in the config file. If so, its ID will not appear in the table and the topology information will not be computed.
- * MC info: copy of the Monte Carlo information for the events that that the city outputs. Only if run number < 0. The tables included are: ``/MC/configuration``, ``/MC/hits``, ``/MC/particles``, ``/MC/sns_positions``, and ``/MC/sns_response``.
+ * MC info: copy of the Monte Carlo information for the events that the city outputs. Only if run number < 0. The tables included are: ``/MC/configuration``, ``/MC/hits``, ``/MC/particles``, ``/MC/sns_positions``, and ``/MC/sns_response``.
 
 .. _Isaura config:
 
