@@ -113,7 +113,7 @@ Once the previous check is done, the hits are grouped into 3D volume elements (`
 .. _Isaura display:
 
  .. image:: images/isaura/r8250_evt194237_dhits.png
-   :width: 46%
+   :width: 44.8%
  .. image:: images/isaura/r8250_evt194237_voxels.png
    :width: 53%
 
@@ -132,18 +132,18 @@ To compute the position of the blobs, we need to find the two extreme voxels of 
 In consequence, the first thing to do is to localize the two end voxels for each track. Defining the distance between any pair of voxels as the shortest path **along the track** that connects them, the two extreme voxels will be the ones with the longest distance between them. However, there are two special cases that are important to comment:
 
 
- - It is possible that some spurious **low-energy** hits appear around the track (due to over-iterations during the Richarson-Lucy deconvolution process, as commented in :doc:`beersheba`; or some noise inside the chamber, for example). If these hits are reconstructed around the track but not far enough to produce a different S2 or track (taking into account the voxel size), they can be considered as a part of the main one and, being a bit separate, it is probable that they end up belonging to an extreme voxel. That case would not be correct, and in order to solve it, the voxel will be dropped from the track and its energy passed to the closest one. This process is only carried out if the voxel energy is lower than: ``energy_threshold`` and the track is made by more than ``min_voxels`` voxels. Once this procedure is done, the extreme voxels are searched and found again recursively, until none of these conditions are fulfilled.
+ - It is possible that some spurious **low-energy** hits appear around the track (due to over-iterations during the Richarson-Lucy deconvolution process, as commented in :doc:`beersheba`; or some noise inside the chamber, for example). If these hits are reconstructed around the track but not far enough to produce a different S2 or track (taking into account the voxel size), they can be considered as a part of the main one and, being a bit separate, it is probable that they end up belonging to an extreme voxel. That case would not be correct, and in order to solve it, the voxel will be dropped from the track and its energy passed to the closest one. This process is only carried out if the voxel energy is lower than ``energy_threshold`` and the track is made by more than ``min_voxels`` voxels. Once this procedure is done, the extreme voxels are searched and found again recursively, until none of these conditions are fulfilled.
 
  - Another particular scenario is the one that comes up when there are multiple end-voxel candidates (one can imagine that the shorter the track the more probable is this to happen). To deal with it, the more energetic candidates will be the ones set as extremes. With this convention, we aim to minimize the use of the voxel-dropping algorithm commented above for those cases where the energy of one candidate is larger than ``energy_threshold`` while the other one is below that value. 
 
 
-Once the extreme voxels are properly found, the center position of the blobs (stored in the ``Tracks/Tracking`` table as: ``blobi_x``, ``blobi_y``, and ``blobi_z``, (with ``i`` being 1, 2), respectively) is computed in accordance with the figure previously presented.
+Once the extreme voxels are properly found, the center position of the blobs --stored in the ``Tracks/Tracking`` table as: ``blobi_x``, ``blobi_y``, and ``blobi_z``, (with ``i`` being 1, 2), respectively-- is computed in accordance with the figure previously presented.
 
 From these points, 3D spheres of radius ``blob_radius`` (specified in the config file) are taken. The hits inside the sphere will contribute to the energy of the blob, that will be stored as ``eblob1`` and ``eblob2`` [#]_. It is relevant to take into account here that not every hit falling inside the blob sphere will be considered for its total energy, but only the ones that belong to a voxel adjacent to the one labeled as extreme.
 
 
 
-The final step of the *Paolina* algorithm includes the computation of the ``ovlp_blob_energy`` (“*overlap blob energy*”) variable: in short tracks it is common to have **overlapping blobs**, i.e. blobs that share some of their hits [#]_. In these cases, the blob energies are not computed correctly, since they would produce an over-estimation of the total energy of the track. Therefore, it will be interesting to reject this type of events during the posterior analysis in case the blob energy distributions want to be studied. Owing to the fact that ``ovlp_blob_energy`` is defined as the total amount of energy of these shared hits, a selection of ``ovlp_blob_energy = 0`` will get rid of these events easily.
+The final step of the *Paolina* algorithm includes the computation of the ``ovlp_blob_energy`` (“*overlap blob energy*”) variable: in short tracks it is common to have **overlapping blobs**, i.e. blobs that share some of their hits [#]_. In these cases, the ``eblobi`` variables become meaningless, since the energy of these hits would contribute to both blobs. As a matter of fact, one could realize that ``eblob1 = eblob2 = ovlp_blob_energy = energy`` for a point-like (or very short) event, which is incoherent, since the relationship: ``(eblob1+eblob2) < energy`` should be satisfied. Therefore, it will be interesting to reject this type of events during the posterior analysis in case the blob energy distributions want to be studied. Owing to the fact that the aforementioned variable is defined as the total amount of energy of these shared hits, a selection of ``ovlp_blob_energy = 0`` will get rid of the corresponding events easily.
 
 
  .. image:: images/isaura/RunVI_b_evt_1720keV_XYZ.jpg
