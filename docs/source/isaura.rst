@@ -23,7 +23,7 @@ Output
  * ``/Tracking/Tracks``: tracking-related information of events (in particular: track energy (``energy``), track length (``length``), number of voxels (``numb_of_voxels``), number of hits (``numb_of_hits``), minimum and maximum position computed with the hits comprising the track (``x_min``, ``y_max``, ...), blobs position (``blob1_z``, ``blob2_x``,...) and energy (``eblob1``, ``eblob2``), energy of the hits shared by both blobs (``ovlp_blob_energy``), and voxel size (``vox_size_x``, ``vox_size_y``, ``vox_size_z``). Each row corresponds to a different track, specified among the others within an event with its ``trackID``.
  * ``/Summary/Events``: global information related to the event. Each row is one event.
  * ``/DST/Events``: copy of the point-like information (*kdst*) of events, output of :doc:`penthesilea`.
- * ``/Filters/hits_select``: flag to indicate if an event did not pass due to the lack of hits.
+ * ``/Filters/hits_select``: flag to indicate if an event pass the selection of having at least 1 hit. If the condition is not fulfilled, it will be filtered out at the beginning of the city.
  * ``/Filters/topology_select``: flag that indicates whether events have too many hits according to the value specified in the config file. If so, its ID will not appear in the table and the topology information will not be computed.
  * MC info: copy of the Monte Carlo information for the events that the city outputs. Only if run number < 0. The tables included are: ``/MC/configuration``, ``/MC/hits``, ``/MC/particles``, ``/MC/sns_positions``, and ``/MC/sns_response``.
 
@@ -143,13 +143,13 @@ From these points, 3D spheres of radius ``blob_radius`` (specified in the config
 
 
 
-The final step of the *Paolina* algorithm includes the computation of the ``ovlp_blob_energy`` (“*overlap blob energy*”) variable: in short tracks it is common to have **overlapping blobs**, i.e. blobs that share some of their hits [#]_. In these cases, the ``eblobi`` variables become meaningless, since the energy of these hits would contribute to both blobs. As a matter of fact, one could realize that ``eblob1 = eblob2 = ovlp_blob_energy = energy`` for a point-like (or very short) event, which is incoherent, since the relationship: ``(eblob1+eblob2) < energy`` should be satisfied. Therefore, it will be interesting to reject this type of events during the posterior analysis in case the blob energy distributions want to be studied. Owing to the fact that the aforementioned variable is defined as the total amount of energy of these shared hits, a selection of ``ovlp_blob_energy = 0`` will get rid of the corresponding events easily.
+The final step of the *Paolina* algorithm includes the computation of the ``ovlp_blob_energy`` (“*overlap blob energy*”) variable: in short tracks it is common to have **overlapping blobs**, i.e. blobs that share some of their hits [#]_. In these cases, the ``eblobi`` variables become meaningless, since the energy of these hits would contribute to both blobs [#]_. Therefore, it will be interesting to reject this type of events during the posterior analysis in case the blob energy distributions are intented to be exploited. Owing to the fact that the aforementioned variable is defined as the total amount of energy of these shared hits, a selection of ``ovlp_blob_energy = 0`` will get rid of the corresponding events easily.
 
 
  .. image:: images/isaura/RunVI_b_evt_1720keV_XYZ.jpg
    :width: 1200
 
-The XY (d), XZ (e) and YZ (f) projections of devonvoluted hits, along with the blobs computed with this algortihm, for the same event as the one shown before (in the voxelization plot) can be seen above. This image illustrates how the blobs seem to be computed perfectly. According to our reconstruction, it corresponds to a clear single-electron event (background), due to the noticeable difference between the energy of its blobs: ``eblob1`` = 755 keV, whereas ``eblob2`` = 104 keV.
+The XY (d), XZ (e) and YZ (f) projections of deconvoluted hits, along with the blobs computed with this algortihm, for the same event as the one shown before (in the voxelization plot) can be seen above. This image illustrates how the blobs seem to be computed perfectly. According to our reconstruction, it corresponds to a clear single-electron event (background), due to the noticeable difference between the energy of its blobs: ``eblob1`` = 755 keV, whereas ``eblob2`` = 104 keV.
 
            
 `Isaura` comprises the last step within the NEXT reconstruction chain. Therefore, after it, we have access to all the relevant information to perform the analysis. This information is finally stored in different tables, as the :ref:`Output <Isaura output>` subsection indicates.
@@ -159,8 +159,10 @@ The XY (d), XZ (e) and YZ (f) projections of devonvoluted hits, along with the b
 
  .. [#] It is important to realize that the hits considered for the plot are the ones from :doc:`penthesilea`. Events coming from :doc:`beersheba` comprise a much larger amount of *deconvoluted hits* (more than one order of magnitude), given the finer granularity.
 
- .. [#] T. H. Cormen, C. Stein, R. L. Rivest, and C. E. Leiserson, Introduction to algorithms. McGraw-Hill Higher Education, 2nd ed., 2001.
+ .. [#] T H Cormen, C Stein, R L Rivest, and C E Leiserson, Introduction to algorithms. McGraw-Hill Higher Education, 2nd ed., 2001.
 
  .. [#] As a convention, the assignment of ``1`` and ``2`` is defined in such a way that ``eblob1`` > ``eblob2``.
 
  .. [#] One could think that this effect will also happen in long intricate tracks, where both end points turn out to be close. Nevertheless, and as it has been explained above, the blob energy is only computed using the hits inside the blob sphere **and** belonging to the extreme voxel or its adjacent ones **along** the track. As a consequence, these scenarios are successfully avoided.
+
+ .. [#] As an illustrative (and extreme) example, one could realize that ``eblob1 = eblob2 = ovlp_blob_energy = energy`` for a point-like (or very short) event, which is incoherent, since the relationship: ``(eblob1+eblob2) <= energy`` should be satisfied.
