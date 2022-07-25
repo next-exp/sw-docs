@@ -3,7 +3,7 @@ Esmeralda
 
 *From Spanish esmeralda (“emerald”), as first used in the novel Notre-Dame de Paris (1831) by Victor Hugo.*
 
-At the moment of writing this, the city `Esmeralda` has three main purposes: **(i)** to apply a cut to remove the SiPM hits with charge below a certain threshold, **(ii)** the energy correction of the survivor hits using krypton maps (see :doc:`ICAROS`) and **(iii)** a first (and rough) computation of the topology-related information of events (analogous to :doc:`isaura`). Therefore, the position of the city within the NEXT reconstruction chain is precisely after :doc:`penthesilea`, since the input will be the uncorrected hits stored in the ``/RECO/Events`` table of the ``hdst`` files. It might be worth-remarking here --in order to understand :ref:`Output <Esmeralda output>` and :ref:`Config <Esmeralda config>`-- that stages (i) and (ii) are performed two times inside the city under different conditions, so that the output will be adapted to two different possible analyses. This fact will be further discussed later on the :ref:`Workflow <Esmeralda workflow>` section.
+At the moment of writing this, the city `Esmeralda` has three main purposes: **(i)** to apply a cut to remove the SiPM hits with charge below a certain threshold, **(ii)** the energy correction of the survivor hits using krypton maps (see :doc:`ICAROS`) and **(iii)** a first (and rough) computation of the topology-related information of events (analogous to :doc:`isaura`). Therefore, the position of the city within the NEXT reconstruction chain is precisely after :doc:`penthesilea`, since the input will be the uncorrected hits stored in the ``/RECO/Events`` table of the ``hdst`` files. It might be worth-remarking here --in order to understand :ref:`Output <Esmeralda output>` and :ref:`Config <Esmeralda config>`-- that stages (i) and (ii) are performed two times inside the city under different conditions, so that the output will be adapted to two different possible analyses. This fact will be further discussed later on, along the :ref:`Workflow <Esmeralda workflow>` section.
 
 .. _Esmeralda input:
 
@@ -20,15 +20,15 @@ Input
 Output
 ------
 
- * ``/CHITS/highTh``: energy-corrected hits table of the ones that pass the higher charge  theshold.
- * ``/CHITS/lowTh``:  energy-corrected hits table of the ones that pass the lower charge theshold.
- * ``/Tracking/Tracks``: topological information of events. Each row corresponds to a different track, specified among the others within an event with its ``trackID``.
+ * ``/CHITS/highTh``: energy-corrected hits table of the ones that pass the higher charge theshold selection.
+ * ``/CHITS/lowTh``:  energy-corrected hits table of the ones that pass the lower charge theshold selection.
+ * ``/Tracking/Tracks``: topological information of events. Each row corresponds to a different track, specified with the ``trackID`` among the other possible tracks within an event.
  * ``/Summary/Events``: global information related to the event. Each row is one event.
- * ``/DST/Events``: copy of the point-like information (*kdst*). Copied from :doc:`penthesilea`.
- * ``/Filters/high_th_select``: events that do not contain any hit over the higher ``Q`` threshold will not appear in this table.
- * ``/Filters/low_th_select``: ID of events that pass lower charge threshold.
- * ``/Filters/topology_select``: ID of the events for which the topology information is extracted successfully.
- * ``MC info``: Monte Carlo information of events. Only if run number < 0.
+ * ``/DST/Events``: copy of the point-like information (*kdst*) events, which constitutes one of the output tables os :doc:`penthesilea`.
+ * ``/Filters/high_th_select``: events that do not contain any hit over the higher ``Q`` threshold will be filtered out and will not appear in this table. In consequence, the tracking algorithm will not be run over them either.
+ * ``/Filters/low_th_select``: analogous to the previous filter table. In this case, the charge threshold for the selection is lower.
+ * ``/Filters/topology_select``: flag that indicates whether events have too many hits according to the value specified in the config file. If so, its ID will not appear in the table and the topology information will not be computed.
+ * ``MC info``: copy of the Monte Carlo information for the events that the city outputs. Only if run number < 0. The tables included are: ``/MC/configuration``, ``/MC/hits``, ``/MC/particles``, ``/MC/sns_positions``, and ``/MC/sns_response``.
 
 
 .. _Esmeralda config:
@@ -36,7 +36,8 @@ Output
 Config
 ------
 
-As every other city, the configuration file contains the :ref:`same common arguments <Common arguments to every city>`. In addition, there are two more dictionaries:
+The `Esmeralda` configuration file share the :ref:`same common arguments <Common arguments to every city>` with the rest of the cities. In addition, there are two more dictionaries:
+
 
 - ``cor_hits_params`` is in charge of the information related to steps (i) and (ii) commented in the introduction. Its parameters are:
 
@@ -56,11 +57,11 @@ As every other city, the configuration file contains the :ref:`same common argum
      - ``float``
      - Lower threshold (in ``pes``) applied to the charge of hits.
 
-       The energy of the non-selected hist is transferred to the closest one (that passes the selection). 
+       The energy of the non-selected hits is transferred to the closest one (that passes the selection). 
 
    * - ``threshold_charge_high``
      - ``float``
-     - Higher threshold applied to the charge of hits.
+     - Similar to ``threshold_charge_low``, but using a higher charge threshold.
 
    * - ``same_peak``
      - ``bool``
@@ -89,7 +90,7 @@ As every other city, the configuration file contains the :ref:`same common argum
 
    * - ``vox_size``
      - ``[float,float,float]``
-     - X, Y, and Z dimensions of the voxels used in the voxalization of the hits.
+     - X, Y, and Z dimensions of the voxels used in the voxelization of the hits.
 
    * - ``strict_vox_size``
      - ``bool``
@@ -114,6 +115,8 @@ As every other city, the configuration file contains the :ref:`same common argum
    * - ``max_num_hits``
      - ``int``
      - Maximum number of hits for an event to be processed.
+
+       Events with more hits are filtered out and their ID will not appear in the ``Filters/topology_select`` table of the output.
 
 
 .. _Esmeralda workflow:
@@ -189,20 +192,20 @@ The following image shows the clear improvement on the energy spectrum after app
 .. warning::
  Despite the energy correction explained just before, there are **two** important factors that make the previous calibration not ultimate. They are not going to be explained in detail here, seeing that these further corrections are not applied along `Esmeralda`. However, since they are not applied inside any other city either and the energy modification of events is performed here, it is justified to comment them now.              
 
-1. **Non-linearities at high energies**: Due to the signicant difference between the krypton energy scale and the one of the physics data (above 1 MeV), the Kr-based energy correction might **not be sufficient** for all the energy range considered. Therefore, although krypton maps were applied, it is advisable to check the high energy peaks, so as to account for observed **non-linearities** and obtain the proper calibration. The plots below show clearly how the high energy 208-Thallium gamma lines (nominal values are illustrated with dashed red lines) are not aligned perfectly in spite of the maps corrections.
+1. **Non-linearities at high energies**. Due to the signicant difference between the krypton energy scale and the one of the physics data (above 1 MeV), the Kr-based energy correction might **not be sufficient** for all the energy range considered. Therefore, although krypton maps were applied, it is advisable to check the high energy peaks, so as to account for observed **non-linearities** and obtain the proper calibration. The plots below show clearly how the high energy 208-Thallium gamma lines (nominal values are illustrated with dashed red lines) are not aligned perfectly in spite of the maps corrections.
 
 .. image:: images/esmeralda/energy_spectrum_corr_vs_uncorr_PEAKS.png
    :width: 900
    :align: center
 
-*Note:* the energy scale of the uncorrected hdst presented in the plots above has only illustrative pruposes (to compare both distributions). Its conversion between pes to MeV has been made considering in an approximate way the number of pes yielded by krypton events.
+*Note:* the energy scale of the uncorrected hits coming from the hdst presented in the plots above has only illustrative pruposes (to compare both distributions). Its conversion between pes to MeV was made considering in an approximate way the number of pes yielded by krypton events.
 
 
-2. **The axial length (Z-width) effect**: There is an additional final energy correction that must be applied in the analysis post-reconstruction: the infamous and mysterious *Z-width effect*. Detailed information about this empirical correction and how to deal with it can be found `here <https://arxiv.org/abs/1905.13110>`_.
+2. **The axial length (Z-width) effect**. There is an additional final energy correction that must be applied in the analysis post-reconstruction: the so-colled *Z-width effect* correction. Detailed information about possible explanations for this phenomenon, as well as an empirical procedure to deal with it can be found `here <https://arxiv.org/abs/1905.13110>`_.
 
 
 
-Apart from the energy correction, the position of hits along the drift time (``DT`` variable in the dst) of the chamber is also transformed to its equivalent in the **Z-axis** [#]_. To do that, drift time values are just multiplied by the *drift-velocity*. In data, this magnitude is computed as a funtion of time, so this conversion can be also time-dependent if ``apply_temp`` is *True*.
+Apart from the energy correction, the position of hits along the drift time (``DT`` variable in the dst) of the chamber is also transformed to its equivalent in the **Z-axis** [#]_. To do that, drift time values are simply multiplied by the *drift-velocity*. In data, this magnitude is computed as a funtion of time, so this conversion can be also time-dependent if ``apply_temp`` is *True*.
 
 ..
  It is relevant to remark here that the aforementioned processes explained through :ref:`this section <Correction of SiPM-based hits>` are performed **two** times for all events every time the city is run. There are two different high-level analysis performed by the experiment, and each of them requires different types of inputs:
@@ -211,7 +214,7 @@ Apart from the energy correction, the position of hits along the drift time (``D
 |
  At this point, and once all the correction process (made inside `Esmeralda`) is explained, it is relevant to remark that there are several possible high-level analysis to be conducted posterior to this city. Each of them require a different treatment of its input, being that the reason why all the processes commented before are performed **two** times for all events every time the city is run.
 
- - The current *official* reconstruction (that will run :doc:`beersheba` after this) and the DNN analysis are interested in keeping also some lower charged hits (all the ones above **5-10 pes**, typically). This is due to the fact that both analysis will carry out additional manipulations to the data, and in consequence, they ought to keep more information of events. In these cases, the lifetime inside `Esmeralda` of the energy corrected hits that passed the ``threshold_charge_low`` threshold will end here. They will be stored in the ``CHITS/lowTh`` table of the output, and only the event IDs of the ones selected above that value will appear in ``Filters/low_th_select``.
+ - The current *official* reconstruction (that will run :doc:`beersheba` after this) and the DNN analysis are interested in keeping also some lower charged hits (all the ones above **5-10 pes**, typically). This is due to the fact that both analysis will carry out additional manipulations to the data, and in consequence, they ought to keep more information of events. In these cases, the lifetime inside `Esmeralda` of the energy corrected hits that passed the ``threshold_charge_low`` threshold will end here. They will be stored in the ``CHITS/lowTh`` table of the output, and their IDs in ``Filters/low_th_select``.
 
  - On the other hand, the "classical" [#]_ analysis performs all the tracking algorithms directly over these "high-pitched" (in comparison to the deconvoluted ones, out of :doc:`beersheba`) SiPMs hits. In this case, the :ref:`Paolina <Topology information extraction>` algorithm, which is described as follows, will correpond to the latest step of the data processing for them. It was demonstrated that in order to obtain a clearer track and perform a more accurate tracking reconstruction, a sharper (around **30-35** pes, specified in ``threshold_charge_high``) charge threshold cut is desired. The resulting hits will appear in the table ``CHITS/hightTh`` and their IDs in ``Filters/high_th_select``.
 
@@ -224,17 +227,17 @@ Apart from the energy correction, the position of hits along the drift time (``D
 Topology information extraction
 :::::::::::::::::::::::::::::::
 
-As it has been stated, the hits with sufficient charge to pass the high-threshold cut go through the `Paolina` algorithm in order to extract all the topological information. This procedure is also performed inside a posterior city, :doc:`isaura`. Thus, a detailed description of it can be found in the correspondent documentation section. The parameters to run this stage of the reconstruction chain are the ones specified with the ``paolina_params`` dictionary.  Due to the fact that the distribution of the hits obtained at this point is much looser than the ones of deconvoluted hits, the config parameters for the voxel size and blob radius are in general significantly larger than the ones used in :doc:`isaura`. In order to illustrate this comparison, this :ref:`same event <Isaura display>` is displayed here, after a typical `Esmeralda` topological reconstruction:
+As it has been stated, the hits with sufficient charge to pass the high-threshold cut go through the `Paolina` algorithm in order to extract all the topological information. This procedure is also performed inside a posterior city, :doc:`isaura`. Thus, a detailed description of it can be found in the correspondent documentation section. The parameters to run this stage of the reconstruction chain are the ones specified with the ``paolina_params`` dictionary.  Due to the fact that the distribution of the hits obtained at this point is much looser than the ones of deconvoluted hits, the config parameters for the voxel size and blob radius are in general significantly larger than the ones used in :doc:`isaura`. In order to illustrate this comparison, :ref:`this same event <Isaura display>` is displayed below, after a typical `Esmeralda` topological reconstruction:
 
 
  .. image:: images/esmeralda/r8250_evt194237_chits_esmeralda.png
-   :width: 51%
+   :width: 50.2%
  .. image:: images/esmeralda/r8250_evt194237_voxels_esmeralda.png
-   :width: 48%
+   :width: 48.5%
 
-The left panel shows the 3D display of the ``CHITS/highTh``, while the right one corresponds to its [15, 15, 15] :math:`{\text{mm}}^3` voxelized track, according to the algorithm. It is straightforward to realize that the result of this reconstruction is much more naive that the one obtained after running the full processing chain, represented graphically :ref:`here <Isaura display>`.
+The left panel displays the 3D distribution of the ``CHITS/highTh`` hits, while the right one corresponds to its [15, 15, 15] :math:`{\text{mm}}^3` voxelized track, according to the algorithm. It is straightforward to realize that the result of this reconstruction is much more naive than the one obtained after running the full processing chain that includes the deconvolution.
 
-The city finishes its job storing all the information commented before in different tables of a unique hdf5 file, as described in the :ref:`Output <Esmeralda output>` subsection.
+The city concludes storing all the information commented before in different tables of a unique hdf5 file, as described in the :ref:`Output <Esmeralda output>` subsection.
 
 
 
@@ -246,7 +249,7 @@ The city finishes its job storing all the information commented before in differ
 
  .. [#]  These high-energy calibration runs are those ones taken with the outer castle closed, but placing some sources of :math:`{}^{137}Cs` and :math:`{}^{208}Th` on different ports around the detector. More details about these runs can be checked in: `<https://arxiv.org/abs/1905.13110>`_.
          
- .. [#]  One could easily realize that there is already a variable called ``Z`` in the ``RECO/Events`` table of the ``hdst``. However, that was only a convention, seeing as at that point the value for the  *drift-velocity* during the run has not been computed yet.
+ .. [#]  There is already a variable called ``Z`` in the ``RECO/Events`` table of the ``hdst``. However, that was only a convention, seeing as at that point the value for the  *drift-velocity* during the run has not been computed yet.
 
  .. [#]  This analysis was the official one until :doc:`beersheba` was introduced into the reconstruction chain, which improved significantly the results.
 
