@@ -23,8 +23,8 @@ Output
  * ``/Tracking/Tracks``: tracking-related information of events (in particular: track energy (``energy``), track length (``length``), number of voxels (``numb_of_voxels``), number of hits (``numb_of_hits``), minimum and maximum position computed with the hits comprising the track (``x_min``, ``y_max``, ...), blobs position (``blob1_z``, ``blob2_x``,...) and energy (``eblob1``, ``eblob2``), energy of the hits shared by both blobs (``ovlp_blob_energy``), and voxel size (``vox_size_x``, ``vox_size_y``, ``vox_size_z``). Each row corresponds to a different track, specified among the others within an event with its ``trackID``.
  * ``/Summary/Events``: global information related to the event. Each row is one event.
  * ``/DST/Events``: copy of the point-like information (*kdst*) of events, output of :doc:`penthesilea`.
- * ``/Filters/hits_select``: flag to indicate if an event pass the selection of having at least 1 hit. If the condition is not fulfilled, it will be filtered out at the beginning of the city.
- * ``/Filters/topology_select``: flag that indicates whether events have too many hits according to the value specified in the config file. If so, its ID will not appear in the table and the topology information will not be computed.
+ * ``/Filters/hits_select``: flag to indicate if an event pass the selection of having more than 0 hits. 
+ * ``/Filters/topology_select``: flag to indicate if an event pass the selection of having less hits than the ``max_num_hits`` parameter specified in the config file.
  * MC info: copy of the Monte Carlo information for the events that the city outputs. Only if run number < 0. The tables included are: ``/MC/configuration``, ``/MC/hits``, ``/MC/particles``, ``/MC/sns_positions``, and ``/MC/sns_response``.
 
 .. _Isaura config:
