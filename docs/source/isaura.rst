@@ -3,7 +3,7 @@ Isaura
 
 *From ancient greek, Ισαυρία: an ancient rugged region in Asia Minor.*
 
-This city computes tracks and extracts topology information from **deconvoluted hits**. Therefore, it is analogous to the final stage of :doc:`esmeralda`. Unlike the latter, the input hits correspond to the deconvoluted ones coming from :doc:`beersheba` (instead of :doc:`penthesilea`), allowing us to obtain a finer tracking of events.
+This city computes tracks and extracts topology information from **deconvoluted hits** (**ddst**). Therefore, it is analogous to the final stage of :doc:`esmeralda`. Unlike the latter, the input hits correspond to the deconvoluted ones coming from :doc:`beersheba` (instead of :doc:`penthesilea`), allowing us to obtain a finer tracking of events.
 
 .. _Isaura input:
 
@@ -22,10 +22,10 @@ Output
 
  * ``/Tracking/Tracks``: tracking-related information of events (in particular: track energy (``energy``), track length (``length``), number of voxels (``numb_of_voxels``), number of hits (``numb_of_hits``), minimum and maximum position computed with the hits comprising the track (``x_min``, ``y_max``, ...), blobs position (``blob1_z``, ``blob2_x``,...) and energy (``eblob1``, ``eblob2``), energy of the hits shared by both blobs (``ovlp_blob_energy``), and voxel size (``vox_size_x``, ``vox_size_y``, ``vox_size_z``). Each row corresponds to a different track, specified among the others within an event with its ``trackID``.
  * ``/Summary/Events``: global information related to the event. Each row is one event.
- * ``/DST/Events``: copy of the point-like information (*kdst*) of events, output of :doc:`penthesilea`.
+ * ``/DST/Events``: copy of the point-like information (**kdst**) of events, output of :doc:`penthesilea`.
  * ``/Filters/hits_select``: flag to indicate if an event pass the selection of having more than 0 hits. 
  * ``/Filters/topology_select``: flag to indicate if an event pass the selection of having less hits than the ``max_num_hits`` parameter specified in the config file.
- * MC info: copy of the Monte Carlo information for the events that the city outputs. Only if run number < 0. The tables included are: ``/MC/configuration``, ``/MC/hits``, ``/MC/particles``, ``/MC/sns_positions``, and ``/MC/sns_response``.
+ * MC info: copy of the Monte Carlo information for the events that the city outputs. Only if ``run_number`` < 0. The tables included are: ``/MC/configuration``, ``/MC/hits``, ``/MC/particles``, ``/MC/sns_positions``, and ``/MC/sns_response``.
 
 .. _Isaura config:
 
@@ -79,9 +79,23 @@ Apart from the :ref:`Common arguments to every city`, the parameters to run *Isa
 Workflow
 --------
 
-The basic idea behind Isaura is to run the "traditional" *Paolina* algorithm over the deconvoluted hits output in :doc:`beersheba`, in order to convert ``events`` into ``tracks`` with ``blobs``.
+The basic idea behind Isaura is to run the "traditional" *Paolina* algorithm over the deconvoluted hits output in :doc:`beersheba`, in order to convert ``events`` into ``tracks`` with ``blobs``. This process can be divided into different sub-steps:
 
-The first step within the algorithm consists in checking that the number of hits is lower than the value provided in the config file (``max_num_hits``). That argument was introduced because, when running *Paolina* algorithm after :doc:`penthesilea`, there were some events that comprise such large amount of hits that the tracking information extraction took ridiculously long. The following picture shows the number of Penthesilea hits per event (with a different scale) for a typical 24h-long low-background run included in the NEXT-White double-beta analysis [#]_. High energy (trigger2) events usually contain around 200 *Penthesilea hits* (as right panel points out), while there are some of them with more than 10000 hits (illustrated in left panel).
+ * :ref:`Event selection based on the contained hits <Hits-based selection>`
+ * :ref:`Exracting the topology-related information <Exracting the topology-related information>`
+
+
+.. _Hits-based selection:
+
+Event selection based on the contained hits
+:::::::::::::::::::::::::::::::::::::::::::
+
+
+First of all, it is mandatory to perform some selections concerning the number of hits that events contain, in order to be able to compute all the tracking information of events.
+  
+The first condition that all events must fulfill to be processed is to contain, at least, one hit. If that does not happen, the event will be rejected, which will be displayed in the table ``Filters/hits_select``.
+
+The next step within the algorithm consists in checking that the number of hits is lower than the value provided in the config file (``max_num_hits``). That argument was introduced because, when running *Paolina* algorithm after :doc:`penthesilea`, there were some events that comprise such large amount of hits that the tracking information extraction took ridiculously long. The following picture shows the number of *Penthesilea hits* (**hdst**) per event (with a different scale) for a typical 24h-long low-background run included in the NEXT-White double-beta analysis [#]_. High energy (trigger2) events usually contain around 200 Penthesilea hits (as right panel points out), while there are some of them with more than 10000 hits (illustrated in left panel).
 
  .. image:: images/isaura/nhits_per_evt_r8571.jpg
    :width: 1000
@@ -94,10 +108,11 @@ The plot also shows that these events only  appear a few times within a 24h-long
 
 In any case, one can easily infer from the plots that these events are not physical. On the contrary, they seem to correspond to either some kind of flash occurring in the chamber (like a mini-spark) or some fail in the electronics (after the saturation of an alpha particle, for example). The ID of the events that are removed from the reconstruction chain because of this reason will be specified in the table ``Filters/topology_select``, in order to keep track of this information.
 
-Another obvious condition that all events must fulfill to be processed is to contain hits. If not, the event will be also rejected, which will be displayed in the table ``Filters/hits_select``.
-
 ..
  Next step includes another (quite obvious) check: at least one hit inside the event must have a well-defined energy. If not, the event will be also rejected, since no topological information could be extracted.
+
+
+Finally, every event is also required to contain hits with well-defined energy. For instance, events with all hits outside the krypton correction map boundaries will be thrown away, since their energy cannot be corrected and their ``Ec`` variable (*corrected energy*) will be ``NaN``.
 
 
 .. _Exracting the topology-related information:
@@ -106,7 +121,8 @@ Extracting the topology-related information
 :::::::::::::::::::::::::::::::::::::::::::
 An excellent topological discrimination between signal and background (thanks to the usage of a gaseous medium inside the TPC) is one of the fundamental trademarks of the NEXT experiment. In order to achieve that, it is necessary to (1) separate the different tracks that may form the event, (2) find the extremes for each of them, and (3) compute the energy around these extremes, providing the so-called *blobs*.
 
-In order to compute all the tracking information commented above it will be mandatory first to check that every event contain hits with well-defined energy. For instance, events with all hits outside the krypton correction map boundaries will be thrown away, since their energy cannot be corrected and their ``Ec`` variable (*corrected energy*) will be ``NaN``.
+..
+ In order to compute all the tracking information commented above it will be mandatory first to check that every event contain hits with well-defined energy. For instance, events with all hits outside the krypton correction map boundaries will be thrown away, since their energy cannot be corrected and their ``Ec`` variable (*corrected energy*) will be ``NaN``.
 
 Once the previous check is done, the hits are grouped into 3D volume elements (``voxels``) with the objective of studying the connectivity. The size of these voxels is more or less fixed (depending on the ``strict_vox_size`` parameter in the config file), and their energy correspond to the sum of the energy of the hits included in the voxel. Following a Breadth-First Search (BSF) [#]_ algorithm, the voxels sharing side, edge, or corner will be part of the same **track**. The figure below shows the voxelization result of a real NEXT-White data (Run-VI) single-electron candidate of 1.73 MeV. In this case, after grouping the *deconvoluted hits* into [5 mm x 5 mm x 5 mm] voxels, the event was classified as single-track.
 
