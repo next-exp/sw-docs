@@ -79,10 +79,10 @@ Apart from the :ref:`Common arguments to every city`, the parameters to run *Isa
 Workflow
 --------
 
-The basic idea behind Isaura is to run the "traditional" *Paolina* algorithm over the deconvoluted hits output in :doc:`beersheba`, in order to convert ``events`` into ``tracks`` with ``blobs``. This process can be divided into different sub-steps:
+The basic idea behind Isaura is to run the "traditional" *Paolina* algorithm over the deconvoluted hits output in :doc:`beersheba`, in order to convert ``events`` into ``tracks`` with ``blobs``. This process can be divided into two main steps:
 
  * :ref:`Event selection based on the contained hits <Hits-based selection>`
- * :ref:`Topology-related information extraction <Extracting the topology-related information>`:
+ * :ref:`Topology-related information extraction <Extracting the topology-related information>`, performed in different stages:
 
     #. :ref:`Studying connectivity of events <Connectivity>`
     #. :ref:`Searching the position of blobs <Blobs position>`
