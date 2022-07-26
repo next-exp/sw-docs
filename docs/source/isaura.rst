@@ -127,11 +127,11 @@ Extracting the topology-related information
 An excellent topological discrimination between signal and background (thanks to the usage of a gaseous medium inside the TPC) is one of the fundamental trademarks of the NEXT experiment. That is achievable thanks to the exploitation of the so-called **blobs**. They are defined as imaginary 3D spheres located around both ends of each track. Their energy is an excellent tool to investigate whether there has been a large and sudden energy deposition in the track extreme (i.e. *Bragg peak*, indicating the stopping point of a charged particle) or not (starting point of its trajectory). Therefore, that will be a crucial stage within the reconstruction chain, since if it is performed correctly, it will allow separating double-electron (such as the double-beta signal) from single-electron (the majority of backgrounds) tracks.
 
 
-In order to achieve that, it is necessary to
+In order to achieve that, it is necessary to:
 
- #. separate the different tracks that may form the event (event connectivity)
- #. find the extremes for each of them, to obtain the blob center position
- #. compute the energy around these points
+ #. separate the different tracks that may form the event (event connectivity),
+ #. find the extremes for each of them, to obtain the blob center position,
+ #. compute the energy around these points.
 
 The following subsections explain each of these processes in detail.
 
@@ -180,7 +180,7 @@ Once the extreme voxels are properly found, the center position of the blobs --s
 **Blob energies computation**
 
 
-From these points, 3D spheres of radius ``blob_radius`` (specified in the config file) are taken. The hits inside the sphere will contribute to the energy of the blob, that will be stored as ``eblob1`` and ``eblob2`` [#]_. It is relevant to take into account here that not every hit falling inside the blob sphere will be considered for its total energy, but only the ones that belong to a voxel adjacent to the one labeled as extreme.
+From these blob centers, 3D spheres of radius ``blob_radius`` (specified in the config file) are taken. The hits inside the sphere will contribute to the energy of the blob, that will be stored as ``eblob1`` and ``eblob2`` [#]_. It is relevant to take into account here that not every hit falling inside the blob sphere will be considered for its total energy, but only the ones that belong to a voxel adjacent to the one labeled as extreme.
 
 
 
