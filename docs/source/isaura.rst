@@ -104,7 +104,7 @@ The next step within the algorithm consists in checking that the number of hits 
  .. image:: images/isaura/nhits_per_evt_r8571.jpg
    :width: 1000
 
-The plot also shows that these events only  appear a few times within a 24h-long low-background run (around 0.05% of the total set of events). Rejecting this type of events is not a particularly worrysome issue: they would be thrown away in the posterior analysis, owing to the fact that none of them are exclusively contained inside the fiducial volume. The spatial distributions for one of these events is presented below (where the grey dashed lines illustrate the boundaries of the chamber):
+The plot also shows that these events only  appear a few times within a 24h-long low-background run (around 0.05% of the total set of events). Rejecting this type of events is not a particularly worrysome issue: they would be thrown away in the posterior analysis, owing to the fact that none of them are exclusively contained inside the fiducial volume. The spatial distributions for one of these events is presented below (where the grey dashed lines illustrate the boundaries of the chamber).
 
 
  .. image:: images/isaura/XY_Z_distributions_evt_many_hits.jpg
