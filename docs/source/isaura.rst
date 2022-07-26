@@ -82,7 +82,11 @@ Workflow
 The basic idea behind Isaura is to run the "traditional" *Paolina* algorithm over the deconvoluted hits output in :doc:`beersheba`, in order to convert ``events`` into ``tracks`` with ``blobs``. This process can be divided into different sub-steps:
 
  * :ref:`Event selection based on the contained hits <Hits-based selection>`
- * :ref:`Extracting the topology-related information <Extracting the topology-related information>`
+ * :ref:`Topology-related information extraction <Extracting the topology-related information>`:
+
+    #. :ref:`Studying connectivity of events <Connectivity>`
+    #. :ref:`Searching the position of blobs <Blobs position>`
+    #. :ref:`Computing blobs energy <Blob energy>`
 
 
 .. _Hits-based selection:
@@ -119,10 +123,23 @@ Finally, every event is also required to contain hits with well-defined energy. 
 
 Extracting the topology-related information
 :::::::::::::::::::::::::::::::::::::::::::
-An excellent topological discrimination between signal and background (thanks to the usage of a gaseous medium inside the TPC) is one of the fundamental trademarks of the NEXT experiment. In order to achieve that, it is necessary to (1) separate the different tracks that may form the event, (2) find the extremes for each of them, and (3) compute the energy around these extremes, providing the so-called *blobs*.
 
-..
- In order to compute all the tracking information commented above it will be mandatory first to check that every event contain hits with well-defined energy. For instance, events with all hits outside the krypton correction map boundaries will be thrown away, since their energy cannot be corrected and their ``Ec`` variable (*corrected energy*) will be ``NaN``.
+An excellent topological discrimination between signal and background (thanks to the usage of a gaseous medium inside the TPC) is one of the fundamental trademarks of the NEXT experiment. That is achievable thanks to the exploitation of the so-called **blobs**. They are defined as imaginary 3D spheres located around both ends of each track. Their energy is an excellent tool to investigate whether there has been a large and sudden energy deposition in the track extreme (i.e. *Bragg peak*, indicating the stopping point of a charged particle) or not (starting point of its trajectory). Therefore, that will be a crucial stage within the reconstruction chain, since if it is performed correctly, it will allow separating double-electron (such as the double-beta signal) from single-electron (the majority of backgrounds) tracks.
+
+
+In order to achieve that, it is necessary to
+
+ #. separate the different tracks that may form the event (event connectivity)
+ #. find the extremes for each of them, to obtain the blob center position
+ #. compute the energy around these points
+
+The following subsections explain each of these processes in detail.
+
+
+.. _Connectivity:
+ 
+**Splitting events into tracks**
+
 
 Once events are properly selected according to the :ref:`previous subsection <Hits-based selection>`, their hits are grouped into 3D volume elements (``voxels``) with the objective of studying the connectivity. The size of these voxels is more or less fixed (depending on the ``strict_vox_size`` parameter in the config file), and their energy correspond to the sum of the energy of the hits included in the voxel. Following a Breadth-First Search (BSF) [#]_ algorithm, the voxels sharing side, edge, or corner will be part of the same **track**. The figure below shows the voxelization result of a real NEXT-White data (Run-VI) single-electron candidate of 1.73 MeV. In this case, after grouping the *deconvoluted hits* into [5 mm x 5 mm x 5 mm] voxels, the event was classified as single-track.
 
@@ -134,7 +151,9 @@ Once events are properly selected according to the :ref:`previous subsection <Hi
    :width: 53%
 
 
-Since events have already been divided into voxel-made 3D tracks, the next (and final) step involves the computation of the **blobs**. They are defined as imaginary 3D spheres located around both ends of each track. Their energy is an excellent tool to investigate whether there has been a large and sudden energy deposition in the track extreme (i.e. *Bragg peak*, indicating the stopping point of a charged particle) or not (starting point of its trajectory). Therefore, this is a crucial stage within the reconstruction chain, since that will allow us to separate double-electron (such as the double-beta signal) from single-electron (the majority of backgrounds) tracks.
+.. _Blobs position:
+
+**Searching blobs position**
 
 
 To compute the position of the blobs, we need to find the two extreme voxels of the track, which is done following the BFS algorithm. Then, the energy-weighted averaged position of the hits inside these voxels will correspond to the **blob center**, as illustrated in the figure below.
@@ -154,6 +173,12 @@ In consequence, the first thing to do is to localize the two end voxels for each
 
 
 Once the extreme voxels are properly found, the center position of the blobs --stored in the ``Tracks/Tracking`` table as: ``blobi_x``, ``blobi_y``, and ``blobi_z``, (with ``i`` being 1, 2), respectively-- is computed in accordance with the figure previously presented.
+
+
+.. _Blob energy:
+
+**Blob energies computation**
+
 
 From these points, 3D spheres of radius ``blob_radius`` (specified in the config file) are taken. The hits inside the sphere will contribute to the energy of the blob, that will be stored as ``eblob1`` and ``eblob2`` [#]_. It is relevant to take into account here that not every hit falling inside the blob sphere will be considered for its total energy, but only the ones that belong to a voxel adjacent to the one labeled as extreme.
 
