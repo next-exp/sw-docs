@@ -82,7 +82,7 @@ Workflow
 The basic idea behind Isaura is to run the "traditional" *Paolina* algorithm over the deconvoluted hits output in :doc:`beersheba`, in order to convert ``events`` into ``tracks`` with ``blobs``. This process can be divided into different sub-steps:
 
  * :ref:`Event selection based on the contained hits <Hits-based selection>`
- * :ref:`Exracting the topology-related information <Exracting the topology-related information>`
+ * :ref:`Extracting the topology-related information <Extracting the topology-related information>`
 
 
 .. _Hits-based selection:
@@ -115,7 +115,7 @@ In any case, one can easily infer from the plots that these events are not physi
 Finally, every event is also required to contain hits with well-defined energy. For instance, events with all hits outside the krypton correction map boundaries will be thrown away, since their energy cannot be corrected and their ``Ec`` variable (*corrected energy*) will be ``NaN``.
 
 
-.. _Exracting the topology-related information:
+.. _Extracting the topology-related information:
 
 Extracting the topology-related information
 :::::::::::::::::::::::::::::::::::::::::::
