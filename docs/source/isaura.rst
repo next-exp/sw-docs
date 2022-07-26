@@ -95,9 +95,9 @@ Event selection based on the contained hits
 :::::::::::::::::::::::::::::::::::::::::::
 
 
-First of all, it is mandatory to perform some selections concerning the number of hits that events contain, in order to be able to compute all the tracking information of events.
+First of all, it is mandatory to perform some selections concerning the number of hits that events contain, in order to be able to compute all the tracking information for each of them.
   
-The first condition that all events must fulfill to be processed is to contain, at least, one hit. If that does not happen, the event will be rejected, which will be displayed in the table ``Filters/hits_select``.
+The first condition that all events must fulfill to be processed is to contain at least one hit. If that does not happen, the event will be rejected, which will be displayed in the table ``Filters/hits_select``.
 
 The next step within the algorithm consists in checking that the number of hits is lower than the value provided in the config file (``max_num_hits``). That argument was introduced because, when running *Paolina* algorithm after :doc:`penthesilea`, there were some events that comprise such large amount of hits that the tracking information extraction took ridiculously long. The following picture shows the number of *Penthesilea hits* (**hdst**) per event (with a different scale) for a typical 24h-long low-background run included in the NEXT-White double-beta analysis [#]_. High energy (trigger2) events usually contain around 200 Penthesilea hits (as right panel points out), while there are some of them with more than 10000 hits (illustrated in left panel).
 
@@ -138,7 +138,7 @@ The following subsections explain each of these processes in detail.
 
 .. _Connectivity:
  
-**Splitting events into tracks**
+**Separating events into tracks**
 
 
 Once events are properly selected according to the :ref:`previous subsection <Hits-based selection>`, their hits are grouped into 3D volume elements (``voxels``) with the objective of studying the connectivity. The size of these voxels is more or less fixed (depending on the ``strict_vox_size`` parameter in the config file), and their energy correspond to the sum of the energy of the hits included in the voxel. Following a Breadth-First Search (BSF) [#]_ algorithm, the voxels sharing side, edge, or corner will be part of the same **track**. The figure below shows the voxelization result of a real NEXT-White data (Run-VI) single-electron candidate of 1.73 MeV. In this case, after grouping the *deconvoluted hits* into [5 mm x 5 mm x 5 mm] voxels, the event was classified as single-track.
