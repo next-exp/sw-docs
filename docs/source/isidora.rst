@@ -6,7 +6,7 @@ Isidora
 Due to the bias configuration of the PMTs, the PMT waveform does not represent the actual signal produced by the PMT, but its derivative. This effect is treated online (for trigger) and offline (for data processing) by means of the BaseLine Restoration (BRL) algorithm. *Isidora* processes **RWF**\ s coming from either the *Decoder* (detector) or from *Diomira* (MC) and applies the BLR algorithm to the waveforms. The output are the so-called Corrected Waveforms, or **CWF**.
 
 .. note::
-  *Isidora*'s job is also performed by *Irene*, but the later does not store the intermediate step. *Isidora* is therefore meant as a **debugging tool** to inspect the performance of the BLR algorithm.
+  *Isidora*'s job is also performed by *Irene*, but the latter does not store the intermediate step. *Isidora* is therefore meant as a **debugging tool** to inspect the performance of the BLR algorithm.
 
 .. _Isidora input:
 
