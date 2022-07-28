@@ -129,9 +129,10 @@ An excellent topological discrimination between signal and background (thanks to
 
 In order to achieve that, it is necessary to:
 
- #. separate the different tracks that may form the event (event connectivity),
- #. find the extremes for each of them, to obtain the blob center position,
- #. compute the energy around these points.
+    #. :ref:`separate the different tracks that may form the event (event connectivity), <Connectivity>`
+    #. :ref:`find the extremes for each of them, to obtain the blob center position, <Blobs position>`
+    #. :ref:`compute the energy around these points. <Blob energy>`
+
 
 The following subsections explain each of these processes in detail.
 
