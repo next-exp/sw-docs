@@ -23,8 +23,8 @@ Output
  * ``/Tracking/Tracks``: tracking-related information of events (in particular: track energy (``energy``), track length (``length``), number of voxels (``numb_of_voxels``), number of hits (``numb_of_hits``), minimum and maximum position computed with the hits comprising the track (``x_min``, ``y_max``, ...), blobs position (``blob1_z``, ``blob2_x``,...) and energy (``eblob1``, ``eblob2``), energy of the hits shared by both blobs (``ovlp_blob_energy``), and voxel size (``vox_size_x``, ``vox_size_y``, ``vox_size_z``). Each row corresponds to a different track, specified among the others within an event with its ``trackID``.
  * ``/Summary/Events``: global information related to the event. Each row is one event.
  * ``/DST/Events``: copy of the point-like information (**kdst**) of events, output of :doc:`penthesilea`.
- * ``/Filters/hits_select``: flag to indicate if an event pass the selection of having more than 0 hits. 
- * ``/Filters/topology_select``: flag to indicate if an event pass the selection of having less hits than the ``max_num_hits`` parameter specified in the config file.
+ * ``/Filters/hits_select``: flag to indicate if an event passes the selection of having more than 0 hits. 
+ * ``/Filters/topology_select``: flag to indicate if an event passes the selection of having less hits than the ``max_num_hits`` parameter specified in the config file.
  * MC info: copy of the Monte Carlo information for the events that the city outputs. Only if ``run_number`` < 0. The tables included are: ``/MC/configuration``, ``/MC/hits``, ``/MC/particles``, ``/MC/sns_positions``, and ``/MC/sns_response``.
 
 .. _Isaura config:
@@ -61,7 +61,7 @@ Apart from the :ref:`Common arguments to every city`, the parameters to run *Isa
 
    * - ``min_voxels``
      - ``int``
-     - The voxel dropping procedure commented on ``energy_threshold`` can only happen if the number of voxels is larger than the value specified in this argument.
+     - The voxel dropping procedure commented in ``energy_threshold`` can only happen if the number of voxels is larger than the value specified in this argument.
 
    * - ``blob_radius``
      - ``float``
@@ -99,12 +99,12 @@ First of all, it is mandatory to perform some selections concerning the number o
   
 The first condition that all events must fulfill to be processed is to contain at least one hit. If that does not happen, the event will be rejected, which will be displayed in the table ``Filters/hits_select``.
 
-The next step within the algorithm consists in checking that the number of hits is lower than the value provided in the config file (``max_num_hits``). That argument was introduced because, when running *Paolina* algorithm after :doc:`penthesilea`, there were some events that comprise such large amount of hits that the tracking information extraction took ridiculously long. The following picture shows the number of *Penthesilea hits* (**hdst**) per event (with a different scale) for a typical 24h-long low-background run included in the NEXT-White double-beta analysis [#]_. High energy (trigger2) events usually contain around 200 Penthesilea hits (as right panel points out), while there are some of them with more than 10000 hits (illustrated in left panel).
+The next step within the algorithm consists in checking that the number of hits is lower than the value provided in the config file (``max_num_hits``). That argument was introduced because, when running *Paolina* algorithm after :doc:`penthesilea`, there were some events that comprise such large amount of hits that the tracking information extraction took a ridiculously long time. The following picture shows the number of *Penthesilea hits* (**hdst**) per event (with a different scale) for a typical 24h-long low-background run included in the NEXT-White double-beta analysis [#]_. High energy (trigger2) events usually contain around 200 Penthesilea hits (as right panel points out), while there are some with more than 10000 hits (illustrated in left panel).
 
  .. image:: images/isaura/nhits_per_evt_r8571.jpg
    :width: 1000
 
-The plot also shows that these events only  appear a few times within a 24h-long low-background run (around 0.05% of the total set of events). Rejecting this type of events is not a particularly worrysome issue: they would be thrown away in the posterior analysis, owing to the fact that none of them are exclusively contained inside the fiducial volume. The spatial distributions for one of these events is presented below (where the grey dashed lines illustrate the boundaries of the chamber).
+The plot also shows that these events only  appear a few times within a 24h-long low-background run (around 0.05% of the total set of events). Rejecting this type of event is not a particularly worrysome issue: they would be thrown away in the posterior analysis, owing to the fact that none of them are exclusively contained inside the fiducial volume. The spatial distributions for one of these events is presented below (where the grey dashed lines illustrate the boundaries of the chamber).
 
 
  .. image:: images/isaura/XY_Z_distributions_evt_many_hits.jpg
@@ -141,7 +141,7 @@ The following subsections explain each of these processes in detail.
 **Separating events into tracks**
 
 
-Once events are properly selected according to the :ref:`previous subsection <Hits-based selection>`, their hits are grouped into 3D volume elements (``voxels``) with the objective of studying the connectivity. The size of these voxels is more or less fixed (depending on the ``strict_vox_size`` parameter in the config file), and their energy correspond to the sum of the energy of the hits included in the voxel. Following a Breadth-First Search (BSF) [#]_ algorithm, the voxels sharing side, edge, or corner will be part of the same **track**. The figure below shows the voxelization result of a real NEXT-White data (Run-VI) single-electron candidate of 1.73 MeV. In this case, after grouping the *deconvoluted hits* into [5 mm x 5 mm x 5 mm] voxels, the event was classified as single-track.
+Once events are properly selected according to the :ref:`previous subsection <Hits-based selection>`, their hits are grouped into 3D volume elements (``voxels``) with the objective of studying the connectivity. The size of these voxels is more or less fixed (depending on the ``strict_vox_size`` parameter in the config file), and their energy correspond to the sum of the energy of the hits included in the voxel. Following a Breadth-First Search (BSF) [#]_ algorithm, the voxels sharing a side, edge, or corner will be part of the same **track**. The figure below shows the voxelization result of a real NEXT-White data (Run-VI) single-electron candidate of 1.73 MeV. In this case, after grouping the *deconvoluted hits* into [5 mm x 5 mm x 5 mm] voxels, the event was classified as single-track.
 
 .. _Isaura display:
 
@@ -164,12 +164,12 @@ To compute the position of the blobs, we need to find the two extreme voxels of 
    :align: center
 
 
-In consequence, the first thing to do is to localize the two end voxels for each track. Defining the distance between any pair of voxels as the shortest path **along the track** that connects them, the two extreme voxels will be the ones with the longest distance between them. However, there are two special cases that are important to comment:
+The first thing to do is to localize the two end voxels for each track. Defining the distance between any pair of voxels as the shortest path **along the track** that connects them, the two extreme voxels will be the ones with the longest distance between them. However, there are two special cases that are important to comment:
 
 
  - It is possible that some spurious **low-energy** hits appear around the track (due to over-iterations during the Richardson-Lucy deconvolution process, as commented in :doc:`beersheba`; or some noise inside the chamber, for example). If these hits are reconstructed around the track but not far enough to produce a different S2 or track (taking into account the voxel size), they can be considered as a part of the main one and, being a bit separate, it is probable that they end up belonging to an extreme voxel. That case would not be correct, and in order to solve it, the voxel will be dropped from the track and its energy passed to the closest one. This process is only carried out if the voxel energy is lower than ``energy_threshold`` and the track is made by more than ``min_voxels`` voxels. Once this procedure is done, the extreme voxels are searched and found again recursively, until none of these conditions are fulfilled.
 
- - Another particular scenario is the one that comes up when there are multiple end-voxel candidates (one can imagine that the shorter the track the more probable is this to happen). To deal with it, the more energetic candidates will be the ones set as extremes. With this convention, we aim to minimize the use of the voxel-dropping algorithm commented above for those cases where the energy of one candidate is larger than ``energy_threshold`` while the other one is below that value. 
+ - Another particular scenario is the one that comes up when there are multiple end-voxel candidates (one can imagine that the shorter the track the more probable this is to happen). To deal with it, the more energetic candidates will be the ones set as extremes. With this convention, we aim to minimize the use of the voxel-dropping algorithm commented above for those cases where the energy of one candidate is larger than ``energy_threshold`` while the other one is below that value. 
 
 
 Once the extreme voxels are properly found, the center position of the blobs --stored in the ``Tracks/Tracking`` table as: ``blobi_x``, ``blobi_y``, and ``blobi_z``, (with ``i`` being 1, 2), respectively-- is computed in accordance with the figure previously presented.
@@ -184,7 +184,7 @@ From these blob centers, 3D spheres of radius ``blob_radius`` (specified in the 
 
 
 
-The final step of the *Paolina* algorithm includes the computation of the ``ovlp_blob_energy`` (“*overlap blob energy*”) variable: in short tracks it is common to have **overlapping blobs**, i.e. blobs that share some of their hits [#]_. In these cases, the ``eblobi`` variables become meaningless, since the energy of these hits would contribute to both blobs [#]_. Therefore, it will be interesting to reject this type of events during the posterior analysis in case the blob energy distributions are intented to be exploited. Owing to the fact that the aforementioned variable is defined as the total amount of energy of these shared hits, a selection of ``ovlp_blob_energy = 0`` will get rid of the corresponding events easily.
+The final step of the *Paolina* algorithm includes the computation of the ``ovlp_blob_energy`` (“*overlap blob energy*”) variable: in short tracks it is common to have **overlapping blobs**, i.e. blobs that share some of their hits [#]_. In these cases, the ``eblobi`` variables become meaningless, since the energy of these hits would contribute to both blobs [#]_. Therefore, it will be interesting to reject this type of event during the posterior analysis in case the blob energy distributions are intented to be exploited. Owing to the fact that the aforementioned variable is defined as the total amount of energy of these shared hits, a selection of ``ovlp_blob_energy = 0`` will get rid of the corresponding events easily.
 
 
  .. image:: images/isaura/RunVI_b_evt_1720keV_XYZ.jpg
