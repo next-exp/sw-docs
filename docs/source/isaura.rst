@@ -116,7 +116,10 @@ In any case, one can easily infer from the plots that these events are not physi
  Next step includes another (quite obvious) check: at least one hit inside the event must have a well-defined energy. If not, the event will be also rejected, since no topological information could be extracted.
 
 
-Finally, every event is also required to contain hits with well-defined energy. For instance, events with all hits outside the krypton correction map boundaries will be thrown away, since their energy cannot be corrected and their ``Ec`` variable (*corrected energy*) will be ``NaN``.
+Finally, every event is also required to contain hits with well-defined energy. That could happen when all hits for a specific event are outside the krypton correction map boundaries. For them, :doc:`esmeralda`  is not able to correct their energy, and the ``Ec`` variable (*corrected energy*) --used for running  in `Esmeralda` the same topology-related algorithm as here (explained below)-- is set to ``NaN``, making the tracking process impossible.
+
+..
+ For instance, the energy of events with all hits outside the krypton correction map boundaries cannot be corrected during in :doc:`esmeralda`. In that case,they be thrown away, since their energy cannot be corrected and their ``Ec`` variable (*corrected energy*) will be ``NaN``.
 
 
 .. _Extracting the topology-related information:
