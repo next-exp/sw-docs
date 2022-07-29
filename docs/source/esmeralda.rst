@@ -24,11 +24,11 @@ Output
  * ``/CHITS/lowTh``:  energy-corrected hits table of the ones that pass the lower charge theshold selection.
  * ``/Tracking/Tracks``: topological information of events. Each row corresponds to a different track, specified with the ``trackID`` among the other possible tracks within an event.
  * ``/Summary/Events``: global information related to the event. Each row is one event.
- * ``/DST/Events``: copy of the point-like information (*kdst*) events, which constitutes one of the output tables os :doc:`penthesilea`.
- * ``/Filters/high_th_select``: events that do not contain any hit over the higher ``Q`` threshold will be filtered out and will not appear in this table. In consequence, the tracking algorithm will not be run over them either.
- * ``/Filters/low_th_select``: analogous to the previous filter table. In this case, the charge threshold for the selection is lower.
- * ``/Filters/topology_select``: flag that indicates whether events have too many hits according to the value specified in the config file. If so, its ID will not appear in the table and the topology information will not be computed.
- * ``MC info``: copy of the Monte Carlo information for the events that the city outputs. Only if run number < 0. The tables included are: ``/MC/configuration``, ``/MC/hits``, ``/MC/particles``, ``/MC/sns_positions``, and ``/MC/sns_response``.
+ * ``/DST/Events``: copy of the point-like information (**kdst**) events, which constitutes one of the output tables of :doc:`penthesilea`.
+ * ``/Filters/high_th_select``: flag to indicate if an event passes the selection of having at least one hit with more charge than the ``threshold_charge_high`` parameter of the config file. 
+ * ``/Filters/low_th_select``: flag to indicate if an event passes the selection of having at least one hit with more charge than ``threshold_charge_low``. 
+ * ``/Filters/topology_select``: flag to indicate if an event passes the selection of having less (high-threshold) hits than ``max_num_hits``.
+ * ``MC info``: copy of the Monte Carlo information for the events that the city outputs. Only if ``run_number`` < 0. The tables included are: ``/MC/configuration``, ``/MC/hits``, ``/MC/particles``, ``/MC/sns_positions``, and ``/MC/sns_response``.
 
 
 .. _Esmeralda config:
