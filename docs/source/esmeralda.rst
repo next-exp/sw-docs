@@ -136,10 +136,10 @@ Since its creation, *Esmeralda* has been a sort of a *Frankenstein*'s monster, s
 
  #. :ref:`Manipulation of the SiPM-based hits <Manipulation of SiPM-based hits>`
 
-    * :ref:`Reassignment of their energy <Energy reassignment>`
-    * :ref:`Calibration of their energy <Energy calibration>` 
+    * :ref:`Energy reassignment <Energy reassignment>`
+    * :ref:`Energy calibration <Energy calibration>` 
 
- #. :ref:`Topology information extraction <Topology information extraction>`
+ #. :ref:`Topology information extraction of events <Topology information extraction>`
 
 
 .. _Manipulation of SiPM-based hits:
@@ -153,17 +153,17 @@ The **hits** (also known as *clusters*) that constitute the input for this city 
 Apart from that, it is relevant to remind that the energy of the input hits cannot be used directly in the high-level analysis because of two reasons:
 
  #. It is stored according to the **pes** scale (thanks to the *ADC-to-pes* conversion of the PMT waveforms performed in :doc:`irene`).
- #. It must be corrected due to different processes that degrades the light collection.
+ #. It must be corrected due to different processes that degrade the light collection.
 
-With all the information presented above, oce could realize that the SiPM-based hits that enter the city must suffer some modification in order to be useful for the later analysis. The explanation of this process is the main purpose of this section. 
+With all the information presented above, one could realize that the SiPM-based hits that enter the city must suffer some modifications in order to be useful for the later analysis. The explanation of these processes is the main purpose of this section. 
 
 .. _Energy reassignment:
 
 **Reassignment of the hits energy**
 
-The main features of the input dst, as well as how events might contain hits with non-defined (``NaN``) charge --which leads to non-defined position at the *XY* plane-- has been commented above. As a consequence of this last fact, the first thing to do consists in applying a cut on the charge of hits in order to deal with this issue. Besides that, this selection also removes the hits with very low charge, aiming to obtain a "cleaner" version of the event, what will allow us to perform a better reconstruction in the posterior analysis. Therefore, if one hit does not pass the charge threshold (``threshold_charge_low`` or ``threshold_charge_high``, depending on the case), its energy is charged-weighted redistributed between those one that do pass the cut and belong to the same time slice. After that, the hit will be removed from the dst. In case none of the hits for a given slice is above the threshold, a new hit containing all the redistributed energy is created at the same *Z* coordinate position, with: ``Q = NaN`` and ``X = Y = 0``.
+The main features of the input dst, as well as how events might contain hits with non-defined (``NaN``) charge --which leads to non-defined position at the *XY* plane-- has been commented above. As a consequence of this last fact, the first thing to do consists in applying a cut on the charge of hits in order to deal with this issue. Besides that, this selection also removes the hits with very low charge, aiming to obtain a "cleaner" version of the event, what will allow us to perform a better reconstruction in the posterior analysis. Therefore, if one hit does not pass the charge threshold (``threshold_charge_low`` or ``threshold_charge_high``, depending on the case), its energy is charged-weighted redistributed between those ones that do pass the cut and belong to the same time slice. After that, the hit will be removed from the dst. In case none of the hits for a given slice is above the threshold, a new hit containing all the redistributed energy is created at the same *Z* coordinate position, with: ``Q = NaN`` and ``X = Y = 0``.
 
-At this point, the dst may include time slices with undefined charge (although defined energy) as a result of the prvious step. This issue is now addressed by redistributing their energy among the closest hits along the *Z*-axis, and that comprise the same ``npeak`` (S2 peak) if ``same_peak = True``. This energy sharing is proportional to the energy of the "good" hits. If all hits within a peak are ``NaN``, the S2 would be reconstructed as being empty.
+At this point, the dst may include time slices with undefined charge (although defined energy) as a result of the previous step. This issue is now addressed by redistributing their energy among the closest hits along the *Z*-axis, and that comprise the same ``npeak`` (S2 peak) in case  ``same_peak`` is set to *True*. This energy sharing is proportional to the energy of the "good" hits. If all hits within a peak are ``NaN``, the S2 would be reconstructed as being empty.
 
 
 
@@ -191,13 +191,13 @@ An example of these correction maps can be seen below (left: geometry map, right
    :align: center
 
 
-In NEXT-White, the XY pattern distributions at both krypton maps were demonstrated to remain stable during the extensive data-taking devoted to the double-beta analysis. Nevertheless, their mean value does variate in time, due to the improvement in the purity of the gas inside the chamber, for example, thanks to its recirculation. This temporal variations are exemplified in the plots below, where the evolution of lifetime, energy scale (e0) and drift-velocity are represented for the same high-energy calibration run as before. 
+In NEXT-White, the XY pattern distributions at both krypton maps were demonstrated to remain stable during the extensive data-taking period devoted to the double-beta analysis. Nevertheless, their mean value did variate in time, due to the improvement in the purity of the gas inside the chamber, for example, thanks to its recirculation. This temporal variations are exemplified in the plots below, where the evolution of lifetime, energy scale (e0) and drift-velocity are represented for the same high-energy calibration run as before. 
 
 .. image:: images/esmeralda/maps_temporal_evolution.png
    :width: 900
    :align: center
 
-If the ``apply_temp`` parameter is set to *True*, these variations will be considered for the correction. On the contrary, this variable must be set to *False* in case the map does not include this temporal information table, or the city is run over MC files (whose events do not have a timestamp variable either).
+If the ``apply_temp`` parameter is *True*, these variations will be considered for the correction. On the contrary, this variable must be set to *False* in case the map does not include this temporal information table, or the city is run over MC files (whose events do not have a timestamp variable either).
 
 
 The following image shows the clear improvement on the energy spectrum after applying all the corrections explained above:  
@@ -216,7 +216,7 @@ The following image shows the clear improvement on the energy spectrum after app
 .. warning::
  Despite the energy correction explained just before, there are **two** important factors that make the previous calibration not ultimate. They are not going to be explained in detail here, seeing that these further corrections are not applied along `Esmeralda`. However, since they are not applied inside any other city either and the energy modification of events is performed here, it is justified to comment them now.              
 
-1. **Non-linearities at high energies**. Due to the signicant difference between the krypton energy scale and the one of the physics data (above 1 MeV), the Kr-based energy correction might **not be sufficient** for all the energy range considered. Therefore, although krypton maps were applied, it is advisable to check the high energy peaks, so as to account for observed **non-linearities** and obtain the proper calibration. The plots below show clearly how the high energy 208-Thallium gamma lines (nominal values are illustrated with dashed red lines) are not aligned perfectly in spite of the maps corrections.
+1. **Non-linearities at high energies**. Due to the significant difference between the krypton energy scale and the one of the physics data (above 1 MeV), the Kr-based energy correction might **not be sufficient** for all the energy range considered. Therefore, although krypton maps were applied, it is advisable to check the high energy peaks, so as to account for observed **non-linearities** and obtain the proper calibration. The plots below show clearly how the high energy 208-Thallium gamma lines (nominal values are illustrated with dashed red lines) are not aligned perfectly in spite of the maps corrections.
 
 .. image:: images/esmeralda/energy_spectrum_corr_vs_uncorr_PEAKS.png
    :width: 900
@@ -231,16 +231,13 @@ The following image shows the clear improvement on the energy spectrum after app
 
 Apart from the energy correction, the position of hits along the drift time (``DT`` variable in the dst) of the chamber is also transformed to its equivalent in the **Z-axis** [#]_. To do that, drift time values are simply multiplied by the *drift-velocity*. In data, this magnitude is computed as a funtion of time, so this conversion can be also time-dependent if ``apply_temp`` is *True*.
 
-..
- It is relevant to remark here that the aforementioned processes explained through :ref:`this section <Correction of SiPM-based hits>` are performed **two** times for all events every time the city is run. There are two different high-level analysis performed by the experiment, and each of them requires different types of inputs:
 
-|
-|
+.. note::
  At this point, and once all the correction process (made inside `Esmeralda`) is explained, it is relevant to remark that there are several possible high-level analysis to be conducted posterior to this city. Each of them require a different treatment of its input, being that the reason why all the processes commented before are performed **two** times for all events every time the city is run.
 
- - The current *official* reconstruction (that will run :doc:`beersheba` after this) and the DNN analysis are interested in keeping also some lower charged hits (all the ones above **5-10 pes**, typically). This is due to the fact that both analysis will carry out additional manipulations to the data, and in consequence, they ought to keep more information of events. In these cases, the lifetime inside `Esmeralda` of the energy corrected hits that passed the ``threshold_charge_low`` threshold will end here. They will be stored in the ``CHITS/lowTh`` table of the output, and their IDs in ``Filters/low_th_select``.
+ - The current *official* reconstruction (that will run :doc:`beersheba` after this) and the DNN analysis are interested in keeping also some lower charged hits (all the ones above **5-10 pes**, typically). This is due to the fact that both analysis will carry out additional manipulations to the data, and in consequence, they ought to keep more information of events. In these cases, the lifetime inside `Esmeralda` of the energy corrected hits that passed the ``threshold_charge_low`` threshold will end here. They will be stored in the ``CHITS/lowTh`` table of the output, as indicated in ``Filters/low_th_select``.
 
- - On the other hand, the "classical" [#]_ analysis performs all the tracking algorithms directly over these "high-pitched" (in comparison to the deconvoluted ones, out of :doc:`beersheba`) SiPMs hits. In this case, the :ref:`Paolina <Topology information extraction>` algorithm, which is described as follows, will correpond to the latest step of the data processing for them. It was demonstrated that in order to obtain a clearer track and perform a more accurate tracking reconstruction, a sharper (around **30-35** pes, specified in ``threshold_charge_high``) charge threshold cut is desired. The resulting hits will appear in the table ``CHITS/hightTh`` and their IDs in ``Filters/high_th_select``.
+ - On the other hand, the "classical" [#]_ analysis performs all the tracking algorithms directly over these "high-pitched" (in comparison to the deconvoluted ones, out of :doc:`beersheba`) SiPMs hits. In this case, the :ref:`Paolina <Topology information extraction>` algorithm, which is described as follows, will correpond to the latest step of the data processing for them. It was demonstrated that in order to obtain a clearer track and perform a more accurate tracking reconstruction, a sharper (around **30-35** pes, specified in ``threshold_charge_high``) charge threshold cut is desired. The resulting hits will appear in the table ``CHITS/hightTh``, according to ``Filters/high_th_select``.
 
 
 
@@ -261,7 +258,7 @@ As it has been stated, the hits with sufficient charge to pass the high-threshol
 
 The left panel displays the 3D distribution of the ``CHITS/highTh`` hits, while the right one corresponds to its [15, 15, 15] :math:`{\text{mm}}^3` voxelized track, according to the algorithm. It is straightforward to realize that the result of this reconstruction is much more naive than the one obtained after running the full processing chain that includes the deconvolution.
 
-The city concludes storing all the information commented before in different tables of a unique hdf5 file, as described in the :ref:`Output <Esmeralda output>` subsection.
+Once the blobs are computed for the high threshold hits (following the same exact procedure as the one explained in :doc:`isaura`), the city concludes storing  all the information obtained during the city in different tables of a unique hdf5 file, as described in the :ref:`Output <Esmeralda output>` subsection.
 
 
 
@@ -271,7 +268,7 @@ The city concludes storing all the information commented before in different tab
  .. [#]  As a convention, when we talk about the total energy of one event it is referred to: :math:`E_{tot} = \sum_{i}^{n_{hits}} E_{i}`.
 
 
- .. [#]  These high-energy calibration runs are those ones taken with the outer castle closed, but placing some sources of :math:`{}^{137}Cs` and :math:`{}^{208}Th` on different ports around the detector. More details about these runs can be checked in: `<https://arxiv.org/abs/1905.13110>`_.
+ .. [#]  These high-energy calibration runs are those taken with the outer castle closed, but placing some sources of :math:`{}^{137}Cs` and :math:`{}^{208}Th` on different ports around the detector. More details about these runs can be checked in: `<https://arxiv.org/abs/1905.13110>`_.
          
  .. [#]  There is already a variable called ``Z`` in the ``RECO/Events`` table of the ``hdst``. However, that was only a convention, seeing as at that point the value for the  *drift-velocity* during the run has not been computed yet.
 
