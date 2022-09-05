@@ -110,16 +110,19 @@ Once these histograms are defined, they are sampled according to the binning of 
 Signal Search
 ::::::::::::::::::
 
-Charge is distributed in previously defined histograms. The code searches for signal-like charge according to a given threshold (``trigger_threshold``). Once it is found, it defines a trigger time, :math:`t_{trigger}`. PMT/SiPM sum is ordered by the given buffer length (``buffer_length``) considering :math:`t_{trigger}` and the ``pre_trigger`` configuration. Simple threshold value is applied on binned charge.
+Charge is distributed in previously defined histograms. The code searches for signal-like charge according to a given threshold (``trigger_threshold``). Simple threshold value is applied on binned charge. Once it is found, it defines a trigger time, :math:`t_{trigger}`. PMT/SiPM sum is ordered by the given buffer length (``buffer_length``) considering :math:`t_{trigger}` and the ``pre_trigger`` configuration. Waveforms are therefore defined for each sensor in a specific length based on ``buffer_length``/``sensor_width``.
+
 
 .. image:: images/buffy/bufferisation.png
-  :width: 600
+  :width: 800
 
-Using this information, waveforms are defined for each sensor in a specific length based on ``buffer_length``/``sensor_width``.
+
+.. note::
+  :math:`t_{min}` does not need to be at 0, since it is defined based on the first charge deposition, independently if it is above the ``trigger_threshold`` or not.
 
 .. _Trigg-Separation:
 
 Synchronisation and trigger separation
 :::::::::::::::::::::::::::::::::::::::
 
-Since the ``sensor_width`` is different for each sensor, it is necessary to align and synchronises the clocks between SiPMs and PMTs. Waveforms are sliced then according to binning (``pmt_width`` and ``sipm_width``), trigger time and configured pre-trigger (``pre_trigger``). In addition, it pads with zeross where it is necessary: arrays with zeros where there is no recorder pes in nexus (in the other sensors). Arrays with zeros where no signal and nexus recorded pes otherwise. If more than one trigger is found separated from each other by more than a buffer width, the nexus event can be split into multiple data-like triggers.
+Since the ``sensor_width`` is different for each sensor, it is necessary to align and synchronises the clocks between SiPMs and PMTs. Waveforms are sliced then according to binning (``pmt_width`` and ``sipm_width``), trigger time and configured pre-trigger (``pre_trigger``). In addition, it pads with zeros where it is necessary: arrays with zeros where there is no recorder pes in nexus (in the other sensors). Arrays with zeros where no signal and nexus recorded pes otherwise. If more than one trigger is found separated from each other by more than a buffer width, the nexus event can be split into multiple data-like triggers.
