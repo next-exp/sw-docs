@@ -78,7 +78,7 @@ Besides the :ref:`Common arguments to every city`, *Beersheba* has the following
 
    * - ``e_cut``
      - ``float``
-     - Cut in relative value to the max voxel over the deconvolution output (order 1e-3).
+     - Cut to the voxel values of the deconvolution output. Then, ``cut_type`` specifies if the value is absolute or relative.
 
    * - ``cut_type``
      - ``str`` ('**abs**', '**rel**')
@@ -94,7 +94,7 @@ Besides the :ref:`Common arguments to every city`, *Beersheba* has the following
 
    * - ``energy_type``
      - ``str`` ('**E**', '**Ec**')
-     - Marks which energy type (see :doc:`esmeralda`) should be assigned to the deconvolved track.
+     - Marks which energy type ('**E**' for uncorrected energy, '**Ec**' for corrected energy; see :doc:`esmeralda`) should be assigned to the deconvolved track.
 
    * - ``deconv_mode``
      - ``str`` ('**joint**', '**separate**')
@@ -118,7 +118,7 @@ Workflow
 --------
 
 Beersheba algorithm uses corrected energy hits from :doc:`esmeralda`. More concretely,
-the set of hits with a low threshold applied (``CHITS/highTh``). This is done in order
+the set of hits with a low threshold applied (``CHITS/lowTh``). This is done in order
 to have more information about the SiPMs collected charge, since additional manipulation
 than in the classical reconstruction is applied to the data.
 
@@ -177,7 +177,7 @@ This cut is applied to avoid filling the region between the main track and isola
 above the charge threshold ``q_cut`` by non-physical data in the subsequent interpolation step. After removing
 isolated sensors, the energy is distributed through the reminding hits so the total energy of the event remains the same.
 
-In the picture below [#]_ it is represented inpact of the :ref:`Cut Sensors <Cut-Sensors>` and :ref:`Drop isolated sensors <Drop-Sensors>`
+In the picture below [#]_ it is represented impact of the :ref:`Cut Sensors <Cut-Sensors>` and :ref:`Drop isolated sensors <Drop-Sensors>`
 cuts over the raw signal of a 2nubb event in NEW.
 
 .. image:: images/beersheba/RL_qcut.png
@@ -223,7 +223,7 @@ RL Deconvolution
 Deconvolution is applied iteratively, maintaining the overall charge of the event. Currently, Beersheba
 runs a 2D RL deconvolution, this means that it is applied slice by slice. To do so, the code uses the
 corresponding z dependent PSF needed for each of the event slices, and maintains the overall charge
-of each slice constant. Depending how the PSF information is handled, two different *modes* of deconvolution
+of each slice constant. Depending on how the PSF information is handled, two different *modes* of deconvolution
 can be applied, specified under the ``deconv_mode`` config variable:
 
 • **'joint'**: it uses the PSF closest to the event/slice’s mean position that includes both EL and diffusion effects at the same time. See left plot in the figure below.
