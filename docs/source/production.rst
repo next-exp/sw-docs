@@ -1,7 +1,7 @@
 Official Production
 ====================
 
-This page collects all the information related to the official simulation production of NEXT detectors.
+This page collects all the information related to the official **simulation** production of NEXT detectors.
 
 .. warning::
   This webpage is still under construction. If you would like to contribute, reach `me <helena.almamol@gmail.com>`_!
@@ -16,13 +16,17 @@ Latest official production was generated using
    :header-rows: 0
 
    * - **nexus**
-     - ``to be added``
+     - ``v5_07_00``/``v5_07_01``
    * - **detsim**
-     - ``to be added``
-   * - **IC**
-     - ``to be added``
+     - ``v0_09_01``
+   * - **IC: diomira, irene, and dorothea**
+     - ``v1.1.0``
+   * - **IC: penthesilea**
+     - ``v1.2.0``
+   * - **IC: isaura**
+     - ``v1.2.alberto``
    * - **Background Model**
-     - ``to be added``
+     - ``v9``
 
 It can be found in ``neutrinos1.ific.uv.es`` under the following path:
 
@@ -37,7 +41,7 @@ For the different productions the corresponding latest **tags** are:
    :header-rows: 1
 
    * - Production
-     - Tag
+     - Folder
    * - **0nubb**
      - ``NEXT_v1_05_02_NEXUS_v5_07_00_bkg_v9``
    * - **Xe2nu**
@@ -61,6 +65,13 @@ Where the following **config** files have been used,
   /lustre/neu/data4/NEXT/NEXTNEW/MC/Background/NEXT_v1_05_02_NEXUS_v5_07_10_bkg_v9/cdst/conf
 
 
+.. note::
+  It is important to stress some aspects regarding the production:
+    * The production is based on the v9 version of the background model. The details of the model can be found `here <https://next.ific.uv.es/cgi-bin/DocDB/private/ShowDocument?docid=182>`_.
+    * The two versions of ``nexus`` are completelly analogous but for an update concerning the calibration ports.
+    * The detsim package refers to the ``c++`` and ``art`` version. The repository may be found `here <https://next.ific.uv.es:8888/nextsw/detsim>`_.
+    * The EventMixer package refers to the ``gate`` version. The repository may be found `here <https://next.ific.uv.es:8888/nextsw/PyToNE/blob/master/PyToNE/EventMixer.py>`_.
+    * The IC package is considered in different versions since the goal is to match the official Canfranc production for data (``v1.1.0``). However, several updates implied the usage of more recent versions, even a custom one before the officialization of ``ìsaura``.
 
 NEXT-100
 ------------
