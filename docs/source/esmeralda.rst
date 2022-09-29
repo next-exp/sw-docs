@@ -65,8 +65,6 @@ The `Esmeralda` configuration file shares the :ref:`same common arguments <Commo
      - ``float``
      - Lower threshold (in ``pes``) applied to the charge of hits.
 
-       The energy of the non-selected hits is transferred to the closest one (that passes the selection). 
-
    * - ``threshold_charge_high``
      - ``float``
      - Similar to ``threshold_charge_low``, but using a higher charge threshold.
