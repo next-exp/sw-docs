@@ -98,7 +98,7 @@ The `Esmeralda` configuration file shares the :ref:`same common arguments <Commo
 
    * - ``vox_size``
      - ``[float,float,float]``
-     - X, Y, and Z dimensions of the voxels used in the voxelization of the hits.
+     - X, Y, and Z dimensions (in mm each one) of the voxels used in the voxelization of the hits.
 
    * - ``strict_vox_size``
      - ``bool``
@@ -108,7 +108,7 @@ The `Esmeralda` configuration file shares the :ref:`same common arguments <Commo
 
    * - ``energy_threshold``
      - ``float``
-     - If the energy of one of the original end-point voxels is smaller than this value,
+     - If the energy (in MeV) of one of the original end-point voxels is smaller than this value,
 
        the voxel is dropped and its energy redistributed to the neighbours.
 
@@ -118,7 +118,7 @@ The `Esmeralda` configuration file shares the :ref:`same common arguments <Commo
 
    * - ``blob_radius``
      - ``float``
-     - Radius of the blobs.
+     - Radius of the blobs in mm.
 
    * - ``max_num_hits``
      - ``int``
