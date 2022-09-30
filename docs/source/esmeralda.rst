@@ -63,7 +63,7 @@ The `Esmeralda` configuration file shares the :ref:`same common arguments <Commo
 
    * - ``threshold_charge_low``
      - ``float``
-     - Lower threshold (in ``pes``) applied to the charge of hits.
+     - Lower threshold (in :math:`\text{pes}`) applied to the charge of hits.
 
    * - ``threshold_charge_high``
      - ``float``
@@ -96,7 +96,7 @@ The `Esmeralda` configuration file shares the :ref:`same common arguments <Commo
 
    * - ``vox_size``
      - ``[float,float,float]``
-     - X, Y, and Z dimensions (in mm each one) of the voxels used in the voxelization of the hits.
+     - X, Y, and Z dimensions (in :math:`\text{mm}` each one) of the voxels used in the voxelization of the hits.
 
    * - ``strict_vox_size``
      - ``bool``
@@ -106,7 +106,7 @@ The `Esmeralda` configuration file shares the :ref:`same common arguments <Commo
 
    * - ``energy_threshold``
      - ``float``
-     - If the energy (in MeV) of one of the original end-point voxels is smaller than this value,
+     - If the energy (in :math:`\text{MeV}`) of one of the original end-point voxels is smaller than this value,
 
        the voxel is dropped and its energy redistributed to the neighbours.
 
@@ -116,7 +116,7 @@ The `Esmeralda` configuration file shares the :ref:`same common arguments <Commo
 
    * - ``blob_radius``
      - ``float``
-     - Radius of the blobs in mm.
+     - Radius of the blobs in :math:`\text{mm}`.
 
    * - ``max_num_hits``
      - ``int``
