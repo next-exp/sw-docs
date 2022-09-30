@@ -116,7 +116,7 @@ The `Esmeralda` configuration file shares the :ref:`same common arguments <Commo
 
    * - ``blob_radius``
      - ``float``
-     - Radius of the blobs in :math:`\text{mm}`.
+     - Radius of the blobs in :math:`\text{mm}`. Click :ref:`here <Blobs position>` to know more about the position from where this radius is taken.
 
    * - ``max_num_hits``
      - ``int``
