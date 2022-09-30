@@ -3,13 +3,15 @@ Esmeralda
 
 *From Spanish esmeralda (“emerald”), as first used in the novel Notre-Dame de Paris (1831) by Victor Hugo.*
 
-At the moment of writing this, the city `Esmeralda` has three main purposes:
+At the moment of writing this, the city `Esmeralda` has two main purposes:
 
- **(i)** to apply a cut to remove the *SiPM hits* with a charge below a certain threshold,
+ **1.** The  manipulation of the *SiPM hits* to obtain better defined tracks, which includes:
 
- **(ii)** the energy correction of the survivor hits using krypton maps (see :doc:`ICAROS`),
+      **1.a)** a cleaning procedure that removes the hits with a charge below a certain threshold,
 
- **(iii)** a first (and rough) computation of the topology-related information of events (analogous to :doc:`isaura`).
+      **1.b)** the energy correction of the survivor hits using krypton maps (see :doc:`ICAROS`).
+
+ **2.** A first (and rough) computation of the topology-related information of events (analogous to :doc:`isaura`).
 
 The position of the city within the NEXT reconstruction chain is precisely after :doc:`penthesilea`, since the input corresponds to the uncorrected hits stored in the ``/RECO/Events`` table of the **hdst** files. It is worth remarking here --in order to understand :ref:`Output <Esmeralda output>` and :ref:`Config <Esmeralda config>`-- that stages (i) and (ii) are performed two times inside the city for two different subsamples of the input dst. Thanks to that, the output is adapted to two different possible posterior analyses. This will be further discussed later on, in the :ref:`Workflow <Esmeralda workflow>` section.
 
@@ -50,7 +52,7 @@ The `Esmeralda` configuration file shares the :ref:`same common arguments <Commo
 - ``cor_hits_params`` is in charge of the information related to steps (i) and (ii) commented in the introduction. Its parameters are:
 
 .. list-table::
-   :widths: 50 100 120
+   :widths: 50 40 120
    :header-rows: 1
 
    * - **Parameter**
@@ -87,7 +89,7 @@ The `Esmeralda` configuration file shares the :ref:`same common arguments <Commo
 
        
 .. list-table::
-   :widths: 50 100 120
+   :widths: 50 40 120
    :header-rows: 1
 
    * - **Parameter**
@@ -100,9 +102,9 @@ The `Esmeralda` configuration file shares the :ref:`same common arguments <Commo
 
    * - ``strict_vox_size``
      - ``bool``
-     - Flag to indicate if the size of the voxels is forced to be exactly the values provided in the previous argument (*True*),
-
-       or, on the other hand, if they are allowed to change a bit for each track, aiming to optimize the voxelization process (*False*).
+     - If *True*: the voxels size is forced to be exactly the values provided in the previous argument.
+       
+       If *False*: the dimensions are allowed to change a bit for each track, aiming to optimize the voxelization process.
 
    * - ``energy_threshold``
      - ``float``
@@ -169,7 +171,7 @@ At this point, the dst may include time slices with an undefined charge (althoug
 
 .. _Energy calibration:
 
-**Hit energy calibration**
+**Calibration of the hits energy**
 
 Once all the hits for the analysis have been selected and are well-defined (with a proper ``E``, ``X``, ``Y``, and ``DT``), it is time to correct them using the krypton-based map generated in :doc:`ICAROS`. Its name will be specified with ``map_fname`` in the configuration file.
 
