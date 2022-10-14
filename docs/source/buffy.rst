@@ -103,7 +103,7 @@ Histogram creation
 
 As it was highlighted earlier, NEXUS information about sensor hits (``/MC/sns_response``) comes binned in time based on when a sensor sees some energy deposition.
 This means that ``time_bin`` column numbers are increasing for a given event, but they can have gaps, since the time bins where no charge is detected
-don't appear in the table. This initial part of the city, checks the time stamp of an event according to the sensors response, and defines histograms of charge distribution
+do not appear in the table. This initial part of the city, checks the time stamp of an event according to the sensors response, and defines histograms of charge distribution
 between [:math:`t_{min}`, :math:`t_{max}`], being:
 
 • :math:`t_{min}`: the time stamp of the first charge deposition of the event,
@@ -112,8 +112,7 @@ between [:math:`t_{min}`, :math:`t_{max}`], being:
 .. image:: images/buffy/histogram_creation.png
   :width: 800
 
-When these histograms (one for PMTs and another for SiPMs) are defined, they are sampled according to the binning of each sensor (``pmt_width`` and ``sipm_width``).
-Since nexus only stores ``time_bin`` for sensors that see some charge, it also effectively pads with zeros in between separate signals.ads
+In this step, it also effectively pads with zeros in between separate signals. When these histograms (one for PMTs and another for SiPMs) are defined, they are sampled according to the binning of each sensor (``pmt_width`` and ``sipm_width``).
 Sampling widths are included in the simulation parameters (``/MC/info``), and depends on the type of sensor and detector. Normally corresponds to 25 :math:`ns` for PMTs and and 1 :math:`\mu s`\ s for SiPMs.
 
 .. _Signal-Search:
