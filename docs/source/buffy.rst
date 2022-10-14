@@ -92,7 +92,7 @@ This process is separated in the following tasks in the city:
 • :ref:`Signal Search <Signal-Search>`
 • :ref:`Synchronisation and trigger separation <Trigg-Separation>`
 
-Buffy output also includes ``/Run/runInfo`` and ``/Run/events`` tables as the ones generated during data taking. 
+Buffy output also includes ``/Run/runInfo`` and ``/Run/events`` tables as the ones generated during data taking.
 
 .. note::
   Historically, Buffy is based in an initial code of detsim (https://github.com/next-exp/IC/tree/master/invisible_cities/detsim) and most of its functions are located in that path but they are independent to :doc:`detsim` city.
