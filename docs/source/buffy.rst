@@ -1,18 +1,19 @@
 Buffy
 ==========
 
-*sorts MC sensors info into buffers, slays vampires, etc*
+*Sorts MC sensors info into buffers, slays vampires, etc*
 
 Full simulations generate sensors (PMTs and SiPMs) response,
 including the time and the detected charge of a specific signal. However, this sensor
-information does not have the waveform format obtained from data taking.
+information does not have the waveform format obtained from the detector.
 *Buffy* takes nexus sensors information, and sorts them into *true waveforms* (**TWF**).
 **TWF**\ s represent the signal amplitude of a given sensor without any type of
-distortion or effect, within a certain time interval and given the sensor sampling time.
+distortion or effect from the electronics, within a certain time interval and given the sensor sampling time.
 This type of time ordering of the sensor signal in a data-like format is what is called *bufferisation*.
-**TWF**\ s generated from *Buffy* can be transformed into *raw waveforms* **RWF**\ s with :doc:`diomira`.
-For detector geometries without sensor electronics, **TWF**\ s can be transformed directly into **PMap**\ s
-with :doc:`hypathia`.
+**TWF**\ s generated from *Buffy* can be transformed into *raw waveforms* **RWF**\ s (i.e. with effects
+from the electronics) with :doc:`diomira`. For detector geometries without sensor electronics, a simplified
+electronics modeling can be applied with :doc:`hypathia` to transform **TWF**\ s directly into **PMap**\ s.
+
 
 .. _Buffy input:
 
@@ -30,9 +31,9 @@ Output
 
  * ``/Run/runInfo``: run info table
  * ``/Run/events``: event info table
- * ``/Run/eventMap``: event and nexus event for each index
- * ``/RD/pmtrd/``: time ordered signal amplitude of the PMTs in true photoelectrons (PMT buffers). array: number of events, number of PMTs, length of PMT waveform (:math:`\mu`\ s).
- * ``/RD/sipmrd/``: time ordered signal amplitude of the SiPMs in true photoelectrons (SiPM buffers). array: number of events, number of SiPMs, length of SiPM waveform (:math:`\mu`\ s).
+ * ``/Run/eventMap``: table that connects event id and nexus event numbering
+ * ``/RD/pmtrd/``: time ordered signal amplitude of the PMTs in true photoelectrons (PMT buffers). array with shape: (number of events, number of PMTs, length of PMT waveform)
+ * ``/RD/sipmrd/``: time ordered signal amplitude of the SiPMs in true photoelectrons (SiPM buffers). array with shape: (number of events, number of SiPMs, length of SiPM waveform).
 
 .. _Buffy config:
 
@@ -51,19 +52,19 @@ Besides the :ref:`Common arguments to every city`, *Buffy* has the following arg
 
    * - ``max_time``
      - ``int``
-     - Maximal length of the event that will be taken into account starting from the first detected signal. All signals after that are lost. Must be greater than ``buffer_length``. If not, raises a warning and set ``max_time`` == ``buffer_length``
+     - Maximum duration of the event that will be taken into account starting from the first detected signal. All signals after that are lost. Must be greater than ``buffer_length``. If not, raises a warning and set ``max_time`` == ``buffer_length``
 
    * - ``buffer_length``
      - ``float``
-     - Configured buffer length in :math:`\mu`\ s.
+     - Configured buffer length in :math:`\mu s`.
 
    * - ``pre_trigger``
      - ``float``
-     - Time in buffer before identified signal in :math:`\mu`\ s.
+     - Time in buffer before identified signal in :math:`\mu s`.
 
    * - ``trigger_threshold``
      - ``int``
-     - Trigger threshold for selection in pes.
+     - Trigger threshold for selection in :math:`pe`\ s.
 
 
 .. _Buffy workflow:
@@ -75,7 +76,9 @@ For full simulations, NEXUS ``/MC/sns_response`` table stores for each event (``
  .. image:: images/buffy/MC_sns_response_table.png
    :width: 300
 
-This type of tables do not have the same shape that the waveforms collected when data taken, and in addition they only provide the information from the sensors and time bins when some charge is detected. Buffy takes this information (``event_id``, ``sensor_id`` and ``time_bin``), and transforms it into the waveform shape of the **TWF** expected for each type of sensor: ``pmtrd`` and ``sipmtrd`` (PMTs and SiPMs respectively) based on the *bufferisation* parameters provided.
+More details about nexus output can be found in its `Github Wiki <https://github.com/next-exp/nexus/wiki/Output-format>`_ . This type of tables do not have the same shape that the waveforms collected when data taken,
+and in addition they only provide the information from the sensors and time bins when some charge is detected. Buffy takes this information (``event_id``, ``sensor_id`` and ``time_bin``), and transforms it into the waveform
+shape of the **TWF** expected for each type of sensor: ``pmtrd`` and ``sipmtrd`` (PMTs and SiPMs respectively) based on the *bufferisation* parameters provided.
 
 .. image:: images/buffy/pmt_wft.png
   :width: 350
@@ -98,20 +101,32 @@ This process is separated in the following tasks in the city:
 Histogram creation
 ::::::::::::::::::
 
-Takes NEXUS information about sensor hits (``/MC/sns_response``). Checks time stamp of an event according to the sensors response, and defines a histogram between [:math:`t_{min}`, :math:`t_{max}`], being:
+As it was highlighted earlier, NEXUS information about sensor hits (``/MC/sns_response``) comes binned in time based on when a sensor sees some energy deposition.
+This means that ``time_bin`` column numbers are increasing for a given event, but they can have gaps, since the time bins where no charge is detected
+don't appear in the table. This initial part of the city, checks the time stamp of an event according to the sensors response, and defines histograms of charge distribution
+between [:math:`t_{min}`, :math:`t_{max}`], being:
 
 • :math:`t_{min}`: the time stamp of the first charge deposition of the event,
 • :math:`t_{max}`: defined considering that ``max_time`` =  :math:`t_{max}` - :math:`t_{min}`.
 
-Once these histograms are defined, they are sampled according to the binning of each sensor (``pmt_width`` and ``sipm_width``). Sampling widths are included in the simulation parameters (``/MC/info``), and depends on the type of sensor and detector. Normally corresponds to 25 :math:`\mu`\ s for PMTs and and 1 :math:`\mu`\ s for SiPMs.
+.. image:: images/buffy/histogram_creation.png
+  :width: 800
+
+When these histograms (one for PMTs and another for SiPMs) are defined, they are sampled according to the binning of each sensor (``pmt_width`` and ``sipm_width``).
+Since nexus only stores ``time_bin`` for sensors that see some charge, it also effectively pads with zeros in between separate signals.ads
+Sampling widths are included in the simulation parameters (``/MC/info``), and depends on the type of sensor and detector. Normally corresponds to 25 :math:`ns` for PMTs and and 1 :math:`\mu s`\ s for SiPMs.
 
 .. _Signal-Search:
 
 Signal Search
 ::::::::::::::::::
 
-Charge is distributed in previously defined histograms. The code searches for signal-like charge according to a given threshold (``trigger_threshold``). Simple threshold value is applied on binned charge. Once it is found, it defines a trigger time, :math:`t_{trigger}`. PMT/SiPM sum is ordered by the given buffer length (``buffer_length``) considering :math:`t_{trigger}` and the ``pre_trigger`` configuration. Waveforms are therefore defined for each sensor in a specific length based on ``buffer_length``/``sensor_width``.
+Once charge is distributed in previously defined histograms, the code searches for signal-like events.
+It takes PMT sum histogram and looks for the first value of the binned charge above a certain threshold (``trigger_threshold``), and defines the trigger time, :math:`t_{trigger}`.
+Waveforms are therefore defined for PMTs:
 
+• shifting the times of the charge histogram such that the first value over threshold (:math:`t_{trigger}`) falls at the time defined as ``pre_trigger``;
+• considering a specific length based on ``buffer_length``/``pmt_width``.
 
 .. image:: images/buffy/bufferisation.png
   :width: 800
@@ -125,4 +140,5 @@ Charge is distributed in previously defined histograms. The code searches for si
 Synchronisation and trigger separation
 :::::::::::::::::::::::::::::::::::::::
 
-Since the ``sensor_width`` is different for each sensor, it is necessary to align and synchronises the clocks between SiPMs and PMTs. Waveforms are sliced then according to binning (``pmt_width`` and ``sipm_width``), trigger time and configured pre-trigger (``pre_trigger``). In addition, it pads with zeros where it is necessary: arrays with zeros where there is no recorder pes in nexus (in the other sensors). Arrays with zeros where no signal and nexus recorded pes otherwise. If more than one trigger is found separated from each other by more than a buffer width, the nexus event can be split into multiple data-like triggers.
+Since the sensor width is different for PMTs and SiPMs, it is necessary to align and synchronise the clocks between their waveforms. Waveforms are then sliced then according to binning (``pmt_width`` and ``sipm_width``), trigger time and configured pre-trigger (``pre_trigger``).
+If more than one trigger is found separated from each other by more than a buffer width, the nexus event can be split into multiple data-like triggers.
