@@ -151,6 +151,6 @@ Finally, a zero suppression algorithm is applied to mimic the DAQ bahaviour. The
 Computation of PMaps
 ::::::::::::::::::::
 
-This procedure is identical to that performed by *Irene*. For more information read the section :ref:`Irene workflow` in the *Irene* documentation ignoring the step regarding the deconvolution of PMT waveforms.
+This procedure is identical to that performed by *Irene*. For more information read the sections :ref:`Baseline subtraction of SiPM waveforms`, :ref:`Waveform calibration` and :ref:`Peak finding and matching of PMT and SiPM signals` in the *Irene* documentation.
 
  .. [#] So far we haven't had the need to explore different SiPM sampling rates, but if this becomes a possibility  in the future it can always be included. If you would like to implement it, let us know!
