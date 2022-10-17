@@ -3,14 +3,14 @@ Hypathia
 
 *From ancient Greek ‘Υπατια: highest, supreme.*
 
-*Hypathia* is the combination of simplified versions of *Diomira*  and *Hypathia*.
-For future or hypothetical detectors, the energy plane electronics is not necessarily defined. In order to produce **RWF**\ s, we apply a generic and simplified model for the electronics to the **TWF**\ s produced by **Buffy** (full simulation) or **Detsim** (fast simulation). These effects are:
+*Hypathia* is the combination of simplified versions of :doc:`diomira` and :doc:`irene`.
+For future or hypothetical detectors, the energy plane electronics is not necessarily defined. In order to produce **RWF**\ s, we apply a generic and simplified model for the electronics to the **TWF**\ s produced by :doc:`buffy` (full simulation) or :doc:`detsim` (fast simulation). These effects are:
 
  * Gaussian noise for the PMT baseline (not really, but it should)
  * Charge fluctuations for photoelectron signals of PMTs
  * Noise sampled from PDFs for SiPMs
 
-The **RWF**\ s produced here are not stored persistently, but rather fed into the peak search algorithm. This is equivalent to **Irene**, without the first step of deconvolution of the effects of the energy plane electronics. A detailed description of this procedure can be found in :doc:`irene`. The final product are **PMap**\ s.
+The **RWF**\ s produced here are not stored persistently, but rather fed into the peak search algorithm. This is equivalent to *Irene*, without the first step of deconvolution of the effects of the energy plane electronics. A detailed description of this procedure can be found in :doc:`irene`. The final product are **PMap**\ s.
 
 .. _Hypathia input:
 
