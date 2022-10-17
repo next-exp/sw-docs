@@ -52,7 +52,7 @@ Besides the :ref:`Common arguments to every city`, *Buffy* has the following arg
 
    * - ``max_time``
      - ``int``
-     - Maximum duration of the event that will be taken into account starting from the first detected signal. All signals after that are lost. Must be greater than ``buffer_length``. If not, raises a warning and set ``max_time`` == ``buffer_length``
+     - Maximum duration of the event that will be taken into account starting from the first detected signal. All signals after that are lost. Must be greater than ``buffer_length``. If not, raises a warning and sets ``max_time`` == ``buffer_length``
 
    * - ``buffer_length``
      - ``float``
@@ -114,7 +114,7 @@ checks the time stamp of an event according to the sensors' response and defines
   :width: 800
 
 These histograms (one for PMTs and another for SiPMs) are defined by summing all individual sensors. This step restores also empty bins by padding zeros in between separate signals, and sample
-the histograms according to the binning of each type of sensor (``pmt_width`` and ``sipm_width``). Sampling widths are included in the simulation parameters (``/MC/info``), and depend on the type of sensor and detector.
+the histograms according to the binning of each type of sensor (``pmt_width`` and ``sipm_width``). Sampling widths are included in the simulation parameters (``/MC/configuration``), and depend on the type of sensor and detector.
 Normally correspond to 25 :math:`ns` for PMTs and and 1 :math:`\mu s` for SiPMs.
 
 .. _Signal-Search:
@@ -127,7 +127,7 @@ It takes the PMT sum histogram and looks for the first value of the binned charg
 Waveforms are therefore defined for PMTs:
 
 • shifting the times of the charge histogram such that the first value over threshold (:math:`t_{trigger}`) falls at the time defined as ``pre_trigger``;
-• considering a specific length based on ``buffer_length``/``pmt_width``.
+• setting the length (in number of samples) as requested in the config parameters (``buffer_length``/``pmt_width``).
 
 .. image:: images/buffy/bufferisation.png
   :width: 800
@@ -141,5 +141,5 @@ Waveforms are therefore defined for PMTs:
 Synchronisation and trigger separation
 :::::::::::::::::::::::::::::::::::::::
 
-Since the buffer length is different for PMTs and SiPMs, it is necessary to align and synchronise the clocks between their waveforms. Waveforms are then sliced then according to binning (``pmt_width`` and ``sipm_width``), trigger time and configured pre-trigger (``pre_trigger``).
+Since the buffer length is different for PMTs and SiPMs, it is necessary to align and synchronise the signals between waveforms. Waveforms are then sliced according to binning (``pmt_width`` and ``sipm_width``), trigger time and configured pre-trigger (``pre_trigger``).
 Once PMT sum and SiPM sum waveforms are synchronised, individual sensor waveforms are generated. If more than one trigger is found separated from each other by more than a buffer width, the nexus event can be split into multiple data-like waveforms.
