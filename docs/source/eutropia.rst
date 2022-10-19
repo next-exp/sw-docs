@@ -32,6 +32,9 @@ The columns xr, yr, and zr indicate the central value of the **PSF** bin.
 The columns x, y, and z indicate the central value of the overall sector in which the **PSF** is generated.
 The columns factor and nevt are the **PSF** value and the number of events used to generate that number.
 
+.. image:: images/eutropia/output_example.png
+  :width: 500
+
 .. _Eutropia config:
 
 Config
@@ -90,8 +93,15 @@ The hits comming from previous stages of the reconstruction chain do not contain
 Compute the **PSF**\ s
 ::::::::::::::::::::::
 
-The charge distribution for all events is then histogrammed in the coordinates :math:`x_r` and :math:`y_r`. The binning of this histograms is determined by the parameters `xrange`, `yrange`, and `bin_size_xy`. The **PSF** factor in each bin is defined as the value of the bin normalized to the number of events in the bin, i.e. the average charge observed for a specific range of values of :math:`x_r` and :math:`y_r`.
+The charge distribution for all events is then histogrammed in the coordinates :math:`x_r` and :math:`y_r`. The binning of this histograms is determined by the parameters `xrange`, `yrange`, and `bin_size_xy`. The **PSF** factor in each bin is defined as the value of the bin normalized to the number of events in the bin, i.e. the average charge observed for a specific range of values of :math:`x_r` and :math:`y_r`. An example of such histogram is shown below.
 
+.. image:: images/eutropia/psf_2d.png
+  :width: 850
+
+A 1d slice of this histogram (for y=0) is represented below for different z-slices, demonstrating why it is necessary to generate separate **PSF**\ s for various ranges of z.
+
+.. image:: images/eutropia/psf_1d.png
+  :width: 850
 
 .. _Combine PSFs:
 
