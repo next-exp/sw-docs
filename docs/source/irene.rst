@@ -184,7 +184,7 @@ The following figure shows the performance of this algorithm on a typical Kr eve
   .. image:: images/irene/s2_identification_sipm.png
     :width: 32%
 
-Finally all peaks are stored in a single ``PMap`` object. A ``PMap`` contains a list S1 peaks and a list of S2 peaks. Each Peak contains the times of the samples within the peak and a ``SensorResponse`` object for PMTs a ``SensorResponse`` object for SiPMs. Each ``SensorResponse`` object contains the IDs and the sliced waveforms of each sensor that contains signal in an event.
+Finally all peaks are stored in a single **PMap** object. A **PMap** contains a list S1 peaks and a list of S2 peaks. Each Peak contains the times of the samples within the peak and a ``SensorResponse`` object for PMTs a ``SensorResponse`` object for SiPMs. Each ``SensorResponse`` object contains the IDs and the sliced waveforms of each sensor that contains signal in an event.
 
 These data are stored in an hdf5 file in 5 separate tables under a common group ``PMAPS``. See the :ref:`output <Irene output>` section for a full description.
 
