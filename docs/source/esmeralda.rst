@@ -3,7 +3,7 @@ Esmeralda
 
 *From Spanish esmeralda (“emerald”), as first used in the novel Notre-Dame de Paris (1831) by Victor Hugo.*
 
-At the moment of writing this, the city `Esmeralda` has two main purposes:
+The city of `Esmeralda` has two main purposes:
 
  **1.** The  manipulation of the *SiPM hits* to obtain better defined tracks, which includes:
 
@@ -11,9 +11,9 @@ At the moment of writing this, the city `Esmeralda` has two main purposes:
 
       **1.b)** the energy correction of the survivor hits using krypton maps (see :doc:`ICAROS`).
 
- **2.** A first (and rough) computation of the topology-related information of events (analogous to :doc:`isaura`).
+ **2.** A first computation of the topology-related information of events using some of these corrected SiPM hits.
 
-The position of the city within the NEXT reconstruction chain is precisely after :doc:`penthesilea`, since the input corresponds to the uncorrected hits stored in the ``/RECO/Events`` table of the **hdst** files. It is worth remarking here --in order to understand :ref:`Output <Esmeralda output>` and :ref:`Config <Esmeralda config>`-- that stages (i) and (ii) are performed two times inside the city for two different subsamples of the input dst. Thanks to that, the output is adapted to two different possible posterior analyses. This will be further discussed later on, in the :ref:`Workflow <Esmeralda workflow>` section.
+The position of the city within the NEXT reconstruction chain is after :doc:`penthesilea`. Thus, the input corresponds to the uncorrected hits stored in the ``/RECO/Events`` table of the **hdst** files. It is worth remarking here --in order to understand :ref:`Output <Esmeralda output>` and :ref:`Config <Esmeralda config>`-- that stages **1.a)** and **1.b)** are performed two times inside the city for two different subsamples of the input dst. In consequence, the output will be able to be adapted to two possible posterior analyses.
 
 .. _Esmeralda input:
 
