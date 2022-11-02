@@ -7,7 +7,7 @@ The city of `Esmeralda` has two main purposes:
 
  **1.** The  manipulation of the *SiPM hits* to obtain better defined tracks, which includes:
 
-      **1.a)** a cleaning procedure that removes the hits with a charge below a certain threshold,
+      **1.a)** a cleaning procedure that removes the hits with a *charge* (light measured by the SiPMs) below a certain threshold,
 
       **1.b)** the energy correction of the survivor hits using krypton maps (see :doc:`ICAROS`).
 
@@ -49,7 +49,7 @@ Config
 The `Esmeralda` configuration file shares the :ref:`same common arguments <Common arguments to every city>` with the rest of the cities. In addition, there are two more dictionaries:
 
 
-- ``cor_hits_params`` is in charge of the information related to steps (i) and (ii) commented in the introduction. Its parameters are:
+- ``cor_hits_params`` is in charge of the information related to the step **1)** commented in the introduction. Its parameters are:
 
 .. list-table::
    :widths: 50 40 120
@@ -61,7 +61,9 @@ The `Esmeralda` configuration file shares the :ref:`same common arguments <Commo
 
    * - ``map_fname``
      - ``string``
-     - Name of the krypton correction map to use.
+     - Name of the correction map, computed with the Kr-calibration data, used to correct geometry, lifetime, and, if possible, temporal variations.
+
+       In general, the maps used are computed with the Krypton events taken at the same time as the high energy ones manipulated here. 
 
    * - ``threshold_charge_low``
      - ``float``
@@ -73,11 +75,11 @@ The `Esmeralda` configuration file shares the :ref:`same common arguments <Commo
 
    * - ``same_peak``
      - ``bool``
-     - If *True*, the energy of the hits with undefined (``NaN``) charge is assigned to other hits belonging to the **same** peak.
+     - If *True*, the energy of the hits with undefined (``NaN``) charge is assigned to other hits belonging to the **same** S2 peak.
 
    * - ``apply_temp``
      - ``bool``
-     - If *True*, temporal corrections are applied during the energy-correction procedure.
+     - If *True*, temporal variations of lifetime and energy scale are considered during the energy-correction procedure.
 
        It must be set to *False* if:
 
@@ -85,7 +87,7 @@ The `Esmeralda` configuration file shares the :ref:`same common arguments <Commo
 
        (2) the input is MC (events are not provided with timestamp variable).
 
-- On the other hand, ``paolina_params`` handles the processes associated with step (iii):
+- On the other hand, ``paolina_params`` handles the processes associated with step **2)**:
 
        
 .. list-table::
@@ -108,14 +110,14 @@ The `Esmeralda` configuration file shares the :ref:`same common arguments <Commo
 
    * - ``energy_threshold``
      - ``float``
-     - If the energy (in :math:`\text{MeV}`) of one of the original end-point voxels is smaller than this value,
+     - If the energy (in :math:`\text{MeV}`) of one of the original extreme voxels is smaller than this value,
 
        the voxel is dropped and its energy redistributed to the neighbours.
 
    * - ``min_voxels``
      - ``int``
-     - The voxel dropping procedure commented on ``energy_threshold`` can only happen if the number of voxels is larger than the value specified in this argument.
-
+     - Minimum number of voxels to perform the dropping algorithm commented on ``energy_threshold``.
+     
    * - ``blob_radius``
      - ``float``
      - Radius of the blobs in :math:`\text{mm}`. Click :ref:`here <Blobs position>` to know more about the position from where this radius is taken.
