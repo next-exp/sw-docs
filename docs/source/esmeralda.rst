@@ -134,7 +134,7 @@ The `Esmeralda` configuration file shares the :ref:`same common arguments <Commo
 Workflow
 --------
 
-Since its creation, *Esmeralda* has been a sort of a *Frankenstein*'s monster, seeing that it contains two main parts of code that are uncorrelated. They are planned to be decoupled at some point, but in the meantime, both of them are performed here:
+In its current configuration, *Esmeralda* runs two main algorithms. First, it selects hits in two groups, depending if they pass a low or a high energy threshold on the SiPM signal, and calibrates them using the Kr correction maps. After that, the *Paolina* algorithm is run over the high-threshold passing hits to create 3D voxel-made tracks and compute the topology information.
 
  #. :ref:`Manipulation of the SiPM-based hits <Manipulation of SiPM-based hits>`
 
@@ -152,9 +152,9 @@ Manipulation of the SiPM-based hits
 
 The **hits** (also known as *clusters*) that constitute the input for this city are the ones coming from :doc:`penthesilea` --inside the table ``RECO/Events``--. They are energy depositions separated in time slices  [#]_ of 2 :math:`\mu s` provided with a given *X* and *Y* position in the chamber, according to the pattern of signals observed on the SiPMs. Therefore, these energy depositions combine the light collected by both the SiPMs (typically called "*charge*" and stored in the dst as ``Q``) and the PMTs ("*energy*" --``E`` variable-- for us) [#]_. Due to the fact that PMTs sensitivity is better than the one of SiPMs, there might be some time slices in the PMTs waveform that do not appear in the SiPMs one. In these cases, a hit is created at the corresponding position along the DT-axis, with a charge set to ``NaN`` and  ``X = Y = 0``.
 
-Apart from that, it is relevant to remind that the energy of the input hits cannot be used directly in the high-level analysis because of two reasons:
+Apart from that, it is relevant to remind that the energy ``E`` of the input hits cannot be used directly in the high-level analysis because of two reasons:
 
- #. It is stored according to the **pes** scale (thanks to the *ADC-to-pes* conversion of the PMT waveforms performed in :doc:`irene`).
+ #. Its units are :math:`\text{pes}` (thanks to the *ADC-to-pes* conversion of the PMT waveforms performed in :doc:`irene`), requiring the conversion to :math:`\text{eV}`.
  #. It must be corrected due to different processes that degrade the light collection.
 
 With all the information presented above, one could realize that the SiPM-based hits that enter the city must suffer some modifications in order to be useful for the later analysis. The explanation of these processes is the main purpose of this section. 
@@ -163,9 +163,10 @@ With all the information presented above, one could realize that the SiPM-based 
 
 **Reassignment of the hits energy**
 
-The main features of the input dst, as well as how events might contain hits with a non-defined (``NaN``) charge --which leads to a non-defined position at the *XY* plane-- have been commented on above. As a consequence of this last fact, the first thing to do consists in applying a cut on the charge of hits in order to deal with this issue. Besides that, this selection also removes the hits with a very low charge, aiming to obtain a "cleaner" version of the event, which will allow us to perform a better reconstruction in the posterior analysis. Therefore, if one hit does not pass the charge threshold (``threshold_charge_low`` or ``threshold_charge_high``, depending on the case), its energy is charged-weighted and redistributed between those ones that do pass the cut and belong to the same time slice. After that, the hit will be removed from the dst. In case none of the hits for a given slice is above the threshold, a new hit containing all the redistributed energy is created at the same *Z* coordinate position, with ``Q = NaN`` and ``X = Y = 0``.
 
-At this point, the dst may include time slices with an undefined charge (although defined energy) as a result of the previous step. This issue is now addressed by redistributing their energy among the closest hits along the *Z*-axis, and that comprise the same ``npeak`` (S2 peak) in case  ``same_peak`` is set to *True*. This energy sharing is proportional to the energy of the "good" hits. If all hits within a peak are ``NaN``, the S2 would be reconstructed as being empty.
+The first thing to do consists in applying a cut on the charge of hits in order to remove those ones with a non-defined (``NaN``) or a very low value, aiming to obtain a "cleaner" version of the event, which will allow performing a better reconstruction in the posterior analysis. Therefore, if one hit does not pass the charge threshold (``threshold_charge_low`` or ``threshold_charge_high``, depending on the case), its energy is charged-weighted and redistributed between those ones that do pass the cut and belong to the same time slice. After that, the hit will be removed from the dst. In case none of the hits for a given slice is above the threshold, a new hit containing all the redistributed energy is created at the same *Z* coordinate position, with ``Q = NaN`` and ``X = Y = 0``.
+
+At this point, the dst may include time slices with an undefined charge but defined energy, as a result of the previous step. This issue is now addressed by redistributing their energy among the closest hits along the *Z*-axis and, if ``same_peak`` is *True*, that comprise the same ``npeak`` (S2 peak). Among the hits belonging to the closest slice, this energy allocation is performed proportionally to their hit energy. If all hits within a peak are ``NaN``, the S2 would be reconstructed as being empty.
 
 
 
