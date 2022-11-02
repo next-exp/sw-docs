@@ -30,10 +30,10 @@ Input
 Output
 ------
 
- * ``/CHITS/highTh``: energy-corrected hits table of the ones that pass the higher charge threshold selection.
- * ``/CHITS/lowTh``:  energy-corrected hits table of the ones that pass the lower charge threshold selection.
- * ``/Tracking/Tracks``: topological information of events. Each row corresponds to a different track, specified with the ``trackID`` among the other possible tracks within an event.
- * ``/Summary/Events``: global information related to the event. Each row is one event.
+ * ``/CHITS/highTh``: energy-corrected hits table of the ones that pass the higher charge threshold selection. 17 columns that include: event ID, timestamp, charge, uncorrected energy (``E``, :math:`\text{pes}`), corrected energy (``Ec``, :math:`\text{MeV}`), and *X*, *Y*, *Z* positions (:math:`\text{mm}`) for each hit.
+ * ``/CHITS/lowTh``:  energy-corrected hits table (similar to the previous one) of the ones that pass the lower charge threshold selection.
+ * ``/Tracking/Tracks``: topological information of events. Each row corresponds to a different track, specified with the ``trackID`` among the other possible tracks within an event, and also includes: its energy, length, number of voxels and their size, number of hits, minimum, maximum and average *XYZ* positions, position of the extreme voxels, position and energy of the blobs, amount of energy shared by both blobs, and number of tracks that comprise the event.
+ * ``/Summary/Events``: global information related to the event. Each row is one event. It contains: event ID, minimum, maximum and average *XYZ* and *R* positions, event energy, charge, number of tracks, number of hits, and a flag that indicates if the event includes hits outside the correction map.
  * ``/DST/Events``: copy of the point-like information (**kdst**) events, which constitutes one of the output tables of :doc:`penthesilea`.
  * ``/Filters/high_th_select``: flag to indicate if an event passes the selection of having at least one hit with more charge than the ``threshold_charge_high`` parameter of the config file. 
  * ``/Filters/low_th_select``: flag to indicate if an event passes the selection of having at least one hit with more charge than ``threshold_charge_low``. 
