@@ -253,7 +253,15 @@ Apart from the energy correction, the position of hits along the drift time (``D
 Topology information extraction
 :::::::::::::::::::::::::::::::
 
-As it has been stated, the hits with sufficient charge to pass the high-threshold cut go through the `Paolina` algorithm in order to extract all the topological information. This procedure is also performed inside a posterior city, :doc:`isaura`. Thus, a detailed description of it can be found in the correspondent documentation section. The parameters to run this stage of the reconstruction chain are the ones specified with the ``paolina_params`` dictionary.  Due to the fact that the distribution of the hits obtained at this point is much looser than the ones of deconvoluted hits, the config parameters for the voxel size and blob radius are in general significantly larger than the ones used in :doc:`isaura`. In order to illustrate this comparison, :ref:`this same event <Isaura display>` is displayed below, after a typical `Esmeralda` topological reconstruction:
+As it has been stated, the hits with sufficient charge to pass the high-threshold cut go through the `Paolina` algorithm in order to extract all the topological information. This procedure is also performed inside a posterior city, :doc:`isaura`. Thus, a detailed description of it can be found in the corresponding documentation section. As a summary, the algorithm is constituted by the following steps:
+
+ - The high threshold hits are converted into voxels of sizes given by the ``vox_size`` parameter, typically [15 x 15 x 15] :math:`\text{mm}^3`.
+
+ - A graph module is used to compute the longest of the minimum spanning trees that can be computed with any pair of voxels, providing *tracks*.
+
+ - The two end-points of each track are found according to :ref:`this procedure <Blobs position>`. From there, the energy of the blobs is computed using the hits inside a sphere of radius ``blob_radius``.
+
+The parameters to run this stage of the reconstruction chain are the ones specified with the ``paolina_params`` dictionary.  Due to the fact that the distribution of the hits obtained at this point is much looser than the ones of deconvoluted hits, the config parameters for the voxel size and blob radius are in general significantly larger than the ones used in :doc:`isaura`. In order to illustrate this comparison, :ref:`this same event <Isaura display>` is displayed below, after a typical `Esmeralda` topological reconstruction:
 
 
  .. image:: images/esmeralda/r8250_evt194237_chits_esmeralda.png
@@ -261,9 +269,14 @@ As it has been stated, the hits with sufficient charge to pass the high-threshol
  .. image:: images/esmeralda/r8250_evt194237_voxels_esmeralda.png
    :width: 48.5%
 
-The left panel displays the 3D distribution of the ``CHITS/highTh`` hits, while the right one corresponds to its [15, 15, 15] :math:`{\text{mm}}^3` voxelized track, according to the algorithm. It is straightforward to realize that the result of this reconstruction is much more naive than the one obtained after running the full processing chain that includes the deconvolution.
+The left panel displays the 3D distribution of the ``CHITS/highTh`` hits, while the right one corresponds to its [15, 15, 15] :math:`{\text{mm}}^3` voxelized track, according to the algorithm. It is straightforward to realize that the result of this reconstruction is much more naive than the one obtained after running the full processing chain that includes the deconvolution. The resulting 21-:math:`{\text{mm}}`-radius blobs are displayed in the figure below, where the green sphere corresponds to the most energetic one (eblob = 335 :math:`\text{keV}`, for this particular event) while the blue sphere to the less energetic blob (118 :math:`\text{keV}`):
 
-Once the blobs are computed for the high threshold hits (following the same exact procedure as the one explained in :doc:`isaura`), the city concludes by storing  all the information obtained during the city in different tables of a unique hdf5 file, as described in the :ref:`Output <Esmeralda output>` subsection.
+
+.. image:: images/esmeralda/r8250_evt194237_chits_esmeralda_blobs.png
+   :width: 540
+   :align: center
+
+Once the blobs are computed for the high threshold hits (following the same exact procedure as the one explained in :doc:`isaura`), the city concludes by storing  all the information obtained during the city in different tables of a unique hdf5 file. As described in the :ref:`Output <Esmeralda output>` subsection, the general information of the event is stored in ``Summary/Events``, the topology information related to the tracks in ``Tracking/Tracks``, and the corrected hits in the corresponding ``CHITS`` table, depending on the threshold they passed.
 
 
 
