@@ -177,7 +177,7 @@ At this point, the dst may include time slices with an undefined charge but defi
 **Calibration of the hits energy**
 
 
-The selected hits are now calibrated using the krpton map generated in :doc:`ICAROS` and specified in ``map_fname`` to convert the energy, ``E``, from :math:`\text{pes}` into :math:`\text{eV}`, and the *Z* position, ``Z``, from :math:`\mu \text{s}` to :math:`\text{mm}`. 
+The selected hits are now calibrated using the krypton map generated in :doc:`ICAROS` and specified in ``map_fname`` to convert the energy, ``E``, from :math:`\text{pes}` into :math:`\text{eV}`, and the *Z* position, ``Z``, from :math:`\mu \text{s}` to :math:`\text{mm}`. 
 
 
 Thanks to the **dual trigger scheme** exploited by the experiment, low-energy krypton runs are taken simultaneously to the usual high-energy data. This allows monitoring the status of the chamber at every moment and obtaining a correction map specific for every run (providing a very robust tool, that avoids possible temporal discrepancies in case the krypton run and the physics run would have been taken at different moments).  
@@ -269,14 +269,14 @@ The parameters to run this stage of the reconstruction chain are the ones specif
  .. image:: images/esmeralda/r8250_evt194237_voxels_esmeralda.png
    :width: 48.5%
 
-The left panel displays the 3D distribution of the ``CHITS/highTh`` hits, while the right one corresponds to its [15, 15, 15] :math:`{\text{mm}}^3` voxelized track, according to the algorithm. It is straightforward to realize that the result of this reconstruction is much more naive than the one obtained after running the full processing chain that includes the deconvolution. The resulting 21-:math:`{\text{mm}}`-radius blobs are displayed in the figure below, where the green sphere corresponds to the most energetic one (eblob = 335 :math:`\text{keV}`, for this particular event) while the blue sphere to the less energetic blob (118 :math:`\text{keV}`):
+The left panel displays the 3D distribution of the ``CHITS/highTh`` hits, while the right one corresponds to its [15, 15, 15] :math:`{\text{mm}}^3` voxelized track, according to the algorithm. It is straightforward to realize that the result of this reconstruction is much more naive than the one obtained after running the full processing chain that includes :doc:`beersheba`. The resulting 21-:math:`{\text{mm}}`-radius blobs are displayed in the figure below, where the green sphere corresponds to the most energetic one (eblob = 335 :math:`\text{keV}`, for this particular event) while the blue sphere to the less energetic blob (118 :math:`\text{keV}`):
 
 
 .. image:: images/esmeralda/r8250_evt194237_chits_esmeralda_blobs.png
    :width: 540
    :align: center
 
-Once the blobs are computed for the high threshold hits (following the same exact procedure as the one explained in :doc:`isaura`), the city concludes by storing  all the information obtained during the city in different tables of a unique hdf5 file. As described in the :ref:`Output <Esmeralda output>` subsection, the general information of the event is stored in ``Summary/Events``, the topology information related to the tracks in ``Tracking/Tracks``, and the corrected hits in the corresponding ``CHITS`` table, depending on the threshold they passed.
+Once the blobs are computed for the high threshold hits, the city concludes by storing  all the information obtained during the city in different tables of a unique hdf5 file. As described in the :ref:`Output <Esmeralda output>` subsection, the general information of the event is stored in ``Summary/Events``, the topology information related to the tracks in ``Tracking/Tracks``, and the corrected hits in the corresponding ``CHITS`` table, depending on the threshold they passed.
 
 
 
