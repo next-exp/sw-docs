@@ -176,9 +176,11 @@ At this point, the dst may include time slices with an undefined charge but defi
 
 **Calibration of the hits energy**
 
-Once all the hits for the analysis have been selected and are well-defined (with a proper ``E``, ``X``, ``Y``, and ``DT``), it is time to correct them using the krypton-based map generated in :doc:`ICAROS`. Its name will be specified with ``map_fname`` in the configuration file.
 
-Thanks to the **dual trigger scheme** exploited by the experiment, we are capable of taking low-energy krypton runs simultaneously to the usual high-energy data. This allows us to monitor the status of the chamber at every moment and to obtain a correction map specific for every run (providing a very robust tool, that avoids possible temporal discrepancies in case the krypton run and the physics run would have been taken at different moments).  
+The selected hits are now calibrated using the krpton map generated in :doc:`ICAROS` and specified in ``map_fname`` to convert the energy, ``E``, from :math:`\text{pes}` into :math:`\text{eV}`, and the *Z* position, ``Z``, from :math:`\mu \text{s}` to :math:`\text{mm}`. 
+
+
+Thanks to the **dual trigger scheme** exploited by the experiment, low-energy krypton runs are taken simultaneously to the usual high-energy data. This allows monitoring the status of the chamber at every moment and obtaining a correction map specific for every run (providing a very robust tool, that avoids possible temporal discrepancies in case the krypton run and the physics run would have been taken at different moments).  
 
 
 The first step comprises the energy correction of the hits. As it is well-known, there are two effects that degrade the real energy of events that must be taken into account:
@@ -217,7 +219,7 @@ The following image shows the clear improvement in the energy spectrum after app
 |
 
 .. warning::
- In addition to the energy correction explained just before, there are **two** important factors that make the previous calibration not ultimate. They are not going to be explained in detail here, seeing that these further corrections are not applied along `Esmeralda`. However, since they are not applied inside any other city either and the energy modification of events is performed here, it is justified to comment on them now.              
+ In addition to the energy correction explained just before, there are **two** important factors that make the previous calibration not ultimate. They are not going to be explained in detail here because these further corrections are not applied along `Esmeralda`. However, since they are not applied inside any other city either and the energy modification of events is performed here, it is justified to comment on them now.              
 
 1. **Non-linearities at high energies**. Due to the significant difference between the krypton energy scale and the one of the physics data (above 1 MeV), the Kr-based energy correction might **not be sufficient** for all the energy range considered. Therefore, although krypton maps were applied, it is advisable to check the high energy peaks, so as to account for observed **non-linearities** and obtain the proper calibration. The plots below show clearly how the high energy 208-Thallium gamma lines (nominal values are illustrated with dashed red lines) are not aligned perfectly in spite of the maps corrections.
 
