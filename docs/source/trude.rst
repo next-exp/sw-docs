@@ -57,7 +57,7 @@ Besides the :ref:`Common arguments to every city`, *Trude* has the following arg
 
    * - ``integral_start``
      - ``int``
-     - Bin where the integrals start.
+     - Bin where the first integral of the set of ``number_integrals`` starts. The other integrals are performed using ``integrals_period`` assuming the same distance between the peaks.
 
    * - ``integral_width``
      - ``int``
