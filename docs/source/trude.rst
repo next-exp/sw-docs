@@ -99,6 +99,8 @@ Baseline subtraction of SiPM waveforms
 
 Same procedure as described in :ref:`Baseline subtraction of SiPM waveforms` section of the *Irene* documentation with the option of using the mean instead of the mode of the waveform for the baseline subtraction.
 
+.. _Spectrum histogram:
+
 Spectrum histogram
 :::::::::::::::::
 
