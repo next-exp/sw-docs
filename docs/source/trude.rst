@@ -41,7 +41,7 @@ Besides the :ref:`Common arguments to every city`, *Trude* has the following arg
 
    * - ``min|max_bin``
      - ``float``
-     - Lower/upper limit of the number of ACDs of the waveform to be considered for the spectrum.
+     - Lower/upper limit of the number of :math:`ADCs` of the waveform to be considered for the spectrum.
 
    * - ``bin_width``
      - ``int``
