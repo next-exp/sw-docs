@@ -76,7 +76,7 @@ Workflow
 Trude performs the following operations to obtain the spectra:
 
  * :ref:`Selection of integration limits <Selection of integration limits>`
- * :ref:`Baseline subtraction of SiPM waveforms <Baseline subtraction of SiPM waveforms>`
+ * :ref:`SiPM waveforms baseline subtraction <SiPM waveforms baseline subtraction>`
  * :ref:`Spectrum histogram <Spectrum histogram>`
 
 
@@ -94,7 +94,7 @@ The light bins will be centered in the light pulse(s) and the dark bins are chos
 
 .. _Baseline subtraction of SiPM waveforms:
 
-Baseline subtraction of SiPM waveforms
+SiPM waveforms baseline subtraction
 ::::::::::::::::::::::::::::::::::::::
 
 Same procedure as described in :ref:`Baseline subtraction of SiPM waveforms` section of the :doc:`irene` documentation with the option of using the mean instead of the mode of the waveform for the baseline subtraction.
