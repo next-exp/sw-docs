@@ -92,7 +92,7 @@ The light bins will be centered in the light pulse(s) and the dark bins are chos
  .. image:: images/trude/wf_intervals.png
    :width: 850
 
-.. _Baseline subtraction of SiPM waveforms:
+.. _SiPM waveforms baseline subtraction:
 
 SiPM waveforms baseline subtraction
 ::::::::::::::::::::::::::::::::::::::
