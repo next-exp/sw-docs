@@ -95,14 +95,14 @@ The light bins will be centered in the light pulse(s) and the dark bins are chos
 .. _SiPM waveforms baseline subtraction:
 
 SiPM waveforms baseline subtraction
-::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::
 
 Same procedure as described in :ref:`Baseline subtraction of SiPM waveforms` section of the :doc:`irene` documentation with the option of using the mean instead of the mode of the waveform for the baseline subtraction.
 
 .. _Spectrum histogram:
 
 Spectrum histogram
-:::::::::::::::::
+:::::::::::::::::::
 
 The last step would be the integration of the dark and light bins in order to obtain the respective spectrum histograms.
 
