@@ -1,0 +1,6 @@
+cff-version: 1.0.0
+message: "If you use this software, please cite it as below."
+authors:
+     - name: "NEXT Collaboration"
+title: "NEXT-Software Documentation"
+url: "https://github.com/next-exp/sw-docs"
