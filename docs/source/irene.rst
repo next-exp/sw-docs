@@ -53,11 +53,11 @@ Besides the :ref:`Common arguments to every city`, *Irene* has the following arg
 
    * - ``thr_mau``
      - ``float``
-     - Threshold for MAU calculation in pes.
+     - Threshold for MAU calculation in :math:`pes`.
 
    * - ``thr_sipm``
      - ``float``
-     - Threshold for individual SiPM samples. Can be absolute (pes) or relative (unitless), depending on ``thr_sipm_type``.
+     - Threshold for individual SiPM samples. Can be absolute (:math:`pes`) or relative (unitless), depending on ``thr_sipm_type``.
 
    * - ``thr_sipm_type``
      - ``ThresholdSiPM``
