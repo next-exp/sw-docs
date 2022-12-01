@@ -49,11 +49,11 @@ Besides the :ref:`Common arguments to every city`, *Irene* has the following arg
 
    * - ``n_mau``
      - ``int``
-     - Number of waveform samples to compute the mau.
+     - Number of waveform samples to compute the MAU.
 
    * - ``thr_mau``
      - ``float``
-     - Threshold for mau calculation in pes.
+     - Threshold for MAU calculation in pes.
 
    * - ``thr_sipm``
      - ``float``
