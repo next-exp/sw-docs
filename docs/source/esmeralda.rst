@@ -211,26 +211,10 @@ The following image shows the clear improvement in the energy spectrum after app
    :width: 900
    :align: center
 
-
-
-
-
-|
+      
 |
 
-.. warning::
- In addition to the energy correction explained just before, there are **two** important factors that make the previous calibration not ultimate. They are not going to be explained in detail here because these further corrections are not applied along `Esmeralda`. However, since they are not applied inside any other city either and the energy modification of events is performed here, it is justified to comment on them now.              
-
-1. **Non-linearities at high energies**. Due to the significant difference between the krypton energy scale and the one of the physics data (above 1 MeV), the Kr-based energy correction might **not be sufficient** for all the energy range considered. Therefore, although krypton maps were applied, it is advisable to check the high energy peaks, so as to account for observed **non-linearities** and obtain the proper calibration. The plots below show clearly how the high energy 208-Thallium gamma lines (nominal values are illustrated with dashed red lines) are not aligned perfectly in spite of the maps corrections.
-
-.. image:: images/esmeralda/energy_spectrum_corr_vs_uncorr_PEAKS.png
-   :width: 900
-   :align: center
-
-*Note:* the energy scale of the uncorrected hits coming from the hdst presented in the plots above has only illustrative purposes (to compare both distributions). Its conversion between pes to MeV was made considering in an approximate way the number of pes yielded by krypton events.
-
-
-2. **The axial length (Z-width) effect**. There is an additional final energy correction that must be applied in the analysis post-reconstruction: the so-called *Z-width effect* correction. Detailed information about possible explanations for this phenomenon, as well as an empirical procedure to deal with it can be found `here <https://inspirehep.net/literature/1737564>`_.
+It is important to remark that notwithstanding the energy correction of the hits commented on above, the total energy of high-energy spatial-extended events needs to be ultimately corrected after the whole IC reconstruction chain is performed. More information concerning these further corrections is presented in the :ref:`Appendix <final_energy_correction>`.
 
 
 
@@ -280,6 +264,35 @@ Once the blobs are computed for the high threshold hits, the city concludes by s
 
 
 
+
+
+
+
+|
+|
+
+.. _final_energy_correction:
+
+Appendix: Post IC reconstruction energy correction
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+  
+  
+In addition to the hit energy calibration explained :ref:`before <Energy calibration>`, there are **two** important factors that make the previous calibration not ultimate. They are not going to be explained in detail here because these further corrections are not applied along `Esmeralda`. However, since they are not applied inside any other city either and the energy modification of events is performed here, it is justified to comment on them now.              
+
+1. **Non-linearities at high energies**. Due to the significant difference between the krypton energy scale and the one of the physics data (above 1 MeV), the Kr-based energy correction might **not be sufficient** for all the energy range considered. Therefore, although krypton maps were applied, it is advisable to check the high energy peaks, so as to account for observed **non-linearities** and obtain the proper calibration. The plots below show clearly how the high energy 208-Thallium gamma lines (nominal values are illustrated with dashed red lines) are not aligned perfectly in spite of the maps corrections.
+
+.. image:: images/esmeralda/energy_spectrum_corr_vs_uncorr_PEAKS.png
+   :width: 900
+   :align: center
+
+*Note:* the energy scale of the uncorrected hits coming from the hdst presented in the plots above has only illustrative purposes (to compare both distributions). Its conversion between pes to MeV was made considering in an approximate way the number of pes yielded by krypton events.
+
+
+2. **The axial length (Z-width) effect**. There is an additional final energy correction that must be applied in the analysis post-reconstruction: the so-called *Z-width effect* correction. Detailed information about possible explanations for this phenomenon, as well as an empirical procedure to deal with it can be found `here <https://inspirehep.net/literature/1737564>`_.
+
+ 
+|
 
  .. [#] That are directly proportional to the postion ``Z`` in the *Z*-axis. The conversion from drift time (``DT``) to ``Z`` will be briefly commented later on.
 
