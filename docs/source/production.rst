@@ -48,7 +48,7 @@ For the different productions the corresponding latest **tags** are:
      - ``NEXT_v1_05_02_NEXUS_v5_07_01_bkg_v9``
    * - **Calibration**
      - ``NEXT_v1_05_02_NEXUS_v5_07_01_bkg_v9``
-   * - **Background**
+   * - **NEW Background Model**
      - ``NEXT_v1_05_02_NEXUS_v5_07_01_bkg_v9``
 
 
@@ -75,20 +75,31 @@ Where the following **config** files have been used,
 
 NEXT-100
 ------------
-This sample is currently being produced. It is generated using
+A first production using fast simulations (:doc:`detsim`) has been produced using
 
 .. list-table::
    :widths: 40 60
    :header-rows: 0
 
-   * - **nexus**
-     - ``to be added``
-   * - **detsim**
-     - ``to be added``
+   * - **nexus: radiogenics + signal**
+     - ``v7_02_00``
+   * - **nexus: muons**
+     - ``v7_03_00``
+   * - **nexus: LTs and PSFs for Detsim**
+     - ``v7_01_00(+ G4 op bug)``
    * - **IC**
-     - ``to be added``
-   * - **Background Model**
-     - ``to be added``
+     - ``8e1de90c1cec5a1c3d25b35eca456f87f4f7e64c``
+   * - **IC: muons**
+     - `PR#823 <https://github.com/next-exp/IC/pull/823>`_
+   * - **NEXT-100 Background Model**
+     - ``v4``
+
+
+This production can be found in ``neutrinos1.ific.uv.es`` under the following path:
+
+.. code-block:: text
+
+ /data4/NEXT/NEXT100_prod/
 
 **Nexus macros** for the current production can be found on GitHub `here <https://github.com/gondiaz/NEXT100-0nubb-analysis/tree/main/nexus_job_templates/ft3>`_.
 
@@ -96,7 +107,9 @@ Detsim *light tables* (**LTs**) and *point spread functions* (**PSFs**) can be f
 
 .. code-block:: text
 
-  /data5/users/gdiaz/NEXT100/LightTables (for productions before May 2024)
+  Note: these files disappeared due to an incident in the neutrinos cluster.
+  This is just for reference.
+  /data4/NEXT/NEXT100_prod/LightTables/ (for productions before May 2024)
   /lustre/neu/data4/NEXT/NEXT100/MC/Tables/202405_Krishan (for productions after May 2024)
 
 **Config** files for the rest of the production chain can also be found on `here <https://github.com/gondiaz/NEXT100-0nubb-analysis/tree/main/ic_processing/templates>`_ on Github.
