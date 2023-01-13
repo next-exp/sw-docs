@@ -52,7 +52,7 @@ The `Esmeralda` configuration file shares the :ref:`same common arguments <Commo
 - ``cor_hits_params`` is in charge of the information related to the step **1)** commented in the introduction. Its parameters are:
 
 .. list-table::
-   :widths: 80 40 120
+   :widths: 60 40 120
    :header-rows: 1
 
    * - **Parameter**

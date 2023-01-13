@@ -36,7 +36,7 @@ Config
 Apart from the :ref:`Common arguments to every city`, the parameters to run *Isaura* are the following:
 
 .. list-table::
-   :widths: 60 40 120
+   :widths: 50 40 120
    :header-rows: 1
 
    * - **Parameter**

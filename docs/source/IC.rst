@@ -165,6 +165,7 @@ DEBUGGING/CONTROL:
      :maxdepth: 1
 
      Isidora <isidora>
+     Olivia <olivia>
 
 
 Each of this cities include a small description in the IC repository (`IC/invisible_cities/cities <https://github.com/next-exp/IC/tree/master/invisible_cities/cities>`_),
