@@ -1,7 +1,8 @@
 IC
 =====
 
-IC stands for *Invisible Cities* and can be found on Github as `next-exp/IC <https://github.com/next-exp/IC>`_.
+IC stands for `Invisible Cities <https://en.wikipedia.org/wiki/Invisible_Cities>`_. and can be found on Github as `next-exp/IC <https://github.com/next-exp/IC>`_.
+Blame for the name to J.J. Gómez-Cadenas, who proposed and started the project. The original developers of IC were J.J. Gómez-Cadenas, J. Generowictz, J.M. Benlloch, G. Martinez-Lema and M. Kekick. The main architect of the code was IC is J. Generowictz.
 
 **Language**: Python; **Based**: Numpy, Pandas
 
