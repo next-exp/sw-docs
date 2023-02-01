@@ -35,8 +35,8 @@ Output
  * ``/Tracking/Tracks``: topological information of events. Each row corresponds to a different track, specified with the ``trackID`` among the other possible tracks within an event, and also includes: its energy, length, number of voxels and their size, number of hits, minimum, maximum and average *XYZ* positions, position of the extreme voxels, position and energy of the blobs, amount of energy shared by both blobs, and number of tracks that comprise the event.
  * ``/Summary/Events``: global information related to the event. Each row is one event. It contains: event ID, minimum, maximum and average *XYZ* and *R* positions, event energy, charge, number of tracks, number of hits, and a flag that indicates if the event includes hits outside the correction map.
  * ``/DST/Events``: copy of the point-like information (**kdst**) events, which constitutes one of the output tables of :doc:`penthesilea`.
- * ``/Filters/high_th_select``: flag to indicate if an event passes the selection of having at least one hit with more charge than the ``threshold_charge_high`` parameter of the config file. 
- * ``/Filters/low_th_select``: flag to indicate if an event passes the selection of having at least one hit with more charge than ``threshold_charge_low``. 
+ * ``/Filters/high_th_select``: flag to indicate if an event passes the selection of having at least one hit with more charge than the ``threshold_charge_high`` parameter of the config file.
+ * ``/Filters/low_th_select``: flag to indicate if an event passes the selection of having at least one hit with more charge than ``threshold_charge_low``.
  * ``/Filters/topology_select``: flag to indicate if an event passes the selection of having fewer (high-threshold) hits than ``max_num_hits``.
  * ``MC info``: copy of the Monte Carlo information for the events that the city outputs. Only if ``run_number`` < 0. The tables included are: ``/MC/configuration``, ``/MC/hits``, ``/MC/particles``, ``/MC/sns_positions``, and ``/MC/sns_response``.
 
@@ -52,7 +52,7 @@ The `Esmeralda` configuration file shares the :ref:`same common arguments <Commo
 - ``cor_hits_params`` is in charge of the information related to the step **1)** commented in the introduction. Its parameters are:
 
 .. list-table::
-   :widths: 50 40 120
+   :widths: 60 40 120
    :header-rows: 1
 
    * - **Parameter**
@@ -63,7 +63,7 @@ The `Esmeralda` configuration file shares the :ref:`same common arguments <Commo
      - ``string``
      - Name of the correction map, computed with the Kr-calibration data, used to correct geometry, lifetime, and, if possible, temporal variations.
 
-       In general, the maps used are computed with the Krypton events taken at the same time as the high energy ones manipulated here. 
+       In general, the maps used are computed with the Krypton events taken at the same time as the high energy ones manipulated here.
 
    * - ``threshold_charge_low``
      - ``float``
@@ -89,7 +89,7 @@ The `Esmeralda` configuration file shares the :ref:`same common arguments <Commo
 
 - On the other hand, ``paolina_params`` handles the processes associated with step **2)**:
 
-       
+
 .. list-table::
    :widths: 50 40 120
    :header-rows: 1
@@ -105,7 +105,7 @@ The `Esmeralda` configuration file shares the :ref:`same common arguments <Commo
    * - ``strict_vox_size``
      - ``bool``
      - If *True*: the voxels size is forced to be exactly the values provided in the previous argument.
-       
+
        If *False*: the dimensions are allowed to change a bit for each track, aiming to optimize the voxelization process.
 
    * - ``energy_threshold``
@@ -117,7 +117,7 @@ The `Esmeralda` configuration file shares the :ref:`same common arguments <Commo
    * - ``min_voxels``
      - ``int``
      - Minimum number of voxels to perform the dropping algorithm commented on ``energy_threshold``.
-     
+
    * - ``blob_radius``
      - ``float``
      - Radius of the blobs in :math:`\text{mm}`. Click :ref:`here <Blobs position>` to know more about the position from where this radius is taken.
@@ -139,7 +139,7 @@ In its current configuration, *Esmeralda* runs two main algorithms. First, it se
  #. :ref:`Manipulation of the SiPM-based hits <Manipulation of SiPM-based hits>`
 
     * :ref:`Energy reassignment <Energy reassignment>`
-    * :ref:`Energy calibration <Energy calibration>` 
+    * :ref:`Energy calibration <Energy calibration>`
 
  #. :ref:`Topology information extraction of events <Topology information extraction>`
 
@@ -157,7 +157,7 @@ Apart from that, it is relevant to remind that the energy ``E`` of the input hit
  #. Its units are :math:`\text{pes}` (thanks to the *ADC-to-pes* conversion of the PMT waveforms performed in :doc:`irene`), requiring the conversion to :math:`\text{eV}`.
  #. It must be corrected due to different processes that degrade the light collection.
 
-With all the information presented above, one could realize that the SiPM-based hits that enter the city must suffer some modifications in order to be useful for the later analysis. The explanation of these processes is the main purpose of this section. 
+With all the information presented above, one could realize that the SiPM-based hits that enter the city must suffer some modifications in order to be useful for the later analysis. The explanation of these processes is the main purpose of this section.
 
 .. _Energy reassignment:
 
@@ -177,10 +177,10 @@ At this point, the dst may include time slices with an undefined charge but defi
 **Calibration of the hits energy**
 
 
-The selected hits are now calibrated using the krypton map generated in :doc:`ICAROS` and specified in ``map_fname`` to convert the energy, ``E``, from :math:`\text{pes}` into :math:`\text{eV}`, and the *Z* position, ``Z``, from :math:`\mu \text{s}` to :math:`\text{mm}`. 
+The selected hits are now calibrated using the krypton map generated in :doc:`ICAROS` and specified in ``map_fname`` to convert the energy, ``E``, from :math:`\text{pes}` into :math:`\text{eV}`, and the *Z* position, ``Z``, from :math:`\mu \text{s}` to :math:`\text{mm}`.
 
 
-Thanks to the **dual trigger scheme** exploited by the experiment, low-energy krypton runs are taken simultaneously to the usual high-energy data. This allows monitoring the status of the chamber at every moment and obtaining a correction map specific for every run (providing a very robust tool, that avoids possible temporal discrepancies in case the krypton run and the physics run would have been taken at different moments).  
+Thanks to the **dual trigger scheme** exploited by the experiment, low-energy krypton runs are taken simultaneously to the usual high-energy data. This allows monitoring the status of the chamber at every moment and obtaining a correction map specific for every run (providing a very robust tool, that avoids possible temporal discrepancies in case the krypton run and the physics run would have been taken at different moments).
 
 
 The first step comprises the energy correction of the hits. As it is well-known, there are two effects that degrade the real energy of events that must be taken into account:
@@ -189,14 +189,14 @@ The first step comprises the energy correction of the hits. As it is well-known,
 
  - The **XY non-homogeneities** in the light collection by the PMTs. This time, the *geometry*  (``e0``) map will be applied.
 
-An example of these correction maps can be seen below (left: geometry map, right: lifetime map), for a NEXT-White high-energy calibration run [#]_ (namely run 8183, taken just before Run-VI). 
+An example of these correction maps can be seen below (left: geometry map, right: lifetime map), for a NEXT-White high-energy calibration run [#]_ (namely run 8183, taken just before Run-VI).
 
 .. image:: images/esmeralda/maps_r8183.png
    :width: 900
    :align: center
 
 
-In NEXT-White, the XY pattern distributions at both krypton maps were demonstrated to remain stable during the extensive data-taking period devoted to the double-beta analysis. Nevertheless, their mean value did variate with time, due to the improvement in the purity of the gas inside the chamber, for example, thanks to its recirculation. These temporal variations are exemplified in the plots below, where the evolution of lifetime, energy scale (e0), and drift velocity are represented for the same high-energy calibration run as before. 
+In NEXT-White, the XY pattern distributions at both krypton maps were demonstrated to remain stable during the extensive data-taking period devoted to the double-beta analysis. Nevertheless, their mean value did variate with time, due to the improvement in the purity of the gas inside the chamber, for example, thanks to its recirculation. These temporal variations are exemplified in the plots below, where the evolution of lifetime, energy scale (e0), and drift velocity are represented for the same high-energy calibration run as before.
 
 .. image:: images/esmeralda/maps_temporal_evolution.png
    :width: 900
@@ -205,13 +205,13 @@ In NEXT-White, the XY pattern distributions at both krypton maps were demonstrat
 If the ``apply_temp`` parameter is *True*, these variations will be considered for the correction. On the contrary, this variable must be set to *False* in case the map does not include this temporal information table, or the city is run over MC files (whose events do not have a timestamp variable either).
 
 
-The following image shows the clear improvement in the energy spectrum after applying all the corrections explained above:  
+The following image shows the clear improvement in the energy spectrum after applying all the corrections explained above:
 
 .. image:: images/esmeralda/energy_spectrum_corr_vs_uncorr.png
    :width: 900
    :align: center
 
-      
+
 |
 
 It is important to remark that notwithstanding the energy correction of the hits commented on above, the total energy of high-energy spatial-extended events needs to be ultimately corrected after the whole IC reconstruction chain is performed. More information concerning these further corrections is presented in the :ref:`Appendix <final_energy_correction>`.
@@ -230,7 +230,7 @@ Apart from the energy correction, the position of hits along the drift time (``D
 
 
 
-   
+
 
 .. _Topology information extraction:
 
@@ -276,9 +276,9 @@ Once the blobs are computed for the high threshold hits, the city concludes by s
 Appendix: Post IC reconstruction energy correction
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-  
-  
-In addition to the hit energy calibration explained :ref:`before <Energy calibration>`, there are **two** important factors that make the previous calibration not ultimate. They are not going to be explained in detail here because these further corrections are not applied along `Esmeralda`. However, since they are not applied inside any other city either and the energy modification of events is performed here, it is justified to comment on them now.              
+
+
+In addition to the hit energy calibration explained :ref:`before <Energy calibration>`, there are **two** important factors that make the previous calibration not ultimate. They are not going to be explained in detail here because these further corrections are not applied along `Esmeralda`. However, since they are not applied inside any other city either and the energy modification of events is performed here, it is justified to comment on them now.
 
 1. **Non-linearities at high energies**. Due to the significant difference between the krypton energy scale and the one of the physics data (above 1 MeV), the Kr-based energy correction might **not be sufficient** for all the energy range considered. Therefore, although krypton maps were applied, it is advisable to check the high energy peaks, so as to account for observed **non-linearities** and obtain the proper calibration. The plots below show clearly how the high energy 208-Thallium gamma lines (nominal values are illustrated with dashed red lines) are not aligned perfectly in spite of the maps corrections.
 
@@ -291,7 +291,7 @@ In addition to the hit energy calibration explained :ref:`before <Energy calibra
 
 2. **The axial length (Z-width) effect**. There is an additional final energy correction that must be applied in the analysis post-reconstruction: the so-called *Z-width effect* correction. Detailed information about possible explanations for this phenomenon, as well as an empirical procedure to deal with it can be found `here <https://inspirehep.net/literature/1737564>`_.
 
- 
+
 |
 
  .. [#] That are directly proportional to the postion ``Z`` in the *Z*-axis. The conversion from drift time (``DT``) to ``Z`` will be briefly commented later on.
@@ -300,9 +300,7 @@ In addition to the hit energy calibration explained :ref:`before <Energy calibra
 
 
  .. [#]  These high-energy calibration runs are those taken with the outer castle closed, but placing some sources of :math:`{}^{137}Cs` and :math:`{}^{208}Th` on different ports around the detector. More details about these runs can be checked in: `<https://inspirehep.net/literature/1737564>`_.
-         
+
  .. [#]  There is already a variable called ``Z`` in the ``RECO/Events`` table of the ``hdst``. However, that was only a convention, seeing as at that point the value for the  *drift-velocity* during the run has not been computed yet.
 
  .. [#]  This analysis was the official one until :doc:`beersheba` was introduced into the reconstruction chain, which improved significantly the results.
-
-

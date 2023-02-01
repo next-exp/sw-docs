@@ -1,7 +1,8 @@
 IC
 =====
 
-IC stands for *Invisible Cities* and can be found on Github as `next-exp/IC <https://github.com/next-exp/IC>`_.
+IC stands for `Invisible Cities <https://en.wikipedia.org/wiki/Invisible_Cities>`_. and can be found on Github as `next-exp/IC <https://github.com/next-exp/IC>`_.
+Blame for the name to J.J. Gómez-Cadenas, who proposed and started the project. The original developers of IC were J.J. Gómez-Cadenas, J. Generowicz, J.M. Benlloch, G. Martinez-Lema and M. Kekic. The main architect of the code was J. Generowicz.
 
 **Language**: Python; **Based**: Numpy, Pandas
 
@@ -164,6 +165,7 @@ DEBUGGING/CONTROL:
      :maxdepth: 1
 
      Isidora <isidora>
+     Olivia <olivia>
 
 
 Each of this cities include a small description in the IC repository (`IC/invisible_cities/cities <https://github.com/next-exp/IC/tree/master/invisible_cities/cities>`_),
