@@ -85,7 +85,7 @@ Trude performs the following operations to obtain the spectra:
 Selection of integration limits
 ::::::::::::::::::::::::::::::::
 
-Given the config parameters, the first step in this city would be to selected the dark and light bins to compute the dark and light spectra.
+Given the config parameters, the first step in this city would be to select the dark and light bins to compute the dark and light spectra.
 
 The light bins will be centered in the light pulse(s) and the dark bins are chosen as an interval of ``integral_width`` bins which ends 2 microseconds before the light pulse begins, as shown here:
 
