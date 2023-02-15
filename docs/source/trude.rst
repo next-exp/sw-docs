@@ -53,7 +53,7 @@ Besides the :ref:`Common arguments to every city`, *Trude* has the following arg
 
    * - ``number_integrals``
      - ``int``
-     - Number of integrals to be performed in the waveform's time window. Typically this value is selected depending on the number of LED pulses in the waveform.
+     - Number of integrals to be performed in the waveform's time window. Typically this value is selected depending on the number of LED pulses in the waveform. E.g. if the waveform has 5 pulses, the number of integrals will be 5.
 
    * - ``integral_start``
      - ``int``
