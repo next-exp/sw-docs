@@ -10,9 +10,9 @@ This city produces the light and dark spectrum of SiPMs for dedicated calibratio
 Input
 -----
 
- * ``/Run/events``
- * ``/Run/runInfo``
- * ``/RD/sipmrwf``
+ * ``/Run/events``: list of the ``evt_number`` and the correspondent ``timestamp`.
+ * ``/Run/runInfo``: stores de ``run_number``.
+ * ``/RD/sipmrwf``: stores the raw waveform itself. It indicates the number of ADCs per time bin for each event and SiPM.
 
 .. _Trude output:
 
