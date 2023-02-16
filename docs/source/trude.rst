@@ -11,7 +11,7 @@ Input
 -----
 
  * ``/Run/events``: list of the ``evt_number`` and the correspondent ``timestamp`.
- * ``/Run/runInfo``: stores de ``run_number``.
+ * ``/Run/runInfo``: stores the ``run_number``.
  * ``/RD/sipmrwf``: stores the raw waveform itself. It indicates the number of ADCs per time bin for each event and SiPM.
 
 .. _Trude output:
