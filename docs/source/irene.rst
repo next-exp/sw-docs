@@ -47,13 +47,13 @@ Besides the :ref:`Common arguments to every city`, *Irene* has the following arg
      - ``int``
      - Number of waveform samples to compute the baseline.
 
-   * - ``n_mau``
+   * - ``n_maw``
      - ``int``
-     - Number of waveform samples to compute the MAU.
+     - Number of waveform samples to compute the MAW.
 
-   * - ``thr_mau``
+   * - ``thr_maw``
      - ``float``
-     - Threshold for MAU calculation in :math:`pes`.
+     - Threshold for MAW calculation in :math:`pes`.
 
    * - ``thr_sipm``
      - ``float``
@@ -161,8 +161,8 @@ Peak finding and matching of PMT and SiPM signals
 
 The peak finding and waveform slicing is arguably the most complex part of the **RWF** processing. The algorithm must be able to find two very different types of signals (S1 and S2), while accurately establishing the limits on those peaks to maintain the energy resolution capabilities of the detector.
 
-In order to optimize the peak search, PMT **CCWF**\ s are used as they have a higher sampling rate and therefore better time resolution. The searches for S1 and S2 signals use slightly different waveforms. The PMT waveforms contain some low-frequency noise that can shift the PMT baseline locally by a small amount. The MAU (Moving Average Uindow) accounts for these small local variations of the baseline, allowing for a higher peak finding efficiency. The parameter ``n_mau`` controls the size of this window. The S1 peak search is performed by looking for samples of the PMT waveform that deviate from the MAU-generated baseline more than ``thr_mau``. On the other hand, the S2 peak search uses the **CCWF**\ s directly, without a MAU.
-On top of that, these waveforms are PMT-summed to increase the signal-over-noise ratio [#]_. For S1 peaks, this summation is only applied for samples above ``thr_mau``. S1 and S2 signals are searched independently.
+In order to optimize the peak search, PMT **CCWF**\ s are used as they have a higher sampling rate and therefore better time resolution. The searches for S1 and S2 signals use slightly different waveforms. The PMT waveforms contain some low-frequency noise that can shift the PMT baseline locally by a small amount. The MAW (Moving Average Window) accounts for these small local variations of the baseline, allowing for a higher peak finding efficiency. The parameter ``n_maw`` controls the size of this window. The S1 peak search is performed by looking for samples of the PMT waveform that deviate from the MAW-generated baseline more than ``thr_maw``. On the other hand, the S2 peak search uses the **CCWF**\ s directly, without a MAW.
+On top of that, these waveforms are PMT-summed to increase the signal-over-noise ratio [#]_. For S1 peaks, this summation is only applied for samples above ``thr_maw``. S1 and S2 signals are searched independently.
 
 The PMT-summed waveform is searched for samples above a certain threshold (``thr_csum_sX``), which may depend on the event type. The samples below the threshold are initially ignored. However, fluctuations in the PMT signal close to the threshold can lead to a split in an otherwise continuous peak. This is particularly relevant for S1 signals due to their small amplitude in low-energy events.
 To minimize this effect, signal regions separated by a short time (configurable via the ``sX_stride`` arguments) are joined back together. This stride may also depend on the event type.
