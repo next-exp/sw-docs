@@ -51,8 +51,8 @@ Besides the :ref:`Common arguments to every city`, *Buffy* has the following arg
      - **Description**
 
    * - ``max_time``
-     - ``int``
-     - Maximum duration of the event that will be taken into account starting from the first detected signal. All signals after that are lost. Must be greater than ``buffer_length``. If not, raises a warning and sets ``max_time`` == ``buffer_length``
+     - ``float``
+     - Maximum duration of the event that will be taken into account starting from the first detected signal. All signals after that are lost. Must be greater than ``buffer_length``. If not, raises a warning and sets ``max_time`` == ``buffer_length``. It should be a multiple of 1 :math:`\mu s`.
 
    * - ``buffer_length``
      - ``float``
