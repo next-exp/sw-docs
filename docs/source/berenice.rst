@@ -10,8 +10,8 @@ This city produces the spectrum of dark noise of the SiPMs. This is achieved by 
 Input
 -----
 
- * ``/Run/events``:list of the ``evt_number` and the correspondent ``timestamp``.
- * ``/Run/runInfo``: stores the ``run_number`.
+ * ``/Run/events``:list of the ``evt_number`` and the correspondent ``timestamp``.
+ * ``/Run/runInfo``: stores the ``run_number``.
  * ``/RD/sipmrwf``: stores the raw waveform itself. It indicates the number of ADCs per time bin for each event and SiPM.
 
 .. _Berenice output:
@@ -19,12 +19,12 @@ Input
 Output
 ------
 
- * ``HIST/median``:
- * ``HIST/median_bins``:
- * ``HIST/mode``:
- * ``HIST/mode_bins``:
- * ``HIST/adc``:
- * ``HIST/adc_bins``:
+ * ``HIST/median``: histogram values of the dark spectrum when the baseline substraction has been performed with the median of the waveform along with the ADCs to pes conversion (calibration).
+ * ``HIST/median_bins``: bin values of the dark spectrum ``HIST/median``.
+ * ``HIST/mode``: histogram values of the dark spectrum when the baseline substraction has been performed with the mode of the waveform along with the ADCs to pes conversion (calibration).
+ * ``HIST/mode_bins``: bin values of the dark spectrum ``HIST/mode``.
+ * ``HIST/adc``: histogram values of the dark spectrum when the baseline substraction has been performed with the mode of the waveform and no calibration.
+ * ``HIST/adc_bins``: bin values of the dark spectrum ``HIST/adc_bins``.
 
 .. _Berenice config:
 
@@ -87,7 +87,7 @@ Waveform slicing
 
 According to the selected ``min_bin``, ``max_bin`` y ``bin_width`` configuration parameters the waveform will be sliced. An exaggerated slicing can be observed in the figure below with ``min_bin=100``, ``max_bin=400`` y ``bin_width=10``:
 
-.. image:: images/berenicec/sliced_wf.png
+.. image:: images/berenice/sliced_wf.png
   :width: 850
 
 
