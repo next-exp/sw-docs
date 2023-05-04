@@ -10,9 +10,9 @@ This city produces the light and dark spectrum of SiPMs for dedicated calibratio
 Input
 -----
 
- * ``/Run/events``: list of the ``evt_number`` and the correspondent ``timestamp`.
+ * ``/Run/events``: list of the ``evt_number`` and the correspondent ``timestamp``.
  * ``/Run/runInfo``: stores the ``run_number``.
- * ``/RD/sipmrwf``: stores the raw waveform itself. It indicates the number of ADCs per time bin for each event and SiPM.
+ * ``/RD/sipmrwf``: stores the raw waveform itself. It indicates the number of :math:`ADCs` per time bin for each event and SiPM.
 
 .. _Trude output:
 
@@ -106,6 +106,6 @@ Spectrum histogram
 
 The last step would be the integration of the dark and light bins in order to obtain the respective spectrum histograms.
 
-For each of the regions it sums all the ADCs in the intervals and adds an entry to the histogram. It repeats this for each waveform of the same sensor.
+For each of the regions it sums all the :math:`ADCs` in the intervals and adds an entry to the histogram. It repeats this for each waveform of the same sensor.
 
 The end result will be a h5 file with ``/HIST/sipm_dark`` and ``/HIST/sipm_spe`` with a table per time bin and an entry per sensor.
