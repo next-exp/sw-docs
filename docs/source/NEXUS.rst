@@ -28,6 +28,7 @@ Important information about NEXUS code:
  * `User-guide <https://github.com/next-exp/nexus/wiki/User-guide>`_ can be found on the NEXUS Wiki.
  * A summary of the `output format <https://github.com/next-exp/nexus/wiki/Output-format>`_ can also be found there.
  * Examples of output format are uploaded on doc-db in `NEXT-doc-1313-v1 <https://next.ific.uv.es/cgi-bin/DocDB/private/ShowDocument?docid=1313>`_ .
+ * A basic tutorial on Geant4 and nexus can be found in `NEXT-doc-1328-v2 <https://next.ific.uv.es/cgi-bin/DocDB/private/ShowDocument?docid=1328>`_ and `NEXT-doc-1329-v2 <https://next.ific.uv.es/cgi-bin/DocDB/private/ShowDocument?docid=1329>`_.
 
 Tags
 ------------
