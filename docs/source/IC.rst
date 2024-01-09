@@ -137,6 +137,7 @@ MAIN PRODUCTION:
 
      Irene <irene>
      Penthesilea <penthesilea>
+     Sophronia <sophronia>
      Dorothea <dorothea>
      Esmeralda <esmeralda>
      Beersheba <beersheba>
