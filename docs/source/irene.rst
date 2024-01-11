@@ -21,10 +21,10 @@ Output
 ------
 
  * ``/PMAPS/S1``: the sliced PMT-summed waveform for each S1 peak. 4 columns: event number, peak number, time (:math:`\mu`\ s) and amplitude (pes)
- * ``/PMAPS/S1Pmt``: the sliced individual PMT waveforms for each S1 peak. 4 columns: event number, peak number, pmt id and amplitude (pes)
+ * ``/PMAPS/S1Pmt``: the sliced individual PMT waveforms for each S1 peak. 4 columns: event number, peak number, pmt index [1]_ and amplitude (pes)
  * ``/PMAPS/S2``: the sliced PMT-summed waveform for each S2 peak. 4 columns: event number, peak number, time (:math:`\mu`\ s) and amplitude (pes)
- * ``/PMAPS/S2Pmt``: the sliced individual PMT waveforms for each S2 peak. 4 columns: event number, peak number, pmt id and amplitude (pes)
- * ``/PMAPS/S2Si``: the sliced individual SiPM waveforms for each S2 peak. 4 columns: event number, peak number, sipm id and amplitude (pes)
+ * ``/PMAPS/S2Pmt``: the sliced individual PMT waveforms for each S2 peak. 4 columns: event number, peak number, pmt index [1]_ and amplitude (pes)
+ * ``/PMAPS/S2Si``: the sliced individual SiPM waveforms for each S2 peak. 4 columns: event number, peak number, sipm index [1]_ and amplitude (pes)
  * ``/Filters/empty_pmap``: flag for whether an event passed the empty pmap filter
  * ``/Filters/s12_indices``: flag for whether an event passed the s12 indices filter
 
@@ -114,14 +114,14 @@ Irene performs a number of data transformations in order to obtain a **PMap**. T
 Deconvolution of PMT waveforms
 ::::::::::::::::::::::::::::::
 
-Due to the bias configuration of the PMTs, the PMT waveform does not represent the actual signal produced by the PMT, but its derivative (for details see [1]_). The typical PMT **RWF** for a Kr event looks like this:
+Due to the bias configuration of the PMTs, the PMT waveform does not represent the actual signal produced by the PMT, but its derivative (for details see [2]_). The typical PMT **RWF** for a Kr event looks like this:
 
  .. image:: images/irene/pmt_rwf.png
    :width: 850
 
 This waveform needs to be transformed into a unipolar (positive-defined) zero-baseline waveform whose area is proportional to the number of photons detected. The part of the waveform corresponding to when the PMT doesn't receive any light is just a gaussianly-distributed noise around a baseline value. This value is estimated using the first few microseconds of the waveform; the amplitude is averaged over this time frame and subtracted from the entire waveform to produce a baseline-subtracted waveform.
 
-The resulting waveform is still bipolar. This is addressed by the deconvolution algorithm (BLR). This process is fairly complex, but in simple terms, it consists of a high-pass filter and a signal accumulator, which inverts the effect of the PMT electronics. For greater detail on the PMT electronics and the recovery algorithm see [1]_. Finally, the polarity of the waveform is inverted to make it positive.
+The resulting waveform is still bipolar. This is addressed by the deconvolution algorithm (BLR). This process is fairly complex, but in simple terms, it consists of a high-pass filter and a signal accumulator, which inverts the effect of the PMT electronics. For greater detail on the PMT electronics and the recovery algorithm see [2]_. Finally, the polarity of the waveform is inverted to make it positive.
 
 All the aforementioned steps are performed for each PMT separately. The output of this algorithm are the so-called *Corrected waveforms* (**CWF**\ s).
 
@@ -188,7 +188,8 @@ Finally all peaks are stored in a single **PMap** object. A **PMap** contains a 
 
 These data are stored in an hdf5 file in 5 separate tables under a common group ``PMAPS``. See the :ref:`output <Irene output>` section for a full description.
 
- .. [1] `The electronics of the energy plane of the NEXT-White detector <https://arxiv.org/pdf/1805.08636.pdf>`_
+ .. [1] The sensor index is the index in the corresponding database table (DataPMT or DataSiPM). In the case of PMTs, it coincides with the sensor ID.
+ .. [2] `The electronics of the energy plane of the NEXT-White detector <https://arxiv.org/pdf/1805.08636.pdf>`_
  .. [#] The waveform at this point is in ADC, therefore, they are integer values.
  .. [#] The noise in the PMT waveforms is gaussianly distributed around the baseline with a standard deviation :math:`\sigma_{PMT}`. Assuming similar values of :math:`\sigma_{PMT}`, the addition of the PMT waveforms results in a waveform with a standard deviation :math:`\sqrt{n_{PMT}}\ \sigma_{PMT}`. However, the signal increases linearly with the number of sensors and therefore the signal-to-noise ratio improves as :math:`\sqrt{n_{PMT}}`
  .. [#] These two thresholds together reduce the data stored by a factor ~100.
