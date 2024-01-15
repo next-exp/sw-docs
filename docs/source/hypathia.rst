@@ -37,6 +37,8 @@ Same as :doc:`irene`:
  * ``/Filters/empty_pmap``: flag for whether an event passed the empty pmap filter
  * ``/Filters/s12_indices``: flag for whether an event passed the s12 indices filter
 
+ .. [1] The sensor index is the index in the corresponding database table (DataPMT or DataSiPM). In the case of PMTs, it coincides with the sensor ID.
+
 .. _Hypathia config:
 
 Config
@@ -153,5 +155,4 @@ Computation of PMaps
 
 This procedure is identical to that performed by *Irene*. For more information read the sections :ref:`Baseline subtraction of SiPM waveforms`, :ref:`Waveform calibration` and :ref:`Peak finding and matching of PMT and SiPM signals` in the *Irene* documentation.
 
- .. [1] The sensor index is the index in the corresponding database table (DataPMT or DataSiPM). In the case of PMTs, it coincides with the sensor ID.
  .. [#] So far we haven't had the need to explore different SiPM sampling rates, but if this becomes a possibility  in the future it can always be included. If you would like to implement it, let us know!
