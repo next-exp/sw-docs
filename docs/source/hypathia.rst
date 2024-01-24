@@ -37,7 +37,7 @@ Same as :doc:`irene`:
  * ``/Filters/empty_pmap``: flag for whether an event passed the empty pmap filter
  * ``/Filters/s12_indices``: flag for whether an event passed the s12 indices filter
 
- .. [1] The sensor index is the index in the corresponding database table (DataPMT or DataSiPM). In the case of PMTs, it coincides with the sensor ID.
+ .. [1] The sensor index is the index in the corresponding database table (DataPMT or DataSiPM in load_db.py). In the case of PMTs, it coincides with the sensor ID.
 
 .. _Hypathia config:
 
