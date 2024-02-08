@@ -3,7 +3,7 @@ Trude
 
 *From Germanic, Gertrud, hypocorism: female friend.*
 
-This city produces the light and dark spectrum of SiPMs for dedicated calibration runs. This is achieved by selecting regions in the SiPM waveforms where LED pulses are expected and regions which end 2 microseconds before, respectively and integrating the content within each region. The regions before LED pulses should only contain electronics noise and dark counts giving the zero external light approximation whereas those in time with the pulses will contain one or more detected photoelectrons. The waveform integrals are split into two groups: those with expected photoelectrons (light) and those without expected photoelectrons (dark). Each group produces a different spectrum.
+This city produces the light and dark spectrum of SiPMs for dedicated calibration runs. This is achieved by selecting regions in the SiPM waveforms where LED pulses are expected and regions which end 2 microseconds before (this value is hardcoded to avoid the overlap with light pulses), respectively and integrating the content within each region. The regions before LED pulses should only contain electronics noise and dark counts giving the zero external light approximation whereas those in time with the pulses will contain one or more detected photoelectrons. The waveform integrals are split into two groups: those with expected photoelectrons (light) and those without expected photoelectrons (dark). Each group produces a different spectrum.
 
 .. _Trude input:
 
