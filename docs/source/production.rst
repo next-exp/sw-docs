@@ -45,24 +45,24 @@ For the different productions the corresponding latest **tags** are:
    * - **0nubb**
      - ``NEXT_v1_05_02_NEXUS_v5_07_00_bkg_v9``
    * - **Xe2nu**
-     - ``NEXT_v1_05_02_NEXUS_v5_07_10_bkg_v9``
+     - ``NEXT_v1_05_02_NEXUS_v5_07_01_bkg_v9``
    * - **Calibration**
-     - ``NEXT_v1_05_02_NEXUS_v5_07_10_bkg_v9``
+     - ``NEXT_v1_05_02_NEXUS_v5_07_01_bkg_v9``
    * - **Background**
-     - ``NEXT_v1_05_02_NEXUS_v5_07_10_bkg_v9``
+     - ``NEXT_v1_05_02_NEXUS_v5_07_01_bkg_v9``
 
 
 **Output hdf5** files together with the corresponding config files used to run each of the cities can be found there. E.g. the background production of deconvoluted hits (``cdst``) can be found in
 
 .. code-block:: text
 
-  /lustre/neu/data4/NEXT/NEXTNEW/MC/Background/NEXT_v1_05_02_NEXUS_v5_07_10_bkg_v9/cdst/output
+  /lustre/neu/data4/NEXT/NEXTNEW/MC/Background/NEXT_v1_05_02_NEXUS_v5_07_01_bkg_v9/cdst/output
 
 Where the following **config** files have been used,
 
 .. code-block:: text
 
-  /lustre/neu/data4/NEXT/NEXTNEW/MC/Background/NEXT_v1_05_02_NEXUS_v5_07_10_bkg_v9/cdst/conf
+  /lustre/neu/data4/NEXT/NEXTNEW/MC/Background/NEXT_v1_05_02_NEXUS_v5_07_01_bkg_v9/cdst/conf
 
 
 .. note::
