@@ -87,7 +87,7 @@ Selection of integration limits
 
 Given the config parameters, the first step in this city would be to select the dark and light bins to compute the dark and light spectra.
 
-The light bins will be centered in the light pulse(s) and the dark bins are chosen as an interval of ``integral_width`` bins which ends 2 microseconds before the light pulse begins, as shown here:
+The light bins will be centered in the light pulse(s) and the dark bins are chosen as an interval of ``integral_width`` bins which ends 2 :math:`\mu s` before the light pulse begins, as shown here:
 
  .. image:: images/trude/wf_intervals.png
    :width: 850
