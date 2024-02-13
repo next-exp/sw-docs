@@ -116,4 +116,4 @@ A **PSF** value is by construction an average of normalized charges. Therefore, 
  .. [#] While it is common to generate separate **PSF**\ s for different ranges of z, so far we haven't assessed the performance of using separate **PSF**\ s for different ranges of (x, y).
  .. [#] Technically, they do not contain entries with charge below a certain configurable threshold. This value should be reasonably low to describe the tails of the **PSF** distribution accurately.
 
- .. [#] This allows to process each file in a separate core of a computer cluster and merge the files later. This is much faster than running them sequentally.
+ .. [#] This allows to process each file in a separate core of a computer cluster and merge the files later. This is much faster than running them sequentally. This tool will eventually be included in IC, but it's hosted temporarily in a `github gist <https://gist.github.com/gonzaponte/5af3ff1176eba8b16d0e5e45c6bc59ed>`_.
