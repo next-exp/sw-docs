@@ -83,9 +83,9 @@ Eutropia performs a number of data transformations in order to obtain the **PSF*
 Prepare data slices
 :::::::::::::::::::
 
-First, the events are divided into z-slices according to the parameters `zbins`, `xsectors` and `ysectors`. Each of this sectors of `x`, `y` and `z` will yield a separate **PSF** [#]_. These sectors can be identified in the output data by their central values (columns `x`, `y` and `z` of the output table). The procedure that follows is then applied to each of this datasets independently.
+First, the events are divided into z-slices according to the parameters `zbins`, `xsectors` and `ysectors`. Each of these sectors of `x`, `y` and `z` will yield a separate **PSF** [#]_. These sectors can be identified in the output data by their central values (columns `x`, `y` and `z` of the output table). The procedure that follows is then applied to each of these datasets independently.
 
-The hits comming from previous stages of the reconstruction chain do not contain entries with null charge [#]_. However, SiPMs with null charge should also be considered as part of the light response map. Thus, in this step, the missing hits are added to the dataset. Next, the charge distribution is normalized to 1 for event independently. Finally, the relative coordinates (:math:`x_r` and :math:`y_r`) are computed by subtracting the barycenter from each SiPM position.
+The hits coming from previous stages of the reconstruction chain do not contain entries with null charge [#]_. However, SiPMs with null charge should also be considered as part of the light response map. Thus, in this step, the missing hits are added to the dataset. Next, the charge distribution is normalized to 1 for each event independently. Finally, the relative coordinates (:math:`x_r` and :math:`y_r`) are computed by subtracting the barycenter from each SiPM position.
 
 
 .. _Compute the PSFs:
@@ -93,7 +93,7 @@ The hits comming from previous stages of the reconstruction chain do not contain
 Compute the **PSF**\ s
 ::::::::::::::::::::::
 
-The charge distribution for all events is then histogrammed in the coordinates :math:`x_r` and :math:`y_r`. The binning of this histograms is determined by the parameters `xrange`, `yrange`, and `bin_size_xy`. The **PSF** factor in each bin is defined as the value of the bin normalized to the number of events in the bin, i.e. the average charge observed for a specific range of values of :math:`x_r` and :math:`y_r`. An example of such histogram is shown below.
+The charge distribution for all events is then histogrammed in the coordinates :math:`x_r` and :math:`y_r`. The binning of these histograms is determined by the parameters `xrange`, `yrange`, and `bin_size_xy`. The **PSF** factor in each bin is defined as the value of the bin normalized to the number of events in the bin, i.e. the average charge observed for a specific range of values of :math:`x_r` and :math:`y_r`. An example of such histogram is shown below.
 
 .. image:: images/eutropia/psf_2d.png
   :width: 850
@@ -108,7 +108,7 @@ A 1d slice of this histogram (for y=0) is represented below for different z-slic
 Combine **PSF**\ s
 ::::::::::::::::::
 
-In order to produce an accurate **PSF**, a large number of events is needed. At the same time, it is neither possible nor efficient to process large number of events at once. The approach is thus to produce **PSF**\ s with fewer events and merge them afterwards. This option is available both within the city and externally as a separate tool. Because the city accepts many input files, it will run the **PSF** generation for each file independently and merge them later. The external tool follows the exact same methodology [#]_.
+In order to produce an accurate **PSF**, a large number of events is needed. At the same time, it is neither possible nor efficient to process a large number of events at once. The approach is thus to produce **PSF**\ s with fewer events and merge them afterwards. This option is available both within the city and externally as a separate tool. Because the city accepts many input files, it will run the **PSF** generation for each file independently and merge them later. The external tool follows the exact same methodology [#]_.
 
 A **PSF** value is by construction an average of normalized charges. Therefore, an arbitrary number of **PSF** entries with values :math:`p_k` produced with :math:`n_k` events can be combined into a single entry with value :math:`\frac{\Sigma p_k \cdot n_k}{\Sigma n_k}` and :math:`\Sigma n_k` events. Each bin of the **PSF** is combined with the corresponding bin of all **PSF**\ s available.
 
