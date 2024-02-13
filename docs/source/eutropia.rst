@@ -17,9 +17,9 @@ The **PSF** is later used by :doc:`beersheba` to reverse the effects of electron
 Input
 -----
 
- * ``/Run/events``
- * ``/Run/runInfo``
- * ``/RECO/Events``
+ * ``/Run/events``: Table containing the event number and timestamps.
+ * ``/Run/runInfo``: Table containing the run number for each event.
+ * ``/RECO/Events``: Table containing the hits produced by :doc:`penthesilea`.
 
 .. _Eutropia output:
 
