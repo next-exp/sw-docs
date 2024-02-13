@@ -232,7 +232,7 @@ are composed of three factors:
   x,y
 - lifetime: accounts for the loss of electrons (and therefore signal)
   due to electron attachment during the drift
-- temporal: chages in the previous two corrections over time. This is
+- temporal: changes in the previous two corrections over time. This is
   applied only in data, as MC has no temporal dependence.
 
 The geometrical correction is a 2d-function: given the hit position in
@@ -246,6 +246,6 @@ that of z=0.
 
 The temporal correction is a 1d-function: given the time since the
 start of the run, we estimate variations in the geometrical and
-lifetime corrections that normalize the responso to that of the
+lifetime corrections that normalize the response to that of the
 beginning of the run. This correction is only applied if
 ``apply_temp`` is set to ``True``.
