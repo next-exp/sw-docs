@@ -8,7 +8,7 @@ The Point Spread Function (**PSF**) is a function that describes the pattern of 
 Since it is not practical to measure the **PSF** with high energy single electrons, :math:`^{83m}Kr` events are used. These produce highly localized energy depositions (the closest we can achieve to a true point-like source) with fixed energy.
 
 This city generates **PSF**\ s from **Hits** produced with a specific configuration of :doc:`penthesilea` [#]_.
-The **PSF** is obtained by mapping the SiPM light collection relative to the barycenter (center of gravity of SiPM response) for pointlike events collapsed along the drift coordinate. The distribution obtained is averaged over a large number of events to reduce uncertainties. The **PSF** can be obtained for different sections of the active volume independently.
+The **PSF** is obtained by mapping the SiPM light collection relative to the barycenter (center of gravity of SiPM response) for pointlike events collapsed along the drift coordinate. The distribution obtained is discretized in bins and averaged over a large number of events to reduce uncertainties. The **PSF** can be obtained for different sections of the active volume independently.
 
 The **PSF** is later used by :doc:`beersheba` to reverse the effects of electron diffusion and light emission and obtain the original charge deposition.
 
@@ -28,7 +28,7 @@ Output
 
  * ``/PSF/PSFs``: Table containing all the **PSF**\ s generated. Columns: xr, yr, zr, x, y, z, factor, nevt.
 
-The columns xr, yr, and zr indicate the central value of the **PSF** bin.
+The columns xr, yr, and zr indicate the central value of the **PSF** bin in the relative coordinates.
 The columns x, y, and z indicate the central value of the overall sector in which the **PSF** is generated.
 The columns factor and nevt are the **PSF** value and the number of events used to generate that number.
 
