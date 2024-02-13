@@ -92,6 +92,8 @@ The light bins will be centered in the light pulse(s) and the dark bins are chos
  .. image:: images/trude/wf_intervals.png
    :width: 850
 
+Typically, the limits are set to ``min_bin = -49.5`` and ``max_bin = 4000.5`` ADCs since it is the range of the waveform window.
+
 .. _SiPM waveforms baseline subtraction:
 
 SiPM waveforms baseline subtraction
@@ -108,4 +110,7 @@ The last step would be the integration of the dark and light bins in order to ob
 
 For each of the regions it sums all the :math:`ADCs` in the intervals and adds an entry to the histogram. It repeats this for each waveform of the same sensor.
 
-The end result will be a h5 file with ``/HIST/sipm_dark`` and ``/HIST/sipm_spe`` with a table per time bin and an entry per sensor.
+The end result will be a h5 file with ``/HIST/sipm_dark`` and ``/HIST/sipm_spe`` with a table per time bin and an entry per sensor. In the following plot you will find a light spectrum for a given channel.
+
+.. image:: images/trude/spectrum.png
+  :width: 850
