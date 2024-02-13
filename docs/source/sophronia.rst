@@ -62,7 +62,7 @@ Besides the :ref:`Common arguments to every city`, *Sophronia* has the following
 
    * - ``drift_v``
      - ``float``
-     - Drift velocity. Used to make calculate the z poisition from the drift time.
+     - Drift velocity. Used to calculate the z position from the drift time.
 
    * - ``s1_params``
      - ``dict``
