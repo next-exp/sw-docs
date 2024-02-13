@@ -11,8 +11,8 @@ dimensional coordinates with an associated energy (PMT signal) and
 charge (SiPM signal). The city contains a peak/event filter, which can
 be configured to find events with a certain number of S1/S2 signals
 that satisfy certain properties. Currently, the city is designed to
-accept only 1 S1 signal and will take the first S1 signal even if the
-filter is configured to take more than 1 S1. Furthermore, hits can be
+accept only 1 S1 signal. If the configuration allows for more than one
+S1, the first one will be used to estimate z. Furthermore, hits can be
 optionally corrected for geometrical and lifetime effects. Besides
 hits, the city also stores the global (x, y) position of each S2
 signal.  The tasks performed are:
