@@ -5,7 +5,7 @@ Eutropia
 
 The Point Spread Function (**PSF**) is a function that describes the pattern of light produced by a point-like source. In the context of NEXT, the **PSF** describes the average SiPM responses produced when a single electron crosses the EL gap. In practice, this function is replaced by a discretize mapping of the light response as a function of the relative transverse coordinates (:math:`x_r`, :math:`y_r`).
 
-Since it is not practical to measure the **PSF** with single electrons, :math:`^{83m}Kr` events are used. These produce highly localized energy depositions (the closest we can achieve to a true point-like source) with fixed energy.
+Since it is not practical to measure the **PSF** with high energy single electrons, :math:`^{83m}Kr` events are used. These produce highly localized energy depositions (the closest we can achieve to a true point-like source) with fixed energy.
 
 This city generates **PSF**\ s from **Hits** produced with a specific configuration of :doc:`penthesilea` [#]_.
 The **PSF** is obtained by mapping the SiPM light collection relative to the barycenter (center of gravity of SiPM response) for pointlike events collapsed along the drift coordinate. The distribution obtained is averaged over a large number of events to reduce uncertainties. The **PSF** can be obtained for different sections of the active volume independently.
