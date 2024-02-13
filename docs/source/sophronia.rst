@@ -216,8 +216,8 @@ proportionally to the charge of each hit. The parameter ``same_peak``
 controls whether only slices from the same peak are taken into account
 or if other peaks might also be taken into consideration.
 
-.. [3] Actually, the algorithm associates an unphysical number to the
-       position (0) and the charge (NN = -99999).
+.. [3] Actually, the algorithm associates an unphysical charge (NN =
+       -999999) and a position :math:`x = y = 0`.
 
 .. _Hit correction:
 
