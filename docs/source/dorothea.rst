@@ -3,11 +3,11 @@ Dorothea
 
 *From ancient Greek, Δωροθέα: gift of God.*
 
-The purpose of *Dorothea* is to process the **PMaps** (outcome of *Irene*) and
+The purpose of *Dorothea* is to process the **PMaps** (output of *Irene*) and
 reconstruct point-like events. Therefore, all the information included in the S2 peaks
-is collapsed into a single x, y, and z deposition with a given E (the area under the S2 peak).
+is collapsed into a single x, y, z point with summarized S1 and S2 properties.
 Additionally, some parameters regarding the S1 and S2 peaks are provided as a tool for further selections.
-Last, it is worth noting that for events where more than S1 or S2 (or both) are
+Last, it is worth noting that for events where more than one S1 or S2 (or both) are
 present in the event, a point is reconstructed for each possible combination.
 
 
@@ -33,7 +33,7 @@ Output
  * ``/Filters/s12_selector``: flag for whether an event passed the S1 and S2 selections
 
 
-.. _Irene config:
+.. _Dorothea config:
 
 Config
 ------
@@ -62,7 +62,7 @@ Besides the :ref:`Common arguments to every city`, *Dorothea* has the following 
 
    * - ``s1|s2_wmin|wmax``
      - ``float``
-     - Lower/upper limits to the with (time over threshold) of each S1/S2 peak (ns).
+     - Lower/upper limits to the width (time over threshold) of each S1/S2 peak.
 
    * - ``s1|s2_hmin|hmax``
      - ``float``
@@ -72,15 +72,15 @@ Besides the :ref:`Common arguments to every city`, *Dorothea* has the following 
      - ``float``
      - Threshold for each bin within each S1/S2 to be considered for the energy computation (pes).
 
-   * - ``s2_nsipmmin|nsipmminax``
+   * - ``s2_nsipmmin|nsipmmax``
      - ``int``
      - Lower/upper limits to the number of SiPM sensors with a recorded signal.
 
    * - ``global_reco_params``
      - ``dict``
-     - Set of parameters for the corona algorithm. Since the desired one is the barycenter reconstruction, the only mandatory elements in the dictionary are:
+     - Set of parameters for the corona algorithm. Since the desired one is the barycenter reconstruction, the only required elements in the dictionary are:
 
-        * ``Qthr``: charge threshold, ignore all SiPMs with less than Qthr pes.
+        * ``Qthr``: time-integrated charge threshold, ignore all SiPMs with less than Qthr pes.
         * ``lm_radius=-1``: sets the algorithm to be the barycenter.
 
 
@@ -89,13 +89,19 @@ Besides the :ref:`Common arguments to every city`, *Dorothea* has the following 
 Workflow
 --------
 
-The workflow for *Dorothea* is straightforward. After a filter removing all the peaks and events not satisfying the limits provided. Then, it proceeds to perform the point-like reconstruction. Basically, this algorithm collapses the whole S2 information into a single point:
+The workflow for *Dorothea* starts with a filter that removes all the peaks and events not satisfying the limits provided via configuration file. Then, it proceeds to perform the point-like reconstruction. This algorithm collapses the whole S2 information into a single point, which has summarized information about S1 and S2, such as:
 
- * The *x* and *y* position are determined via a charge-weighted average. This makes use of the so-called ``corona`` `algorithm <https://github.com/next-exp/IC/blob/8be75c65aa2e452eae4ce2e51494a58eab18a0d4/invisible_cities/reco/xy_algorithms.py#L61>`_, with the proper configuration to apply the barycenter computation.
+ * The *x* and *y* position are determined via a charge-weighted average (a.k.a. center of gravity or barycenter). This makes use of the so-called ``corona`` `algorithm <https://github.com/next-exp/IC/blob/8be75c65aa2e452eae4ce2e51494a58eab18a0d4/invisible_cities/reco/xy_algorithms.py#L61>`_, with the proper configuration to apply the barycenter computation.
  * The *z* coordinate is derived from the time difference between the maximum amplitude of the S1 and S2 considered, corrected by the drift velocity.
- * The energy is the integral under the S2 of those bins above the threshold.
+ * The energy is the integral under the PMT S2 peak using the bins above the threshold.
+ * The charge is the integral under the SiPM S2 peak.
 
- Besides, the reconstruction yields a set of useful values regarding the peaks that are also provided in the final table:
+
+.. _output:
+
+Output table
+------------
+ The output table contains a set of peak features:
 
  .. list-table::
     :widths: 50 40 120
@@ -130,7 +136,7 @@ The workflow for *Dorothea* is straightforward. After a filter removing all the 
 
     * - ``S1w``
       - ``float``
-      - S1 time over threshold (ns).
+      - S1 time over threshold (mus).
 
     * - ``s1h``
       - ``float``
@@ -203,3 +209,5 @@ The workflow for *Dorothea* is straightforward. After a filter removing all the 
     * - ``Yrms``
       - ``float``
       -  Standard deviation of the PMT  signal in the y coordinate (mm).
+
+ As a final remark, notice that the peak height, width, time and energy come from the PMTs, while the charge (S2q) and the xy position come from the SiPMs.
