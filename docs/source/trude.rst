@@ -45,7 +45,7 @@ Besides the :ref:`Common arguments to every city`, *Trude* has the following arg
 
    * - ``bin_width``
      - ``int``
-     - Width of the bins for the spectrum.
+     - Width of the bins for the spectrum in :math:`\mu s`.
 
    * - ``proc_mode``
      - ``string``
