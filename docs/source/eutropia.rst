@@ -60,7 +60,7 @@ Besides the :ref:`Common arguments to every city`, *Eutropia* has the following 
 
    * - ``xsectors | ysectors``
      - ``Sequence[float]``
-     - Binning in x | y. A **PSF** will be generated for each (x, y) bin.
+     - Bin edges of the PSF sectors in x | y. A **PSF** will be generated for each (x, y) bin.
 
    * - ``bin_size_xy``
      - ``float``
