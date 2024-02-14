@@ -29,7 +29,7 @@ Input
 Output
 ------
 
- * ``/DST/Events``: summary of the reconstructed events and their main properties. Each row represents one combination of an S1 and a S2 identified under the same ``event`` but with its corresponding  ``s1_peak`` and ``s2_peak`` identifier. The full list and description of the parameters in the table may be found later.
+ * ``/DST/Events``: summary of the reconstructed events and their main properties. Each row represents one combination of an S1 and a S2 identified under the same ``event`` but with its corresponding  ``s1_peak`` and ``s2_peak`` identifier. The full list and description of the parameters in the table can be found :ref:`here  <output>`.
  * ``/Filters/s12_selector``: flag for whether an event passed the S1 and S2 selections
 
 
@@ -89,12 +89,12 @@ Besides the :ref:`Common arguments to every city`, *Dorothea* has the following 
 Workflow
 --------
 
-The workflow for *Dorothea* starts with a filter that removes all the peaks and events not satisfying the limits provided via configuration file. Then, it proceeds to perform the point-like reconstruction. This algorithm collapses the whole S2 information into a single point, which has summarized information about S1 and S2, such as:
+The workflow for *Dorothea* starts with a filter that removes the peaks not satisfying the limits provided via configuration file. The event is selected if and only if the number of remaining peaks falls in the range [s1_nmin, s1_nmax] and [s2_nmin, s2_nmax]. Then, it proceeds to perform the point-like reconstruction. This algorithm collapses the whole S2 information into a single point, which has summarized information about S1 and S2, such as:
 
  * The *x* and *y* position are determined via a charge-weighted average (a.k.a. center of gravity or barycenter). This makes use of the so-called ``corona`` `algorithm <https://github.com/next-exp/IC/blob/8be75c65aa2e452eae4ce2e51494a58eab18a0d4/invisible_cities/reco/xy_algorithms.py#L61>`_, with the proper configuration to apply the barycenter computation.
  * The *z* coordinate is derived from the time difference between the maximum amplitude of the S1 and S2 considered, corrected by the drift velocity.
  * The energy is the integral under the PMT S2 peak using the bins above the threshold.
- * The charge is the integral under the SiPM S2 peak.
+ * The charge is the integral under the SiPM S2 peak. A previous threshold has already been applied in the Irene city.
 
 
 .. _output:
