@@ -129,7 +129,7 @@ Peak filtering
 
 :doc:`irene` finds peaks in the waveform with general characteristics,
 but does not impose strong requirements on them. *Sophronia*, however,
-can be more specific and select S1 and S2 signals based on the
+can be more specific and selects S1 and S2 signals based on the
 following peak properties: width, height, and integral. These
 quantities are calculated based on a (low) threshold applied to the
 PMT waveform of the peak. For S2 signals, the number of SiPMs with
@@ -162,7 +162,7 @@ documentation for more details.
 Resampling and hit creation
 :::::::::::::::::::::::::::
 
-In numerous ocasions, the energy deposition in a 1-:math:`\mu`\ s
+In numerous occasions, the energy deposition in a 1-:math:`\mu`\ s
 sample is not enough to produce a significant signal in the SiPMs,
 which results in poor reconstruction. It is therefore useful to be
 able to resample the waveforms and increase the sampling period (lower
