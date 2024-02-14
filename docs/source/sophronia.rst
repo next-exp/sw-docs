@@ -40,8 +40,8 @@ Input
 Output
 ------
 
-  * ``/DST/Events``: summary of the S1 and S2 information of the reconstructed events. See :doc:`dorothea` for more details.
-  * ``/RECO/Events``: list of hit data for each event.
+  * ``/DST/Events``: summary of the S1 and S2 information of the reconstructed events. See :doc:`dorothea` for more details
+  * ``/RECO/Events``: list of hit data for each event
   * ``/Filters/s12_selector``: flag for whether an event passed the S1 and S2 selections
   * ``/Filters/valid_hit``: flag for whether an event passed the empty pmap filter
 
@@ -62,7 +62,7 @@ Besides the :ref:`Common arguments to every city`, *Sophronia* has the following
 
    * - ``drift_v``
      - ``float``
-     - Drift velocity. Used to calculate the z position from the drift time.
+     - Drift velocity. Used to calculate the z position from the drift time
 
    * - ``s1_params``
      - ``dict``
