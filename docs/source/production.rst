@@ -45,30 +45,30 @@ For the different productions the corresponding latest **tags** are:
    * - **0nubb**
      - ``NEXT_v1_05_02_NEXUS_v5_07_00_bkg_v9``
    * - **Xe2nu**
-     - ``NEXT_v1_05_02_NEXUS_v5_07_10_bkg_v9``
+     - ``NEXT_v1_05_02_NEXUS_v5_07_01_bkg_v9``
    * - **Calibration**
-     - ``NEXT_v1_05_02_NEXUS_v5_07_10_bkg_v9``
+     - ``NEXT_v1_05_02_NEXUS_v5_07_01_bkg_v9``
    * - **Background**
-     - ``NEXT_v1_05_02_NEXUS_v5_07_10_bkg_v9``
+     - ``NEXT_v1_05_02_NEXUS_v5_07_01_bkg_v9``
 
 
 **Output hdf5** files together with the corresponding config files used to run each of the cities can be found there. E.g. the background production of deconvoluted hits (``cdst``) can be found in
 
 .. code-block:: text
 
-  /lustre/neu/data4/NEXT/NEXTNEW/MC/Background/NEXT_v1_05_02_NEXUS_v5_07_10_bkg_v9/cdst/output
+  /lustre/neu/data4/NEXT/NEXTNEW/MC/Background/NEXT_v1_05_02_NEXUS_v5_07_01_bkg_v9/cdst/output
 
 Where the following **config** files have been used,
 
 .. code-block:: text
 
-  /lustre/neu/data4/NEXT/NEXTNEW/MC/Background/NEXT_v1_05_02_NEXUS_v5_07_10_bkg_v9/cdst/conf
+  /lustre/neu/data4/NEXT/NEXTNEW/MC/Background/NEXT_v1_05_02_NEXUS_v5_07_01_bkg_v9/cdst/conf
 
 
 .. note::
   It is important to stress some aspects regarding the production:
     * The production is based on the v9 version of the background model. The details of the model can be found `here <https://next.ific.uv.es/cgi-bin/DocDB/private/ShowDocument?docid=182>`_.
-    * The two versions of ``nexus`` are completelly analogous but for an update concerning the calibration ports.
+    * The two versions of ``nexus`` (v5_07_00 and v5_07_01) are identical but for an update concerning the calibration ports.
     * The detsim package refers to the ``c++`` and ``art`` version. The repository may be found `here <https://next.ific.uv.es:8888/nextsw/detsim>`_.
     * The EventMixer package refers to the ``gate`` version. The repository may be found `here <https://next.ific.uv.es:8888/nextsw/PyToNE/blob/master/PyToNE/EventMixer.py>`_.
     * The IC package is considered in different versions since the goal is to match the official Canfranc production for data (``v1.1.0``). However, several updates implied the usage of more recent versions, even a custom one before the officialization of ``ìsaura``.
