@@ -77,7 +77,7 @@ Waveform calibration
 
 In this step, the waveform in :math:`ADCs`` in converted to photoelectrons (:math:`pes`). For this, the gains are loaded from the NEXT database.
 
-This step is optional when subtracting the baseline the using the mode of the waveform.
+This step is optional when subtracting the baseline using the mode of the waveform.
 
 
 .. _Waveform slicing:
