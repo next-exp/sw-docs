@@ -82,11 +82,11 @@ Besides the :ref:`Common arguments to every city`, *Sophronia* has the following
 
    * - ``rebin``
      - ``int``
-     - Specifies the level of resampling or grouping of consecutive samples for reconstruction. Must be :math:`\geq` 1
+     - Level of resampling or grouping of consecutive samples for reconstruction. Must be :math:`\geq` 1
 
    * - ``rebin_method``
      - ``RebinMethod``
-     - Which resampling method to use (usually stride)
+     - Resampling method (usually stride)
 
    * - ``q_thr``
      - ``float``
