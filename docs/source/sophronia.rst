@@ -29,11 +29,11 @@ signal.  The tasks performed are:
 Input
 -----
 
- * ``/Run/events``
- * ``/Run/runInfo``
- * ``/PMAPS/S1``
- * ``/PMAPS/S2``
- * ``/PMAPS/S2Si``
+ * ``/Run/events``: Table containing the event number and timestamps
+ * ``/Run/runInfo``: Table containing the run number for each event
+ * ``/PMAPS/S1``: Table containing S1 pmt-summed peak information
+ * ``/PMAPS/S2``: Table containing the S2 pmt-summed peak information
+ * ``/PMAPS/S2Si``: Table containing the S2 sipm peak information
 
 .. _Sophronia output:
 
