@@ -22,7 +22,7 @@ signal.  The tasks performed are:
     - Compute a set of hits for each slice in the resampled S2 signal.
     - If there are more than one hit per slice, share the energy
       according to the charge recorded in the tracking plane.
-    - If correction maps are provided, applies corrections to hits.
+    - If correction maps are provided, apply corrections to hits.
 
 .. _Sophronia input:
 
