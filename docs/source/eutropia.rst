@@ -1,8 +1,7 @@
 Eutropia
 ========
 
-*From ancient Greek, ευτροπία: docile, of good manners, versatile,
- variable.*
+*From ancient Greek, ευτροπία: docile, of good manners, versatile, variable.*
 
 The Point Spread Function (**PSF**) is a function that describes the
 pattern of light produced by a point-like source. In the context of
