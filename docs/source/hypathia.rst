@@ -30,12 +30,14 @@ Output
 Same as :doc:`irene`:
 
  * ``/PMAPS/S1``: the sliced PMT-summed waveform for each S1 peak. 4 columns: event number, peak number, time (:math:`\mu`\ s) and amplitude (pes)
- * ``/PMAPS/S1Pmt``: the sliced individual PMT waveforms for each S1 peak. 4 columns: event number, peak number, pmt id and amplitude (pes)
+ * ``/PMAPS/S1Pmt``: the sliced individual PMT waveforms for each S1 peak. 4 columns: event number, peak number, pmt index (`npmt`) [1]_ and amplitude (pes)
  * ``/PMAPS/S2``: the sliced PMT-summed waveform for each S2 peak. 4 columns: event number, peak number, time (:math:`\mu`\ s) and amplitude (pes)
- * ``/PMAPS/S2Pmt``: the sliced individual PMT waveforms for each S2 peak. 4 columns: event number, peak number, pmt id and amplitude (pes)
- * ``/PMAPS/S2Si``: the sliced individual SiPM waveforms for each S2 peak. 4 columns: event number, peak number, sipm id and amplitude (pes)
+ * ``/PMAPS/S2Pmt``: the sliced individual PMT waveforms for each S2 peak. 4 columns: event number, peak number, pmt index (`npmt`) [1]_ and amplitude (pes)
+ * ``/PMAPS/S2Si``: the sliced individual SiPM waveforms for each S2 peak. 4 columns: event number, peak number, sipm index (`nsipm`) [1]_ and amplitude (pes)
  * ``/Filters/empty_pmap``: flag for whether an event passed the empty pmap filter
  * ``/Filters/s12_indices``: flag for whether an event passed the s12 indices filter
+
+ .. [1] The sensor index is the index in the corresponding database table (DataPMT or DataSiPM in load_db.py). In the case of PMTs, it coincides with the sensor ID.
 
 .. _Hypathia config:
 
