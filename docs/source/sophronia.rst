@@ -141,8 +141,8 @@ control this filtering are provided in the parameters
 - ``{s1,s2}_h{min,max}``: minimum/maximum height of S1/S2 peaks in a 1-:math:`\mu`\ s sample
 - ``{s1,s2}_e{min,max}``: minimum/maximum integral of S1/S2 peaks
 - ``{s1,s2}_ethr``: threshold applied to the PMT-summed waveform to compute the quantities above
-- ``{s1,s2}_n{min,max}``: minimum/maximum number of S1/S2 peaks that satisfy *all* of the criteria above for given event
 - ``s2_nsipm{min,max}``: minimum/maximum number of SiPMs with signal in an S2 peak
+- ``{s1,s2}_n{min,max}``: minimum/maximum number of S1/S2 peaks that satisfy *all* of the criteria above for given event
 
 .. [1] Bear in mind that :doc:`irene` requires a minimum amount of
        charge per peak and per slice for the SiPM to be considered.
