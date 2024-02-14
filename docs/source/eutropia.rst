@@ -179,8 +179,12 @@ exact same methodology [#]_.
 A **PSF** value is by construction an average of normalized
 charges. Therefore, an arbitrary number of **PSF** entries with values
 :math:`f_k` produced with :math:`n_k` events can be combined into a
-single entry with value :math:`\frac{\Sigma f_k \cdot n_k}{\Sigma
-n_k}` and :math:`\Sigma n_k` events.
+single entry with :math:`\sum_k n_k` events and value
+
+.. math::
+
+   \frac{\sum_k f_k \cdot n_k}{\sum_k n_k}
+
 
 .. [#] The `rebin` parameter in :doc:`penthesilea` must be set to a
        large number (e.g. 10000) in order to obtain **Hits** for
