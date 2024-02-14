@@ -14,7 +14,7 @@ r`, :math:`f`) points, where :math:`f` is the average fraction of
 detected light at a distance :math:`\Delta r`.
 
 To obtain the **PSF**, we use :math:`^{83m}Kr` events, due to their
-point-like nature. High enregy electrons are not suitable for this
+point-like nature. High energy electrons are not suitable for this
 task, due to their complex topology. :math:`^{83m}Kr` events produce
 highly localized energy depositions (the closest we can achieve to a
 true point-like source) with fixed energy.
@@ -24,7 +24,7 @@ electron diffusion as they drift: it is narrower for short drift and
 wider for long drifts. Therefore, we do not produce a single PSF, but
 a collection of them, for different slices in z. The city has also the
 possibility of producing **PSF**\ s in different (x,y) sectors of the
-chamber to account for deffects in the Tracking Plane.
+chamber to account for defects in the Tracking Plane.
 
 **PSF**\ s are generated from **Hits** produced with a specific
 :doc:`penthesilea` [#]_ configuration. For each z-slice and
@@ -131,7 +131,7 @@ these datasets independently.
 The hits coming from :doc:`penthesilea` do not contain entries with
 null charge [#]_. However, SiPMs with null charge should also be
 considered as part of the light response map. Thus, in this step, the
-missing hits are added to the dataset will zero charge. Next, the
+missing hits are added to the dataset with zero charge. Next, the
 charge distribution is normalized to 1 for each event. Finally, the
 relative coordinates (:math:`\Delta x` and :math:`\Delta y`) are
 computed by subtracting the barycenter from each SiPM position.
