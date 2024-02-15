@@ -33,9 +33,7 @@ Important information about NEXUS code:
 Tags
 ------------
 A list of the different NEXUS `tags <https://github.com/next-exp/nexus/wiki/Tags>`_ can be found on the Wiki.
-Starting from nexus tag v7_00_00, Geant4 version >= 11.0 is needed:
-
-For previous nexus tags,  ROOT >= 6.26 must be used.
+Starting from nexus tag v7_00_00, Geant4 version >= 11.0 is needed; for previous nexus tags,  ROOT >= 6.26 must be used.
 
  .. note::
    Geant4 version 10.7.x cannot be used with any nexus tag or even commit. For previous tags, Geant4.10.6 or Geant4.10.5 were used.
