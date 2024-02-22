@@ -36,10 +36,10 @@ Output
  * ``/Run/runInfo``: run info table
  * ``/Run/events``: event info table
  * ``/Run/eventMap``: table that connects event id and nexus event numbering
- * ``/RD/pmtrd/``: time ordered signal amplitude of the PMTs in true
+ * ``/pmtrd``: time ordered signal amplitude of the PMTs in true
    photoelectrons (PMT buffers). array with shape: (number of events,
    number of PMTs, length of PMT waveform)
- * ``/RD/sipmrd/``: time ordered signal amplitude of the SiPMs in true
+ * ``/sipmrd``: time ordered signal amplitude of the SiPMs in true
    photoelectrons (SiPM buffers). array with shape: (number of events,
    number of SiPMs, length of SiPM waveform).
 
