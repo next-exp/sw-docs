@@ -24,9 +24,9 @@ electronics modeling can be applied with :doc:`hypathia` to transform
 Input
 -----
 
- * ``/MC/hits``
- * ``/MC/particles``
- * ``/MC/sns_response``
+ * ``/MC/hits``: energy depositions in the "ACTIVE" and "BUFFER" volumes
+ * ``/MC/particles``: particle tracking information
+ * ``/MC/sns_response``: photon counts in photosensors
 
 .. _Buffy output:
 
