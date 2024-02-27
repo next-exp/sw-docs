@@ -10,7 +10,7 @@ This city produces the spectrum of dark noise of the SiPMs. This is achieved by 
 Input
 -----
 
- * ``/Run/events``:list of the ``evt_number`` and the correspondent ``timestamp``.
+ * ``/Run/events``: list of the ``evt_number`` and the correspondent ``timestamp``.
  * ``/Run/runInfo``: stores the ``run_number``.
  * ``/RD/sipmrwf``: stores the raw waveform itself. It indicates the number of :math:`ADCs` per time bin for each event and SiPM.
 
@@ -75,7 +75,7 @@ Berenice has two options for the baseline substraction: using the median or the 
 Waveform calibration
 ::::::::::::::::::::
 
-In this step, the waveform in :math:`ADCs`` in converted to photoelectrons (:math:`pes`). For this, the gains are loaded from the NEXT database.
+In this step, the waveform in :math:`ADCs` in converted to photoelectrons (:math:`pes`). For this, the gains are loaded from the NEXT database.
 
 This step is optional when subtracting the baseline using the mode of the waveform.
 
@@ -96,4 +96,4 @@ According to the selected ``min_bin``, ``max_bin`` y ``bin_width`` configuration
 Histogram the result
 ::::::::::::::::::::
 
-For each slice performed on the waveform in the previous section, it sums all the :math:`ADCs`` in each slice and adds an entry to the histogram. It repeats this for each waveform of the same sensor.
+For each slice performed on the waveform in the previous section, it sums all the :math:`ADCs` in each slice and adds an entry to the histogram. It repeats this for each waveform of the same sensor.
