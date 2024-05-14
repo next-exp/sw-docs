@@ -7,7 +7,7 @@ It is also important to remark that during data acquisition, three different tri
 
  * *Trigger 1*: to select low energy events, i.e. Kr events.
  * *Trigger 2*: to select high energy events, e.g. Tl events, bb events, etc.
- * *Trigger 0*: used for special runs, with specific configurations, such sensor calibration data. 
+ * *Trigger 0*: used for special runs, with specific configurations, such sensor calibration data.
 
 Simulations will be separated depending on which type of generator is used, as Trigger 1 or 2 like events.
 
@@ -38,7 +38,7 @@ Data collected in NEXT detectors is in form of *Raw Waveforms* (**RWF**, in ADCs
 
 Data Format
 ------------
-Data files are produced under the following name: 
+Data files are produced under the following name:
 
 .. code-block:: text
 
@@ -46,14 +46,14 @@ Data files are produced under the following name:
 
 
 where each paramter corresponds to:
- * ``$RUNNUMBER``: number of 5 digits assigned to the run when data is taken. 
+ * ``$RUNNUMBER``: number of 5 digits assigned to the run when data is taken.
  * ``$FILENUMBER``: each run is divided in different files starting from 0 and up to 4 digits (``0000``, ``9999``).
  * ``$LDCNUMBER``: ldc number assigned to the file, it goes from ``0`` to ``7``. 
- * ``$TRIGGER``: trigger number, it could be ``0`` (sensor calibration), ``1`` (low-energy Kr), ``2`` (high energy events). 
+ * ``$TRIGGER``: trigger number, it could be ``0`` (sensor calibration), ``1`` (low-energy Kr), ``2`` (high energy events).
  * ``$CITY``: corresponds to the name of the city that has produces the file (eg. **pmaps** would be named ``irene``, **tracks** as ``isaura``). Files produced from the **decoder** (**RWF**) will be assinged as ``waveforms``.
 
 
-For example, a file created from the decoder would look like this: 
+For example, a file created from the decoder would look like this:
 
 .. code-block:: text
 
