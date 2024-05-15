@@ -3,10 +3,11 @@ Production Flow
 
 This page reviews the production flow for both data and simulations. Even if the reconstruction chain is the same for both samples, there are some discrepancies that need to be taken into account.
 Additionally, a different chain will be follow depending on the type of simulation, and detector geometry. The cities mentioned along this list are summarised in :doc:`IC`.
-It is also important to remark that during data acquisition, two different trigger configurations are considered:
+It is also important to remark that during data acquisition, three different trigger configurations are considered:
 
  * *Trigger 1*: to select low energy events, i.e. Kr events.
  * *Trigger 2*: to select high energy events, e.g. Tl events, bb events, etc.
+ * *Trigger 0*: used for special runs, with specific configurations, such sensor calibration data.
 
 Simulations will be separated depending on which type of generator is used, as Trigger 1 or 2 like events.
 
@@ -23,15 +24,49 @@ Data
 ------------
 Data collected in NEXT detectors is in form of *Raw Waveforms* (**RWF**, in ADCs). The following production flow is used over the **RWFs** for both type of Triggers:
 
-  .. image:: images/prodflow_data.png
+  .. image:: images/prodflow_data_v2.0.png
     :width: 850
 
  * Sensor parameters for :doc:`irene` need to be updated before any reconstruction. These are obtained from calibration using :doc:`phyllis`, :doc:`trude`, and :doc:`berenice` IC cities. These parameters are updated regularly during detector operation, and are stored in a database. Updates to the database are pushed to the repository, so keeping up to date with the main branch is very much recommended.
  * Correction maps are obtained from Krypton events (Trigger 1) using :doc:`ICAROS`. Official production correction maps can be found in :doc:`production`. A complete review about how this maps are produced can be found in "How to :ref:`krmaps`".
- * PSFs are nedeed to run Richardson Lucy deconvolution (:doc:`beersheba`). Krypton events (Trigger 1) are used under a specific configuration of :doc:`penthesilea` and :doc:`eutropia`. Official production PSFs for deconvolution can be found in :doc:`production`. A review about how this PSFs are produced can be found in "How to :ref:`psfdeco`".
+ * (*) Krypton events (Trigger 1) are used under a specific configuration of :doc:`sophronia` and :doc:`eutropia`. Official production PSFs for deconvolution can be found in :doc:`production`.
+ * PSFs are nedeed to run Richardson Lucy deconvolution (:doc:`beersheba`).  A review about how this PSFs are produced can be found in "How to :ref:`psfdeco`".
+ * (**) :doc:`sophronia` and :doc:`esmeralda` / :doc:`beersheba` receive different correction maps. During production, :doc:`sophronia` uses a preliminary correction map from the **previous** day to generate corrected hits, aiding in real-time data monitoring to catch potential issues early on. Meanwhile, :doc:`esmeralda` and :doc:`beersheba` apply the final corrections using a map created from the data of the **ongoing** Run. As this Run's processing concludes by the end of the day, the corresponding correction maps are only accessible the following day. For the **MC** process, only one correction is needed, and there is no distinction between applying it in :doc:`sophronia` or in the :doc:`esmeralda` / :doc:`beersheba` phase.
 
  .. note::
    *dst* stands for *data summary tape*
+
+Data Format
+------------
+Data files are produced under the following name:
+
+.. code-block:: text
+
+  run_$RUNNUMBER_$FILENUMBER_ldc$LDCNUMBER_trg$TRIGGER.$CITY.h5
+
+
+where each paramter corresponds to:
+ * ``$RUNNUMBER``: number of 5 digits assigned to the run when data is taken.
+ * ``$FILENUMBER``: each run is divided in different files starting from 0 and up to 4 digits (``0000``, ``9999``).
+ * ``$LDCNUMBER``: ldc number assigned to the file, it goes from ``1`` to ``7``.
+ * ``$TRIGGER``: trigger number, it could be ``0`` (sensor calibration), ``1`` (low-energy Kr), ``2`` (high energy events).
+ * ``$CITY``: corresponds to the name of the city that has produces the file (eg. **pmaps** would be named ``irene``, **tracks** as ``isaura``). Files produced from the **decoder** (**RWF**) will be assinged as ``waveforms``.
+
+
+For example, a file created from the decoder would look like this:
+
+.. code-block:: text
+
+  run_13017_0001_ldc1_trg0.waveforms.h5
+
+and the corresponding processed files would look like this:
+
+.. code-block:: text
+
+  run_13017_0001_ldc1_trg0.irene.h5
+  run_13017_0001_ldc1_trg0.sophronia.h5
+  run_13017_0001_ldc1_trg0.esmeralda.h5
+
 
 Simulations
 ------------
