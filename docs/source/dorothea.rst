@@ -136,7 +136,7 @@ Output table
 
     * - ``S1w``
       - ``float``
-      - S1 time over threshold (mus).
+      - S1 time over threshold (ns).
 
     * - ``s1h``
       - ``float``
@@ -152,7 +152,7 @@ Output table
 
     * - ``S2w``
       - ``float``
-      - S2 time over threshold (ns).
+      - S2 time over threshold (mus).
 
     * - ``s2h``
       - ``float``
