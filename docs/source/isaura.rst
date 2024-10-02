@@ -160,7 +160,7 @@ Once events are properly selected according to the :ref:`previous subsection <Hi
 **Searching blobs position**
 
 
-To compute the position of the blobs, we need to find the two extreme voxels of the track, which is done following the BFS algorithm. Then, as the figure below illustrates, the energy-weighted averaged position of the hits (represented with red stars) inside these voxels will correspond to the **blob center** (represented with the black dot from where the grey arrow starts).
+To compute the position of the blobs, we need to find the two extreme voxels of the track, which is done following the BFS algorithm. Then, as the figure below illustrates, the energy-weighted averaged position of the hits (represented with red stars) inside each extreme voxel will correspond to the **blob center** (represented with the black dot from where the grey arrow starts).
 
 
 .. image:: images/isaura/blobs_position_definition.png
