@@ -177,8 +177,21 @@ Each of this cities include a small description in the IC repository (`IC/invisi
 and under :doc:`prodflow` a complete review of the IC cities chain can be found for both data and simulations.
 
 
+A tour through the Invisible Cities
+-----------------------------------
+
+The material from the IC software course that took place in April 2024
+is available in `a github repository
+<https://github.com/gonzaponte/ic-course>`_ It contains a series of
+jupyter notebooks which describe the cities, their inputs and
+outputs. The user can execute the notebooks, and all inputs are
+included (config files, data files, etc.). The recording of the course
+is also available in `this docDB page
+<https://next.ific.uv.es/cgi-bin/DocDB/private/ShowDocument?docid=1577>`_.
+
+
 Contact
-------------
+-------
 
 If you are missing something, or you would like to contribute,
 contact any of our **Software Manager**: `Gonzalo Martínez-Lema <gonzaponte@gmail.com>`_
