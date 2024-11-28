@@ -302,10 +302,8 @@ The satellite killer allows for this discimination by applying an energy cut to 
 This energy cut outputs a binary array of 0s and 1s. A simple algorithm is then used to group these zeros and ones based on
 their relation to one another (groups of 1s are together, groups of 0s are together), and their size is calculated accordingly.
 If the size of one of these groups is below the expected size, it is removed explicitly by setting the corresponding group values
-to zero. For a more in-depth explanation of this process, look here:
-
-.. raw:: html
-  <script src="https://gist.github.com/jwaiton/fd14f43e8da28a49c9c49d43eb00f53f.js"></script>
+to zero. For a more in-depth explanation of this process, 
+click this `link <https://gist.github.com/jwaiton/fd14f43e8da28a49c9c49d43eb00f53f>`_.
 
 .. _CleaningCut:
 
