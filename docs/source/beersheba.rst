@@ -251,6 +251,62 @@ Deconvolution process finishes when any of the stopping criteria occurs:
 RL deconvolution is implemented in Beersheba using the Richardson-Lucy function from Python’s scikit-image library. Additional
 details about how the RL deconvolution works and the way the PSFs are implemented can be found in the RL publication [#]_.
 
+.. _Satellite-Killer:
+
+Satellite Killer
+:::::::::::::::::
+
+A common issue within the deconvolution process is the creation of 'satellite tracks'.
+These are small artificial energy deposits that exceed the later applied cleaning cut, generated
+due to energy that is unable to be deconvolved back to it's initial point and instead coalescing
+around the main track (hence satellites). This can be seen in the plot below on the left.
+
+**Satellite killer** is an algorithm introduced to remove these satellites *during* the deconvolution
+process, allowing for a resulting track that contains no artificial hits as seen on plot below on the right. 
+It is fine-tunable, allowing the end user to change the strength of the implementation easily.
+
+.. image:: images/beersheba/satellites.png
+  :width: 100%
+
+These parameters are stored within the dictionary ``satellite_params``, and described below:
+
+.. |sk| raw:: html
+
+     <sk>
+
+.. list-table::
+   :widths: 50 40 120
+   :header-rows: 1
+
+   * - **Parameter**
+     - **Type (Option)**
+     - **Description**
+
+   * - ``satellite_start_iter``
+     - ``int``
+     - Iteration no. when satellite killer starts being applied.
+
+   * - ``satellite_max_size``
+     - ``int``
+     - Maximum size of a satellite deposit, above which they are considered 'real'.
+
+   * - ``e_cut``
+     - ``float``
+     - Cut in absolute/relative value to the provided deconvolution output for satellite discrimination.
+
+   * - ``cut_type``
+     - ``str`` ('**abs**', '**rel**')
+     - Cut mode within satellite killer, applied identically to the normal ``cut_type``.
+
+The satellite killer allows for this discimination by applying an energy cut to the deconvolved z slice across each iteration. 
+This energy cut outputs a binary array of 0s and 1s. A simple algorithm is then used to group these zeros and ones based on
+their relation to one another (groups of 1s are together, groups of 0s are together), and their size is calculated accordingly.
+If the size of one of these groups is below the expected size, it is removed explicitly by setting the corresponding group values
+to zero. For a more in-depth explanation of this process, look here:
+
+.. raw:: html
+  <script src="https://gist.github.com/jwaiton/fd14f43e8da28a49c9c49d43eb00f53f.js"></script>
+
 .. _CleaningCut:
 
 Cleaning Cut
