@@ -110,6 +110,9 @@ Besides the :ref:`Common arguments to every city`, *Beersheba* has the following
    * - ``n_iterations_g``
      - ``int``
      - Number of Lucy-Richardson iterations for gaussian in '**separate**' mode.
+   * - ``satellite_params``
+     - ``dict``
+     - Dictionary of satellite killer parameters, see :ref:`satellite-killer`.
 
 
 .. _Beersheba workflow:
