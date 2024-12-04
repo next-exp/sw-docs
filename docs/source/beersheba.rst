@@ -260,7 +260,7 @@ Satellite Killer
 :::::::::::::::::
 
 A common issue within the deconvolution process is the creation of 'satellite tracks'.
-These are small artificial energy deposits that exceed the later applied cleaning cut, generated
+These are small artificial [#]_ energy deposits that exceed the later applied cleaning cut, generated
 due to energy that is unable to be deconvolved back to it's initial point and instead coalescing
 around the main track (hence satellites). This can be seen in the plot below on the left.
 
@@ -287,15 +287,15 @@ These parameters are stored within the dictionary ``satellite_params``, and desc
 
    * - ``satellite_start_iter``
      - ``int``
-     - Iteration no. when satellite killer starts being applied.
+     - Iteration number when satellite killer starts being applied.
 
    * - ``satellite_max_size``
      - ``int``
-     - Maximum size of a satellite deposit, above which they are considered 'real'.
+     - Maximum size (number of pixels in a 2d slice of the event) for a satellite deposit, above which they are considered 'real'. 
 
    * - ``e_cut``
      - ``float``
-     - Cut in absolute/relative value to the provided deconvolution output for satellite discrimination.
+     - Cut in absolute/relative value provided for satellite discimination in the deconvolved image across each iteration.
 
    * - ``cut_type``
      - ``str`` ('**abs**', '**rel**')
@@ -365,3 +365,4 @@ be found in :ref:`this <psfdeco>` section.
 .. [#] *Improving track reconstruction with Lucy-Richardson deconvolution*, Internal document **[NEXT-doc-986-v1]**
 .. [#] `Comparison between 1D-2D interpolations <https://en.wikipedia.org/wiki/File:Comparison_of_1D_and_2D_interpolation.svg>`_
 .. [#] *Boosting background suppression in the NEXT experiment through Richardson-Lucy deconvolution*, `arXiv:2102.11931 <https://arxiv.org/pdf/2102.11931.pdf>`_
+.. [#] Artificial here meaning an artifact of the deconvolution process, an unphysical energy deposit.
