@@ -302,11 +302,11 @@ These parameters are stored within the dictionary ``satellite_params``, and desc
      - Cut mode within satellite killer, applied identically to the normal ``cut_type``.
 
 The satellite killer allows for this discimination by applying an energy cut to the deconvolved z slice across each iteration. 
-This energy cut outputs a binary array of 0s and 1s. A simple algorithm is then used to group these zeros and ones based on
-their relation to one another (groups of 1s are together, groups of 0s are together), and their size is calculated accordingly.
-If the size of one of these groups is below the expected size, it is removed explicitly by setting the corresponding group values
-to zero. For a more in-depth explanation of this process, 
-click this `link <https://gist.github.com/jwaiton/fd14f43e8da28a49c9c49d43eb00f53f>`_.
+This energy cut outputs a binary array of 0s and 1s. A simple algorithm is then used to cluster these zeros and ones spatially, 
+and the sizes of these clusters are calculated accordingly.
+If the size of one of these groups is below the `satellite_max_size`, it is removed. For a more in-depth explanation of this process,
+check the :doc:`satkill_explanation` page
+
 
 .. _CleaningCut:
 
