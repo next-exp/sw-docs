@@ -69,7 +69,7 @@ Besides the :ref:`Common arguments to every city`, *Beersheba* has the following
      - Sampling size of the sensors (usually the pitch) in *mm*.
 
    * - ``inter_method``
-     - ``str`` (**None**, '**linear**', '**cubic**')
+     - ``InterpolationMethod`` (**None**, **linear**, **cubic**)
      - Sensor interpolation method. If **None**, no interpolation will be applied. '**cubic**' not supported for 3D deconvolution.
 
    * - ``psf_fname``
@@ -81,7 +81,7 @@ Besides the :ref:`Common arguments to every city`, *Beersheba* has the following
      - Cut to the voxel values of the deconvolution output. Then, ``cut_type`` specifies if the value is absolute or relative.
 
    * - ``cut_type``
-     - ``str`` ('**abs**', '**rel**')
+     - ``CutType`` (**abs**, **rel**)
      - Cut mode to the deconvolution output using ``e_cut``: |br| '**abs**': cut on the absolute value of the hits. |br| '**rel**': cut on the relative value (to the max) of the hits.
 
    * - ``iteration_tol``
@@ -93,11 +93,11 @@ Besides the :ref:`Common arguments to every city`, *Beersheba* has the following
      - Number of Lucy-Richardson iterations to be applied if the ``iteration_tol`` criteria is not fulfilled before.
 
    * - ``energy_type``
-     - ``str`` ('**E**', '**Ec**')
+     - ``HitEnergy`` (**E**, **Ec**)
      - Marks which energy type ('**E**' for uncorrected energy, '**Ec**' for corrected energy; see :doc:`esmeralda`) should be assigned to the deconvolved track.
 
    * - ``deconv_mode``
-     - ``str`` ('**joint**', '**separate**')
+     - ``DeconvolutionMode`` (**joint**, **separate**)
      - '**joint**': deconvolves once using a PSF based on Z that includes both EL and diffusion spread approximated to a Z range; |br| '**separate**': deconvolves twice, first using the EL PSF, then using a gaussian PSF based on the exact Z position of the slice.
 
    * - ``diffusion``
@@ -110,6 +110,9 @@ Besides the :ref:`Common arguments to every city`, *Beersheba* has the following
    * - ``n_iterations_g``
      - ``int``
      - Number of Lucy-Richardson iterations for gaussian in '**separate**' mode.
+   * - ``satellite_params``
+     - ``dict``
+     - Dictionary of satellite killer parameters, see :ref:`satellite-killer`.
 
 
 .. _Beersheba workflow:
@@ -251,6 +254,56 @@ Deconvolution process finishes when any of the stopping criteria occurs:
 RL deconvolution is implemented in Beersheba using the Richardson-Lucy function from Python’s scikit-image library. Additional
 details about how the RL deconvolution works and the way the PSFs are implemented can be found in the RL publication [#]_.
 
+.. _Satellite-Killer:
+
+Satellite Killer
+:::::::::::::::::
+
+A common issue within the deconvolution process is the creation of 'satellite tracks'.
+These are small artificial [#]_ energy deposits that exceed the later applied cleaning cut, generated
+due to energy that is unable to be deconvolved back to it's initial point and instead coalescing
+around the main track (hence satellites). This can be seen in the plot below on the left.
+
+**Satellite killer** is an algorithm introduced to remove these satellites *during* the deconvolution
+process, allowing for a resulting track that contains no artificial hits as seen on plot below on the right. 
+It is fine-tunable, allowing the end user to change the strength of the implementation easily.
+
+.. image:: images/beersheba/satellites.png
+  :width: 100%
+
+These parameters are stored within the dictionary ``satellite_params``, and described below:
+
+.. list-table::
+   :widths: 50 40 120
+   :header-rows: 1
+
+   * - **Parameter**
+     - **Type (Option)**
+     - **Description**
+
+   * - ``satellite_start_iter``
+     - ``int``
+     - Iteration number when satellite killer starts being applied.
+
+   * - ``satellite_max_size``
+     - ``int``
+     - Maximum size (number of pixels in a 2d slice of the event) for a satellite deposit, above which they are considered 'real'. 
+
+   * - ``e_cut``
+     - ``float``
+     - Cut in absolute/relative value provided for satellite discimination in the deconvolved image across each iteration.
+
+   * - ``cut_type``
+     - ``CutType`` (**abs**, **rel**)
+     - Cut mode within satellite killer, applied identically to the normal ``cut_type``.
+
+The satellite killer allows for this discimination by applying an energy cut to the deconvolved z slice across each iteration. 
+This energy cut outputs a binary array of 0s and 1s. A simple algorithm is then used to cluster these zeros and ones spatially, 
+and the sizes of these clusters are calculated accordingly.
+If the size of one of these groups is below the ``satellite_max_size``, it is removed. For a more in-depth explanation of this process,
+check the :doc:`satkill_explanation` page.
+
+
 .. _CleaningCut:
 
 Cleaning Cut
@@ -308,3 +361,4 @@ be found in :ref:`this <psfdeco>` section.
 .. [#] *Improving track reconstruction with Lucy-Richardson deconvolution*, Internal document **[NEXT-doc-986-v1]**
 .. [#] `Comparison between 1D-2D interpolations <https://en.wikipedia.org/wiki/File:Comparison_of_1D_and_2D_interpolation.svg>`_
 .. [#] *Boosting background suppression in the NEXT experiment through Richardson-Lucy deconvolution*, `arXiv:2102.11931 <https://arxiv.org/pdf/2102.11931.pdf>`_
+.. [#] Artificial here meaning an artifact of the deconvolution process, an unphysical energy deposit.
