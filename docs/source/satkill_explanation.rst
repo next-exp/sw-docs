@@ -46,9 +46,14 @@ So the array should look something like this (as an example):
 
 The function ``collect_component_sizes()`` completes the following steps:
 
-* ``footprint = ndi.generate_binary_structure(im_mask.ndim, 2)``
-* This creates an n-dimensional array of ``True`` values that are
-  used to map the connectivity of our 1s in the above array, like such:
+
+.. highlight:: python 
+.. code-block:: python
+
+    footprint = ndi.generate_binary_structure(im_mask.ndim, 2)
+
+This creates an n-dimensional array of ``True`` values that are
+used to map the connectivity of our 1s in the above array, like such:
 
 
 .. highlight:: python 
