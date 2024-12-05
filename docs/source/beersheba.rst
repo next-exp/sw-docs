@@ -301,7 +301,7 @@ The satellite killer allows for this discimination by applying an energy cut to 
 This energy cut outputs a binary array of 0s and 1s. A simple algorithm is then used to cluster these zeros and ones spatially, 
 and the sizes of these clusters are calculated accordingly.
 If the size of one of these groups is below the ``satellite_max_size``, it is removed. For a more in-depth explanation of this process,
-check the :doc:`satkill_explanation` page
+check the :doc:`satkill_explanation` page.
 
 
 .. _CleaningCut:

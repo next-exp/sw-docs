@@ -4,8 +4,11 @@
 Satellite killer explanation
 ============================
 
-The `functions in question <https://github.com/next-exp/IC/blob/master/invisible_cities/reco/deconv_functions.py#L26>`_ generates
-a satellite mask that is used to remove satellite energy deposits produced throughout the deconvolution. Lets step through the logic!
+The `functions in question <https://github.com/next-exp/IC/blob/master/invisible_cities/reco/deconv_functions.py#L26>`_ 
+(introduced in `this PR <https://github.com/next-exp/IC/pull/890>`_) generates
+a satellite mask that is used to remove satellite energy deposits produced throughout the deconvolution. 
+
+Lets step through the logic!
 
 **Stepping through the satellite killing process**
 
@@ -74,7 +77,7 @@ The next line is:
 
     labels, _ = ndi.label(im_mask, footprint)
 
-Which uses the footprint and the above mask to label the different 'deposits' as shown below
+Which uses the footprint and the above mask to label the different 'deposits' as shown below:
 
 
 >>> print(labels)
@@ -140,7 +143,7 @@ array([[False, False, False, False, True],
        [False, False, False, False, False]])
 
 
-This mask is then returned, and applied such that all true elements in the original array are zero
+This mask is then returned, and applied such that all true elements in the original array are zero.
 
 
 >>> print(im_deconv)
