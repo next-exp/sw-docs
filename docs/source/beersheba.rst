@@ -69,7 +69,7 @@ Besides the :ref:`Common arguments to every city`, *Beersheba* has the following
      - Sampling size of the sensors (usually the pitch) in *mm*.
 
    * - ``inter_method``
-     - ``InterpolationMethod`` (**None**, '**linear**', '**cubic**')
+     - ``InterpolationMethod`` (**None**, **linear**, **cubic**)
      - Sensor interpolation method. If **None**, no interpolation will be applied. '**cubic**' not supported for 3D deconvolution.
 
    * - ``psf_fname``
@@ -81,7 +81,7 @@ Besides the :ref:`Common arguments to every city`, *Beersheba* has the following
      - Cut to the voxel values of the deconvolution output. Then, ``cut_type`` specifies if the value is absolute or relative.
 
    * - ``cut_type``
-     - ``CutType`` ('**abs**', '**rel**')
+     - ``CutType`` (**abs**, **rel**)
      - Cut mode to the deconvolution output using ``e_cut``: |br| '**abs**': cut on the absolute value of the hits. |br| '**rel**': cut on the relative value (to the max) of the hits.
 
    * - ``iteration_tol``
@@ -93,11 +93,11 @@ Besides the :ref:`Common arguments to every city`, *Beersheba* has the following
      - Number of Lucy-Richardson iterations to be applied if the ``iteration_tol`` criteria is not fulfilled before.
 
    * - ``energy_type``
-     - ``HitEnergy`` ('**E**', '**Ec**')
+     - ``HitEnergy`` (**E**, **Ec**)
      - Marks which energy type ('**E**' for uncorrected energy, '**Ec**' for corrected energy; see :doc:`esmeralda`) should be assigned to the deconvolved track.
 
    * - ``deconv_mode``
-     - ``DeconvolutionMode`` ('**joint**', '**separate**')
+     - ``DeconvolutionMode`` (**joint**, **separate**)
      - '**joint**': deconvolves once using a PSF based on Z that includes both EL and diffusion spread approximated to a Z range; |br| '**separate**': deconvolves twice, first using the EL PSF, then using a gaussian PSF based on the exact Z position of the slice.
 
    * - ``diffusion``
@@ -294,7 +294,7 @@ These parameters are stored within the dictionary ``satellite_params``, and desc
      - Cut in absolute/relative value provided for satellite discimination in the deconvolved image across each iteration.
 
    * - ``cut_type``
-     - ``CutType`` ('**abs**', '**rel**')
+     - ``CutType`` (**abs**, **rel**)
      - Cut mode within satellite killer, applied identically to the normal ``cut_type``.
 
 The satellite killer allows for this discimination by applying an energy cut to the deconvolved z slice across each iteration. 
