@@ -103,10 +103,11 @@ following arguments:
      - Bin size for :math:`\Delta x` and :math:`\Delta y`.
 
 .. warning:: 
-  The values provided for ``xrange | yrange`` should not exceed 
-  the PSF tails (~100mm for NEXT-100). Having large :math:`\Delta x` 
-  and :math:`\Delta y` values causes excessive memory usage and 
-  slowdown, especially when implementing a large number of ``zbins``.
+  A large 'PSF size' (defined by the ``xrange | yrange`` and 
+  ``zbins``) is discouraged. 
+  To avoid this issue, ensure that your ``xrange | yrange`` do not
+  exceed the PSF tails (~100mm for NEXT100), or use a smaller number
+  of ``zbins`` as a PSF is produced for each bin.
 
 .. _Eutropia workflow:
 
