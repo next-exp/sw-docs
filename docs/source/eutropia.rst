@@ -102,6 +102,14 @@ following arguments:
      - ``float``
      - Bin size for :math:`\Delta x` and :math:`\Delta y`.
 
+.. warning::
+  A large 'PSF size' (defined by the ``xrange | yrange`` and 
+  ``bin_size_xy``) in conjunction with a large number of ``zbins``
+  can cause excessive memory usage.
+  To avoid this issue, ensure that your ``xrange | yrange`` do not
+  exceed the PSF tails (~100mm for NEXT100), or use a smaller number
+  of ``zbins`` as a unique PSF is produced for each bin.
+
 .. _Eutropia workflow:
 
 Workflow
