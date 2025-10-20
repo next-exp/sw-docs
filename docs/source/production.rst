@@ -169,3 +169,47 @@ Where:
 * **isotope:** the name of the simulated isotope, can be :sup:`214`\Bi or :sup:`208`\Tl for radiogenics, for example. 
 * **volumes:** nexus volumes where the isotope was simulated, such as ACTIVE for the Kr calibration, the different calibration ports for HE calibration, or the NEXT-100 detector components for radiogenics.
 * **production:** contains the nexus and IC files, divided in folders by city.
+
+NEXT-100 (20-10-2025)
+-----------------------------
+
+This dataset includes multiple simulations processed for krypton and high energy at 4 bar, all found at `/lustre/neu/data4/NEXT/4bar/`:
+
+.. list-table::
+   :widths: 40 60
+   :header-rows: 0
+
+   * - **nexus:**
+     - ``-`` 
+   * - **nexus: LTs and PSFs for Detsim**
+     - ``-``
+   * - **IC**
+     - ``-``
+   * - **NEXT-100 Background Model**
+     - ``-``
+
+
+.. list-table::
+   :widths: 40 20 60 40
+   :header-rows: 1
+
+   * - Folder name
+     - Type
+     - Description
+     - Processed: 
+   * - ``kr_202503_fullsim/``
+     - Kr 83m - Full sim
+     - **200k events** in NEXT100 active volume. 50ms electron lifetime
+     - nexus, hypathia, dorothea
+   * - ``kr_202502_fullsim/``
+     - Kr 83m - Full sim
+     - **200k events** in NEXT100 active volume. 1000ms electron lifetime
+     - nexus, hypathia, dorothea
+   * - ``kr_202510_fullsim/``
+     - Kr 83m - Full sim
+     - **1M events** in NEXT100 active volume.
+     - hypathia, dorothea
+   * - ``th_port1a_202509/``
+     - Tl 208 - Fast sim
+     - **1.63M events** within 1-2.8 MeV energy window
+     - nexus, sophronia
