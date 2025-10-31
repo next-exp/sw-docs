@@ -114,7 +114,7 @@ Detsim *light tables* (**LTs**) and *point spread functions* (**PSFs**) can be f
 
 **Config** files for the rest of the production chain can also be found on `here <https://github.com/gondiaz/NEXT100-0nubb-analysis/tree/main/ic_processing/templates>`_ on Github.
 
-NEXT-100 (newest production)
+NEXT-100 (30-10-24)
 -----------------------------
 
 A more recent dataset using also fast simulations has been produced for two different vessel pressures: High Pressure Run (HPR) with 13.5 bar and Low Pressure Run (LPR) with 5 bar. 
