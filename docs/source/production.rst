@@ -213,3 +213,56 @@ This dataset includes multiple simulations processed for krypton and high energy
      - Tl 208 - Fast sim
      - **1.63M events** within 1-2.8 MeV energy window
      - nexus, sophronia
+
+
+NEXT-100 (16-02-2026)
+-----------------------------
+
+This dataset includes multiple simulations processed for krypton and high energy at 4 bar, all found at `/lustre/neu/data4/NEXT/4bar/`:
+
+.. list-table::
+   :widths: 40 60
+   :header-rows: 0
+
+   * - **nexus:**
+     - ``-`` 
+   * - **nexus: LTs and PSFs for Detsim**
+     - ``-``
+   * - **IC**
+     - ``-``
+   * - **NEXT-100 Background Model**
+     - ``-``
+
+
+.. list-table::
+   :widths: 40 20 60 40
+   :header-rows: 1
+
+   * - Folder name
+     - Type
+     - Description
+     - Processed: 
+   * - ``kr_202602/``
+     - Kr 83m - Fast sim [#kr-map]_
+     - **800k events** in NEXT100 active volume processed with hypathia, 3.5M events in dorothea.
+     - nexus, detsim, hypathia, dorothea
+   * - ``kr_202601_full/``
+     - Kr 83m - Full sim
+     - **1.7M events**.   
+     - nexus, hypathia, dorothea
+   * - ``th_port1a_202602/``
+     - Th 228 - Fast sim
+     - **~850k events** within 1-2.8 MeV energy window 
+     - nexus, detsim, hypathia, sophronia 
+   * - ``th_port1a_dep_202602/``
+     - Th 228 - Fast sim
+     - **~1.5M events** within 1.45-1.65 MeV energy window (DEP).
+     - nexus, detsim, hypathia, sophronia 
+   * - ``th_port1a_dep_202602_full/``
+     - Th 228 - Full sim
+     - **~19k events** within 1.45-1.65 MeV energy window (DEP). 900 events at buffy/hypathia level.
+     - nexus, buffy, hypathia, sophronia
+
+
+
+.. [#kr-map] Includes Kr map: ``kr_map_MC_202602.krmap``
