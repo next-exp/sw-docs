@@ -225,11 +225,11 @@ This dataset includes multiple simulations processed for krypton and high energy
    :header-rows: 0
 
    * - **nexus:**
-     - ``-`` 
+     - ``v07_10_01`` 
    * - **nexus: LTs and PSFs for Detsim**
-     - ``-``
+     - ``v07_10_01_Jan2026``
    * - **IC**
-     - ``-``
+     - ``f61e3945f449b094590cdf1e708419c15f628fe0``
    * - **NEXT-100 Background Model**
      - ``-``
 
