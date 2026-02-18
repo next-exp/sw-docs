@@ -244,7 +244,7 @@ This dataset includes multiple simulations processed for krypton and high energy
      - Processed: 
    * - ``kr_202602/``
      - Kr 83m - Fast sim [#kr-map]_
-     - **800k events** in NEXT100 active volume processed with hypathia, 3.5M events in dorothea.
+     - **3.5M events** in NEXT100 active volume, 800k events kept at hypathia level.
      - nexus, detsim, hypathia, dorothea
    * - ``kr_202601_full/``
      - Kr 83m - Full sim
