@@ -10,7 +10,10 @@ This page collects all the information related to the official **simulation** pr
 NEXT-100 (16-02-2026)
 -----------------------------
 
-This dataset includes multiple simulations processed for krypton and high energy at 4 bar, all found at `/lustre/neu/data4/NEXT/4bar/`:
+This production can be found in ``neutrinos1.ific.uv.es`` 
+
+
+This dataset includes multiple simulations processed for krypton and high energy at 4 bar, all found on the neutrinos cluster (``neutrinos1.ific.uv.es``), at directory `/lustre/neu/data4/NEXT/4bar/`:
 
 .. list-table::
    :widths: 40 60
@@ -108,9 +111,9 @@ This dataset includes multiple simulations processed for krypton and high energy
 NEXT-100 (30-10-24)
 -----------------------------
 
-A more recent dataset using also fast simulations has been produced for two different vessel pressures: High Pressure Run (HPR) with 13.5 bar and Low Pressure Run (LPR) with 5 bar. 
+A dataset using fast simulations has been produced for two different vessel pressures: High Pressure Run (HPR) with 13.5 bar and Low Pressure Run (LPR) with 5 bar. 
 
-The highlights of this production (to distinguish it from the previous one) are:
+The highlights of this production (distinct from the first production) are:
 
 * More statistics for the High Energy calibration and radiogenics at HPR.
 * First Kr and High Energy calibration data at LPR.
