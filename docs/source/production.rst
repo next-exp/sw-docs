@@ -7,6 +7,203 @@ This page collects all the information related to the official **simulation** pr
   This webpage is still under construction. If you would like to contribute, reach `me <helena.almamol@gmail.com>`_!
 
 
+NEXT-100 (16-02-2026)
+-----------------------------
+
+This dataset includes multiple simulations processed for krypton and high energy at 4 bar, all found at `/lustre/neu/data4/NEXT/4bar/`:
+
+.. list-table::
+   :widths: 40 60
+   :header-rows: 0
+
+   * - **nexus:**
+     - ``v07_10_01`` 
+   * - **nexus: LTs and PSFs for Detsim**
+     - ``v07_10_01_Jan2026``
+   * - **IC**
+     - ``f61e3945f449b094590cdf1e708419c15f628fe0``
+   * - **NEXT-100 Background Model**
+     - ``-``
+
+
+.. list-table::
+   :widths: 40 20 60 40
+   :header-rows: 1
+
+   * - Folder name
+     - Type
+     - Description
+     - Processed: 
+   * - ``kr_202602/``
+     - Kr 83m - Fast sim [#kr-map]_
+     - **3.5M events** in NEXT100 active volume, 800k events kept at hypathia level.
+     - nexus, detsim, hypathia, dorothea
+   * - ``kr_202601_full/``
+     - Kr 83m - Full sim
+     - **1.7M events**.   
+     - nexus, hypathia, dorothea
+   * - ``th_port1a_202602/``
+     - Th 228 - Fast sim
+     - **~850k events** within 1-2.8 MeV energy window 
+     - nexus, detsim, hypathia, sophronia 
+   * - ``th_port1a_dep_202602/``
+     - Th 228 - Fast sim
+     - **~1.5M events** within 1.45-1.65 MeV energy window (DEP).
+     - nexus, detsim, hypathia, sophronia 
+   * - ``th_port1a_dep_202602_full/``
+     - Th 228 - Full sim
+     - **~19k events** within 1.45-1.65 MeV energy window (DEP). 900 events at buffy/hypathia level.
+     - nexus, buffy, hypathia, sophronia
+
+
+
+.. [#kr-map] Includes Kr map: ``kr_map_MC_202602.krmap``
+
+
+NEXT-100 (20-10-2025)
+-----------------------------
+
+This dataset includes multiple simulations processed for krypton and high energy at 4 bar, all found at `/lustre/neu/data4/NEXT/4bar/`:
+
+.. list-table::
+   :widths: 40 60
+   :header-rows: 0
+
+   * - **nexus:**
+     - ``-`` 
+   * - **nexus: LTs and PSFs for Detsim**
+     - ``-``
+   * - **IC**
+     - ``-``
+   * - **NEXT-100 Background Model**
+     - ``-``
+
+
+.. list-table::
+   :widths: 40 20 60 40
+   :header-rows: 1
+
+   * - Folder name
+     - Type
+     - Description
+     - Processed: 
+   * - ``kr_202503_fullsim/``
+     - Kr 83m - Full sim
+     - **200k events** in NEXT100 active volume. 50ms electron lifetime
+     - nexus, hypathia, dorothea
+   * - ``kr_202502_fullsim/``
+     - Kr 83m - Full sim
+     - **200k events** in NEXT100 active volume. 1000ms electron lifetime
+     - nexus, hypathia, dorothea
+   * - ``kr_202510_fullsim/``
+     - Kr 83m - Full sim
+     - **1M events** in NEXT100 active volume.
+     - hypathia, dorothea
+   * - ``th_port1a_202509/``
+     - Tl 208 - Fast sim
+     - **1.63M events** within 1-2.8 MeV energy window
+     - nexus, sophronia
+
+
+NEXT-100 (30-10-24)
+-----------------------------
+
+A more recent dataset using also fast simulations has been produced for two different vessel pressures: High Pressure Run (HPR) with 13.5 bar and Low Pressure Run (LPR) with 5 bar. 
+
+The highlights of this production (to distinguish it from the previous one) are:
+
+* More statistics for the High Energy calibration and radiogenics at HPR.
+* First Kr and High Energy calibration data at LPR.
+
+Some information about the LPR production (changes in electron diffusion, drift velocity and gain parameters, nexus efficiencies...) can be found in `this talk <https://next.ific.uv.es/DocDB/0015/001526/001/HE_calib_LPR.pdf>`_
+
+The data was produced using:
+
+.. list-table::
+   :widths: 40 60
+   :header-rows: 0
+
+   * - **nexus:**
+     - ``v7_03_01``
+   * - **nexus: LTs and PSFs for Detsim**
+     - ``v7_01_00(+ G4 op bug)``
+   * - **IC**
+     - ``pre_v2_step0`` tag, from `PR#842 <https://github.com/next-exp/IC/pull/842>`_
+   * - **NEXT-100 Background Model**
+     - ``v4``
+     
+All LTs and PSFs for Detsim are reused from the previous production. 
+For LPR they were used as a first approach since they are not made yet, but Kr map and deconvolution PSF were created with the new Kr calibration data.
+
+This production can be found in ``neutrinos1.ific.uv.es`` under the following path:
+
+.. code-block:: text
+
+	/data4/NEXT/NEXT100_production/
+
+And the general hierarchy::
+
+	pressure_run
+	├── LightTables
+	└── prod_type 
+		├── config_templates
+		└── isotope 
+			└── volumes
+				└── production
+
+Where:
+
+* **pressure_run:** two different folders, **HPR** or **LPR** depending on the pressure of the vessel.
+* **LightTables:** contains the LTs and PSFs used for Detsim, the Kr map used for the energy corrections and the deconvolution PSF.
+* **prod_type:** the type of data, can be **HE_calib** (High Energy calibration), **Kr_calib** (Kripton calibration) or  **radiogenics**, among others to be added in a future.
+* **config_templates:** contains the configuration files used for nexus and IC.
+* **isotope:** the name of the simulated isotope, can be :sup:`214`\Bi or :sup:`208`\Tl for radiogenics, for example. 
+* **volumes:** nexus volumes where the isotope was simulated, such as ACTIVE for the Kr calibration, the different calibration ports for HE calibration, or the NEXT-100 detector components for radiogenics.
+* **production:** contains the nexus and IC files, divided in folders by city.
+
+
+NEXT-100 (first production)
+---------------------------
+A first production using fast simulations (:doc:`detsim`) has been produced using
+
+.. list-table::
+   :widths: 40 60
+   :header-rows: 0
+
+   * - **nexus: radiogenics + signal**
+     - ``v7_02_00``
+   * - **nexus: muons**
+     - ``v7_03_00``
+   * - **nexus: LTs and PSFs for Detsim**
+     - ``v7_01_00(+ G4 op bug)``
+   * - **IC**
+     - ``8e1de90c1cec5a1c3d25b35eca456f87f4f7e64c``
+   * - **IC: muons**
+     - `PR#823 <https://github.com/next-exp/IC/pull/823>`_
+   * - **NEXT-100 Background Model**
+     - ``v4``
+
+
+This production can be found in ``neutrinos1.ific.uv.es`` under the following path:
+
+.. code-block:: text
+
+ /data4/NEXT/NEXT100_prod/
+
+**Nexus macros** for the current production can be found on GitHub `here <https://github.com/gondiaz/NEXT100-0nubb-analysis/tree/main/nexus_job_templates/ft3>`_.
+
+Detsim *light tables* (**LTs**) and *point spread functions* (**PSFs**) can be found in ``neutrinos1.ific.uv.es`` in
+
+.. code-block:: text
+
+  Note: these files disappeared due to an incident in the neutrinos cluster.
+  This is just for reference.
+  /data4/NEXT/NEXT100_prod/LightTables/ (for productions before May 2024)
+  /lustre/neu/data4/NEXT/NEXT100/MC/Tables/202405_Krishan (for productions after May 2024)
+
+**Config** files for the rest of the production chain can also be found on `here <https://github.com/gondiaz/NEXT100-0nubb-analysis/tree/main/ic_processing/templates>`_ on Github.
+
+
 NEXT-White
 ------------
 Latest official production was generated using
@@ -73,196 +270,4 @@ Where the following **config** files have been used,
     * The EventMixer package refers to the ``gate`` version. The repository may be found `here <https://next.ific.uv.es:8888/nextsw/PyToNE/blob/master/PyToNE/EventMixer.py>`_.
     * The IC package is considered in different versions since the goal is to match the official Canfranc production for data (``v1.1.0``). However, several updates implied the usage of more recent versions, even a custom one before the officialization of ``ìsaura``.
 
-NEXT-100 (first production)
----------------------------
-A first production using fast simulations (:doc:`detsim`) has been produced using
 
-.. list-table::
-   :widths: 40 60
-   :header-rows: 0
-
-   * - **nexus: radiogenics + signal**
-     - ``v7_02_00``
-   * - **nexus: muons**
-     - ``v7_03_00``
-   * - **nexus: LTs and PSFs for Detsim**
-     - ``v7_01_00(+ G4 op bug)``
-   * - **IC**
-     - ``8e1de90c1cec5a1c3d25b35eca456f87f4f7e64c``
-   * - **IC: muons**
-     - `PR#823 <https://github.com/next-exp/IC/pull/823>`_
-   * - **NEXT-100 Background Model**
-     - ``v4``
-
-
-This production can be found in ``neutrinos1.ific.uv.es`` under the following path:
-
-.. code-block:: text
-
- /data4/NEXT/NEXT100_prod/
-
-**Nexus macros** for the current production can be found on GitHub `here <https://github.com/gondiaz/NEXT100-0nubb-analysis/tree/main/nexus_job_templates/ft3>`_.
-
-Detsim *light tables* (**LTs**) and *point spread functions* (**PSFs**) can be found in ``neutrinos1.ific.uv.es`` in
-
-.. code-block:: text
-
-  Note: these files disappeared due to an incident in the neutrinos cluster.
-  This is just for reference.
-  /data4/NEXT/NEXT100_prod/LightTables/ (for productions before May 2024)
-  /lustre/neu/data4/NEXT/NEXT100/MC/Tables/202405_Krishan (for productions after May 2024)
-
-**Config** files for the rest of the production chain can also be found on `here <https://github.com/gondiaz/NEXT100-0nubb-analysis/tree/main/ic_processing/templates>`_ on Github.
-
-NEXT-100 (30-10-24)
------------------------------
-
-A more recent dataset using also fast simulations has been produced for two different vessel pressures: High Pressure Run (HPR) with 13.5 bar and Low Pressure Run (LPR) with 5 bar. 
-
-The highlights of this production (to distinguish it from the previous one) are:
-
-* More statistics for the High Energy calibration and radiogenics at HPR.
-* First Kr and High Energy calibration data at LPR.
-
-Some information about the LPR production (changes in electron diffusion, drift velocity and gain parameters, nexus efficiencies...) can be found in `this talk <https://next.ific.uv.es/DocDB/0015/001526/001/HE_calib_LPR.pdf>`_
-
-The data was produced using:
-
-.. list-table::
-   :widths: 40 60
-   :header-rows: 0
-
-   * - **nexus:**
-     - ``v7_03_01``
-   * - **nexus: LTs and PSFs for Detsim**
-     - ``v7_01_00(+ G4 op bug)``
-   * - **IC**
-     - ``pre_v2_step0`` tag, from `PR#842 <https://github.com/next-exp/IC/pull/842>`_
-   * - **NEXT-100 Background Model**
-     - ``v4``
-     
-All LTs and PSFs for Detsim are reused from the previous production. 
-For LPR they were used as a first approach since they are not made yet, but Kr map and deconvolution PSF were created with the new Kr calibration data.
-
-This production can be found in ``neutrinos1.ific.uv.es`` under the following path:
-
-.. code-block:: text
-
-	/data4/NEXT/NEXT100_production/
-
-And the general hierarchy::
-
-	pressure_run
-	├── LightTables
-	└── prod_type 
-		├── config_templates
-		└── isotope 
-			└── volumes
-				└── production
-
-Where:
-
-* **pressure_run:** two different folders, **HPR** or **LPR** depending on the pressure of the vessel.
-* **LightTables:** contains the LTs and PSFs used for Detsim, the Kr map used for the energy corrections and the deconvolution PSF.
-* **prod_type:** the type of data, can be **HE_calib** (High Energy calibration), **Kr_calib** (Kripton calibration) or  **radiogenics**, among others to be added in a future.
-* **config_templates:** contains the configuration files used for nexus and IC.
-* **isotope:** the name of the simulated isotope, can be :sup:`214`\Bi or :sup:`208`\Tl for radiogenics, for example. 
-* **volumes:** nexus volumes where the isotope was simulated, such as ACTIVE for the Kr calibration, the different calibration ports for HE calibration, or the NEXT-100 detector components for radiogenics.
-* **production:** contains the nexus and IC files, divided in folders by city.
-
-NEXT-100 (20-10-2025)
------------------------------
-
-This dataset includes multiple simulations processed for krypton and high energy at 4 bar, all found at `/lustre/neu/data4/NEXT/4bar/`:
-
-.. list-table::
-   :widths: 40 60
-   :header-rows: 0
-
-   * - **nexus:**
-     - ``-`` 
-   * - **nexus: LTs and PSFs for Detsim**
-     - ``-``
-   * - **IC**
-     - ``-``
-   * - **NEXT-100 Background Model**
-     - ``-``
-
-
-.. list-table::
-   :widths: 40 20 60 40
-   :header-rows: 1
-
-   * - Folder name
-     - Type
-     - Description
-     - Processed: 
-   * - ``kr_202503_fullsim/``
-     - Kr 83m - Full sim
-     - **200k events** in NEXT100 active volume. 50ms electron lifetime
-     - nexus, hypathia, dorothea
-   * - ``kr_202502_fullsim/``
-     - Kr 83m - Full sim
-     - **200k events** in NEXT100 active volume. 1000ms electron lifetime
-     - nexus, hypathia, dorothea
-   * - ``kr_202510_fullsim/``
-     - Kr 83m - Full sim
-     - **1M events** in NEXT100 active volume.
-     - hypathia, dorothea
-   * - ``th_port1a_202509/``
-     - Tl 208 - Fast sim
-     - **1.63M events** within 1-2.8 MeV energy window
-     - nexus, sophronia
-
-
-NEXT-100 (16-02-2026)
------------------------------
-
-This dataset includes multiple simulations processed for krypton and high energy at 4 bar, all found at `/lustre/neu/data4/NEXT/4bar/`:
-
-.. list-table::
-   :widths: 40 60
-   :header-rows: 0
-
-   * - **nexus:**
-     - ``v07_10_01`` 
-   * - **nexus: LTs and PSFs for Detsim**
-     - ``v07_10_01_Jan2026``
-   * - **IC**
-     - ``f61e3945f449b094590cdf1e708419c15f628fe0``
-   * - **NEXT-100 Background Model**
-     - ``-``
-
-
-.. list-table::
-   :widths: 40 20 60 40
-   :header-rows: 1
-
-   * - Folder name
-     - Type
-     - Description
-     - Processed: 
-   * - ``kr_202602/``
-     - Kr 83m - Fast sim [#kr-map]_
-     - **3.5M events** in NEXT100 active volume, 800k events kept at hypathia level.
-     - nexus, detsim, hypathia, dorothea
-   * - ``kr_202601_full/``
-     - Kr 83m - Full sim
-     - **1.7M events**.   
-     - nexus, hypathia, dorothea
-   * - ``th_port1a_202602/``
-     - Th 228 - Fast sim
-     - **~850k events** within 1-2.8 MeV energy window 
-     - nexus, detsim, hypathia, sophronia 
-   * - ``th_port1a_dep_202602/``
-     - Th 228 - Fast sim
-     - **~1.5M events** within 1.45-1.65 MeV energy window (DEP).
-     - nexus, detsim, hypathia, sophronia 
-   * - ``th_port1a_dep_202602_full/``
-     - Th 228 - Full sim
-     - **~19k events** within 1.45-1.65 MeV energy window (DEP). 900 events at buffy/hypathia level.
-     - nexus, buffy, hypathia, sophronia
-
-
-
-.. [#kr-map] Includes Kr map: ``kr_map_MC_202602.krmap``
